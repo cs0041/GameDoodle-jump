@@ -42,9 +42,11 @@ STAR:
     app.setFramerateLimit(60);
 
 
-    point platG[20], platB[20], platGy[20],bullet[1000];
+    point bullet[1000],platchosen[20];
     enum eDirecton { LEFT = 0, RIGHT,  ATK, };
     eDirecton dir = LEFT;
+    enum Chosenblock { G,Gsp,B,Gy };
+    Chosenblock chosenbloack[10] ;
     int x = 100, y = 100, h = 200;
     float dx = 0, dy = 0;
     bool directionplatB = false;
@@ -53,40 +55,12 @@ STAR:
     int LEVEL = 1;
     int prexnew = 14;
     int xrownew = 0;
-    int randplatG;
-    int addspring;
-    switch (LEVEL)
-    {
-    case 1:
-        addspring = rand() % 3;
-        randplatG = 2;
-        break;
-    case 2:
-        addspring = rand() % 2;
-        randplatG = 1;
-        break;
-    case 3:
-        randplatG = 2;
-        break;
-    case 4:
-
-        break;
-    case 5:
-
-        break;
-    case 6:
-
-        break;
-    }
-    int blockg = 9 - randplatG;
-    cout << blockg << endl;    
-    for (int j = 0; j < 1; j++)
-    {
         int prex = 14;
         int prey = 14;
         int xrow = 0;
         int yrow = -1;
         bool yk = false;
+        int blockg=9;
         for (int i = 0; i < blockg; i++)
         {
             if (i % 3 == 0)
@@ -103,37 +77,14 @@ STAR:
                 prex = 14;
                 xrow = 0;
             }
-            platG[i].x = randomrang(prex, 140 + ((xrow * 126) - 55));
-            platG[i].y = randomrang(prey, 182 + ((yrow * 168) - 16));
-            /*   if (platG[i].x >= 345)
-               {
-                   platG[i].x -= 55;
-               }*/
+            platchosen[i].x = randomrang(prex, 140 + ((xrow * 126) - 55));
+            platchosen[i].y = randomrang(prey, 182 + ((yrow * 168) - 16));
+            chosenbloack[i] = G;
             prex = 140 + (xrow * 126);
             xrow++;
         }
-    }
-
-
-    /*
-    for (int i = 0; i < 10; i++)
-    {
-        platG[i].x = rand() % 400;
-        platG[i].y = rand() % 533;
-    }*/
-    /*
-    for (int i = 0; i < 2; i++)
-    {
-        platB[i].x = rand() % 400;
-        platB[i].y = rand() % 533;
-    }
-    for (int i = 0; i < 1; i++)
-    {
-        platGy[i].x = rand() % 400;
-        platGy[i].y = rand() % 533;
-    }*/
-
-
+        int countblock = 9;
+        int arryblock[10];
     while (app.isOpen())
     {
 
@@ -177,29 +128,83 @@ STAR:
              x = 380;
          }
         // map up
+         if (countblock == 9)
+         {
+             for (int i = 0; i < blockg; i++)
+             {
+                 arryblock[i] = randomrang(0,9);
+             }
+             countblock = 0;
+         }
         if (y < h)
         {
             score += 1;
-            //bolck Gree
             for (int i = 0; i < blockg; i++)
             {
                 y = h;
-                platG[i].y = platG[i].y - dy;
-                if (platG[i].y > 533)
+                platchosen[i].y = platchosen[i].y - dy;
+                if (platchosen[i].y > 533)
                 {
                     if (xrownew % 3 == 0)
                     {
                         xrownew = 0;
                         prexnew = 14;
+         
                     }
-                    platG[i].y = 0; 
-                    platG[i].x = randomrang(prexnew, 140 + ((xrownew * 126) - 55));
+                    platchosen[i].y = 0;
+                    platchosen[i].x = randomrang(prexnew, 140 + ((xrownew * 126) - 55));
+                    switch (LEVEL)
+                    {
+                    case 1:
+                        chosenbloack[i] = G;
+                        break;
+                    case 2:
+                        if (arryblock[i] == 1 || arryblock[i] == 3 || arryblock[i] == 5) { chosenbloack[i] = B; }
+                        else { chosenbloack[i] = G; }
+                        break;
+                    case 3:
+                        if (arryblock[i] == 1 || arryblock[i] == 3 || arryblock[i] == 5) { chosenbloack[i] = B; }
+                        else if (arryblock[i] == 9) { chosenbloack[i] = Gy; }
+                        else { chosenbloack[i] = G; }
+                        break;
+                    case 4:
+                        if (arryblock[i] == 1 || arryblock[i] == 3) { chosenbloack[i] = B; }
+                        else if (arryblock[i] == 9 || arryblock[i] == 6) { chosenbloack[i] = Gy; }
+                        else { chosenbloack[i] = G; }
+                        break;
+                    case 5:
+                        if (arryblock[i] == 1 || arryblock[i] == 3) { chosenbloack[i] = B; }
+                        else if (arryblock[i] == 7 || arryblock[i] == 8) { chosenbloack[i] = Gy; }
+                        else if (arryblock[i] == 9) { chosenbloack[i] = Gsp; }
+                        else { chosenbloack[i] = G; }
+                        break;
+                    default:
+                        break;
+                    }
                     prexnew = 140 + (xrownew * 126);
                     xrownew++;
-                    cout << "  platG[" << i << "].x : " << platG[i].x << "  platG[" << i << "].y : " << platG[i].y << endl;
+                    cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
+                    countblock++;
                 }
             }
             /*
+            for (int i = 0; i < addspring; i++)
+            {
+                y = h;
+                platGSp[i].y = platGSp[i].y - dy;
+                if (platGSp[i].y > 533)
+                {
+                    
+                    platGSp[i].y = 0;
+                    platGSp[i].x = (rand() % 400)-55;
+                 //   platG[indexspringcutplatG].x = -60;
+                  //  platG[indexspringcutplatG].y = -60;
+
+                   
+
+                   
+                }
+            }
             for (int i = 0; i < 2; i++)
             {
                 y = h;
@@ -222,25 +227,88 @@ STAR:
         // jump plat
         for (int i = 0; i < blockg; i++)
         {
-            if  ((x + 50 >= platG[i].x) && (x <= platG[i].x + 35) && (y + 52 >= platG[i].y) && (y + 52 <= platG[i].y+14) &&  (dy > 0) && (dir == LEFT))
+            switch (chosenbloack[i])
             {
-               // Sleep(500);
-                // if jump and what to do ?
-                dy = -10; //-16 spring
-            }
-             if ((x + 31 >= platG[i].x) && (x <= platG[i].x + 47) && (y + 52 >= platG[i].y) && (y + 52 <= platG[i].y+14) && (dy > 0) && (dir ==RIGHT))
-            {
+            case G:
+                if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                {
+                    // Sleep(500);
+                     // if jump and what to do ?
+                    dy = -10; //-16 spring
+                }
+                if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                {
 
-                //Sleep(500);
-                // if jump and what to do ?
-                dy = -10; //-16 spring
+                    //Sleep(500);
+                    // if jump and what to do ?
+                    dy = -10; //-16 spring
+                }
+                if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                {
+                    dy = -10;
+                }
+                break;
+            case Gsp:
+                if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                {
+                    // Sleep(500);
+                     // if jump and what to do ?
+                    dy = -14; //-16 spring
+                }
+                if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                {
+
+                    //Sleep(500);
+                    // if jump and what to do ?
+                    dy = -14; //-16 spring
+                }
+                if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                {
+                    dy = -14;
+                }
+                break;
+            case B:
+                if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                {
+                    // Sleep(500);
+                     // if jump and what to do ?
+                    dy = -10; //-16 spring
+                }
+                if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                {
+
+                    //Sleep(500);
+                    // if jump and what to do ?
+                    dy = -10; //-16 spring
+                }
+                if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                {
+                    dy = -10;
+                }
+                break;
+            case Gy:
+                if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                {
+                    // Sleep(500);
+                     // if jump and what to do ?
+                    platchosen[i].y = 534; //-16 spring
+                }
+                if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                {
+
+                    //Sleep(500);
+                    // if jump and what to do ?
+                    platchosen[i].y = 534; //-16 spring
+                }
+                if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                {
+                    platchosen[i].y = 534;
+                }
+                break;
+            default:
+                break;
             }
-            if ((x + 34 >= platG[i].x) && (x <= platG[i].x + 50) && (y + 77 >= platG[i].y) && (y + 77 <= platG[i].y + 14) && (dy > 0) && (dir == ATK))
-            {
-                dy = -10;
-            }               
-        }
-        /*
+        }/*
         for (int i = 0; i < 1; i++)
         {
             if ((x + 50 > platB[i].x) && (x + 20 < platB[i].x + 68) && (y + 70 > platB[i].y) && (y + 70 < platB[i].y + 14) && (dy > 0))
@@ -257,33 +325,41 @@ STAR:
 
             }
         }*/
-        /*
-        for (int i = 0; i < 1; i++)
+        
+        for (int i = 0; i < blockg; i++)
         {
-            if (!directionplatB)
+            switch (chosenbloack[i])
             {
-                platB[i].x++;
+            case B:
+                if (!directionplatB)
+                {
+                    platchosen[i].x++;
+                }
+                else if (directionplatB)
+                {
+                    platchosen[i].x--;
+                }
+                if( platchosen[i].x == 335)
+                {
+                    directionplatB = true;
+                }
+                else if (platchosen[i].x == 0)
+                {
+                    directionplatB = false;
+                }
+                break;
+            default:
+                break;
             }
-            else if (directionplatB)
-            {
-                platB[i].x--;
-            }
-            if (platB[i].x == 335)
-            {
-                directionplatB = true;
-            }
-            else if (platB[i].x == 0)
-            {
-                directionplatB = false;
-            }
+            
         }
-        */
-        sPersLeftt.setPosition(x, y);
-        sPersRight.setPosition(x, y);
-        sPersATK.setPosition(x, y);
+        
+       sPersLeftt.setPosition(x, y);
+       sPersRight.setPosition(x, y);
+       sPersATK.setPosition(x, y);
       
         app.draw(sBackground);
-
+       
         if (dir == LEFT)
         {
 
@@ -297,13 +373,39 @@ STAR:
         {
               app.draw(sPersATK);
         }
-
+   
         for (int i = 0; i < blockg; i++)
         {
-            sPlatG.setPosition(platG[i].x, platG[i].y);
-            app.draw(sPlatG);
-        }
+            switch (chosenbloack[i])
+            {
+            case G:
+                sPlatG.setPosition(platchosen[i].x, platchosen[i].y);
+                app.draw(sPlatG);
+                break;
+            case Gsp:
+                sPlatGSp.setPosition(platchosen[i].x, platchosen[i].y);
+                app.draw(sPlatGSp);
+                break;
+            case B:
+                sPlatB.setPosition(platchosen[i].x, platchosen[i].y);
+                app.draw(sPlatB);
+                break;
+            case Gy:
+                sPlatGy.setPosition(platchosen[i].x, platchosen[i].y);
+                app.draw(sPlatGy);
+                break;
+            default:
+                break;
+            }
+    
+        }/*
+        for (int i = 0; i < addspring; i++)
+        {
+            sPlatGSp.setPosition(platGSp[i].x, platGSp[i].y);
+            app.draw(sPlatGSp);
+        }*/
         /*
+        
         for (int i = 0; i < 1; i++)
         {
             sPlatB.setPosition(platB[i].x, platB[i].y);
@@ -313,7 +415,8 @@ STAR:
         {
             sPlatGy.setPosition(platGy[i].x, platGy[i].y);
             app.draw(sPlatGy);
-        }*/
+        }
+   */
         if (allb > 0)
         {
             for (int i = 0; i < allb; i++)
@@ -327,31 +430,27 @@ STAR:
                 
             }
         }
-        cout << " x : " << x << " y : " << y << " score : " << score << endl;
+        cout << " LEVEL : " << LEVEL  << " score : " << score << " countblock : " << countblock << endl;
         app.display();
 
-        if (score >= 150)//sp
+       
+        if (score >= 400)//dis 1
         {
-            LEVEL = 2;
+            LEVEL = 5;
         }
-        else if (score >= 300)//dis 1
-        {
-            LEVEL = 3;
-        }
-        else if (score >= 500)//dis2
+        else if (score >= 300)//dis2
         {
             LEVEL = 4;
         }
-        else if (score >= 700)//no sp
+        else if (score >= 200)//no sp
         {
-            LEVEL = 5;
+            LEVEL = 3;
 
         }
-        else if (score >= 1800)//new color
+        else if (score >= 100)//new color
         {
-            LEVEL = 6;
+            LEVEL = 2;
         }
-
 
 
         if (y > 500)
