@@ -159,6 +159,7 @@ STAR:
     DirecDevil DeVilDirec[10];
     for (int i = 0; i < 10; i++)
     {
+        DeVilfram[i] = DeVil1;
         int choseDirecDeVil;
         choseDirecDeVil = randomrang(0,4);
         switch (choseDirecDeVil)
@@ -867,41 +868,65 @@ STAR:
                     switch (DeVilDirec[i])
                     {
                     case LU:
-                        platchosen[i].x--;
-                        platchosen[i].y--;
+                        platchosen[i].x-=10;
+                        platchosen[i].y-=10;
                         break;
                     case LD:
-                        platchosen[i].x--;
-                        platchosen[i].y++;
+                        platchosen[i].x-=10;
+                        platchosen[i].y+=10;
                         break;
                     case RU:
-                        platchosen[i].x++;
-                        platchosen[i].y--;
+                        platchosen[i].x+=10;
+                        platchosen[i].y-=10;
                         break;
                     case RD:
-                        platchosen[i].x++;
-                        platchosen[i].y++;
+                        platchosen[i].x+=10;
+                        platchosen[i].y+=10;
                         break;
                     default:
                         break;
                     }
+                    
+                    if (platchosen[i].x <= 0 && DeVilDirec[i] == LU)
+                    {
+                        DeVilDirec[i] = RU;
+                    }
+                    else if (platchosen[i].x <= 0 && DeVilDirec[i] == LD)
+                    {
+                        DeVilDirec[i] = RD;
+                    }
+                    else if (platchosen[i].x >= 400- 112 && DeVilDirec[i] == RU)
+                    {
+                        DeVilDirec[i] = LU;
+                    }
+                    else if (platchosen[i].x >= 400 - 112 && DeVilDirec[i] == RD)
+                    {
+                        DeVilDirec[i] = LD;
+                    }
+                    else if (platchosen[i].y <= 0 && DeVilDirec[i] == LU)
+                    {
+                        DeVilDirec[i] = LD;
+                    }
+                    else if (platchosen[i].y <= 0 && DeVilDirec[i] == RU)
+                    {
+                        DeVilDirec[i] = RD;
+                    }
+                    else if (platchosen[i].y >= 105 - 67 && DeVilDirec[i] == LD)
+                    {
+                        DeVilDirec[i] = LU;
+                    }
+                    else if (platchosen[i].y >= 105 - 67 && DeVilDirec[i] == RD)
+                    {
+                        DeVilDirec[i] = RU;
+                    } 
                     break;
+
+
                 case DeVil4:
                     sPlatDevil_2_2.setPosition(platchosen[i].x, platchosen[i].y);
                     app.draw(sPlatDevil_2_2);
                     DeVilfram[i] = DeVil1;
-                    // platdelbrown[i].y += 6;
                     break;
-                /*case Br6:
-                    if (platdelbrown[i].y > 530)
-                    {
-                        brownout[i] = false;
-                        platdelbrown[i].x = -100;
-                    }
-                    sPlatBrown6.setPosition(platdelbrown[i].x, platdelbrown[i].y);
-                    app.draw(sPlatBrown6);
-                    platdelbrown[i].y += 6;
-                    break;*/
                 default:
                     break;
                 }
