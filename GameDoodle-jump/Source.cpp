@@ -130,14 +130,16 @@ STAR:
     app.setFramerateLimit(60);
 
 
-    point bullet[1000],platchosen[20],platdelbrown[20];
-
+    point bullet[1000],platchosen[20],platdelbrown[20]
+        ,Devil{};
+    Devil.x = 0;
+    Devil.y = 533-67;
 
     enum eDirecton { LEFT = 0, RIGHT,  ATK, };
     eDirecton dir = LEFT;
 
 
-    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Devil};
+    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br};
     Chosenblock chosenbloack[10] ;
     bool Greensp[10];
     for (int i = 0; i < 10; i++)
@@ -153,33 +155,34 @@ STAR:
         brownout[i] = false;
     }
 
-    enum framDevil { DeVil1, DeVil2, DeVil3,DeVil4};
-    framDevil DeVilfram[10];
+    enum framDevil { DeVil1_1, DeVil1_2 ,DeVil1_3, DeVil1_4, DeVil1_5, DeVil1_6, DeVil1_7, DeVil1_8, DeVil1_9, DeVil1_10, DeVil1, DeVil2, DeVil3,DeVil4};
+    framDevil DeVilfram;
     enum DirecDevil { LU, LD, RU, RD };
-    DirecDevil DeVilDirec[10];
-    for (int i = 0; i < 10; i++)
-    {
-        DeVilfram[i] = DeVil1;
-        int choseDirecDeVil;
-        choseDirecDeVil = randomrang(0,4);
-        switch (choseDirecDeVil)
-        {
-        case 1:
-            DeVilDirec[i] = LU;
-            break;
-        case 2:
-            DeVilDirec[i] = LD;
-            break;
-        case 3:
-            DeVilDirec[i] = RU;
-            break;
-        case 4:
-            DeVilDirec[i] = RD;
-            break;
-        default:
-            break;
-        }
-    }
+    DirecDevil DeVilDirec;
+    int heartDevil;
+    int framefristseeDevil = 0;
+    bool Devilalive = false;
+        DeVilfram = DeVil1_1;
+            switch (randomrang(0, 4))
+            {
+            case 1:
+                DeVilDirec = LU;
+                break;
+            case 2:
+                DeVilDirec = LD;
+                break;
+            case 3:
+                DeVilDirec = RU;
+                break;
+            case 4:
+                DeVilDirec = RD;
+                break;
+            default:
+                DeVilDirec = LU;
+                break;
+            }
+        
+    
 
 
 
@@ -222,8 +225,10 @@ STAR:
         }
         int countblock = 9;
         int arryblock[10];
+        int fordelaykeyborad=0;
     while (app.isOpen())
     {
+        fordelaykeyborad++;
         srand(time(0));
         Event e;
         while (app.pollEvent(e))
@@ -244,11 +249,11 @@ STAR:
             dir = LEFT;
           
         }
-        if (Keyboard::isKeyPressed(Keyboard::P))
+        if( ((Keyboard::isKeyPressed(Keyboard::Up)) ) && (fordelaykeyborad%6==0))
         {
             bullet[allb].x = x+15;
             bullet[allb].y = y;
-            allb++;
+            allb ++;
             dir = ATK;
             fflush(stdin);
         }
@@ -463,9 +468,16 @@ STAR:
                      break;
                      
                  case 7:
-                     int chosedevil ;
-                     chosedevil = randomrang(0, 8);
-                     arryblock[chosedevil] = randomrang(-1, 9); 
+                     if (!Devilalive)
+                     {
+                         int chosedevil;
+                         chosedevil = randomrang(-1, 9);
+                         if (chosedevil == -1 || chosedevil == 0 || chosedevil == 1 || chosedevil == 2 || chosedevil == 3 || chosedevil == 4 || chosedevil == 5 || chosedevil == 6)
+                         {
+                             Devilalive = true;
+                             heartDevil = 3; 
+                         }
+                     }
                      break;
                  default:
                      break;
@@ -522,13 +534,7 @@ STAR:
                             break;
                             
                         case 7:
-                            if (arryblock[i] == -1 || arryblock[i] == 0 || arryblock[i] == 1)
-                            { 
-                                chosenbloack[i] = Devil; 
-                                platchosen[i].y = 0;
-                                platchosen[i].x = randomrang(prexnew, 140 + ((xrownew * 126) - 112));
-                            }
-                            else { chosenbloack[i] = G; }
+                            chosenbloack[i] = G;
                             break;
                         default:
                             break;
@@ -846,108 +852,215 @@ STAR:
                 sPlatGy.setPosition(platchosen[i].x, platchosen[i].y);
                 app.draw(sPlatGy);
                 break;
-            case Devil:
-                switch (DeVilfram[i])
-                {
-                case DeVil1:
-                    sPlatDevil_1.setPosition(platchosen[i].x, platchosen[i].y);
-                    app.draw(sPlatDevil_1);
-                    DeVilfram[i] = DeVil2;
-                   // platdelbrown[i].y += 6;
-                    break;
-                case DeVil2:
-                    sPlatDevil_2.setPosition(platchosen[i].x, platchosen[i].y);
-                    app.draw(sPlatDevil_2);
-                    DeVilfram[i] = DeVil3;
-                   // platdelbrown[i].y += 6;
-                    break;
-                case DeVil3:
-                    sPlatDevil_3.setPosition(platchosen[i].x, platchosen[i].y);
-                    app.draw(sPlatDevil_3);
-                    DeVilfram[i] = DeVil4;
-                    switch (DeVilDirec[i])
-                    {
-                    case LU:
-                        platchosen[i].x-=10;
-                        platchosen[i].y-=10;
-                        break;
-                    case LD:
-                        platchosen[i].x-=10;
-                        platchosen[i].y+=10;
-                        break;
-                    case RU:
-                        platchosen[i].x+=10;
-                        platchosen[i].y-=10;
-                        break;
-                    case RD:
-                        platchosen[i].x+=10;
-                        platchosen[i].y+=10;
-                        break;
-                    default:
-                        break;
-                    }
-                    
-                    if (platchosen[i].x <= 0 && DeVilDirec[i] == LU)
-                    {
-                        DeVilDirec[i] = RU;
-                    }
-                    else if (platchosen[i].x <= 0 && DeVilDirec[i] == LD)
-                    {
-                        DeVilDirec[i] = RD;
-                    }
-                    else if (platchosen[i].x >= 400- 112 && DeVilDirec[i] == RU)
-                    {
-                        DeVilDirec[i] = LU;
-                    }
-                    else if (platchosen[i].x >= 400 - 112 && DeVilDirec[i] == RD)
-                    {
-                        DeVilDirec[i] = LD;
-                    }
-                    else if (platchosen[i].y <= 0 && DeVilDirec[i] == LU)
-                    {
-                        DeVilDirec[i] = LD;
-                    }
-                    else if (platchosen[i].y <= 0 && DeVilDirec[i] == RU)
-                    {
-                        DeVilDirec[i] = RD;
-                    }
-                    else if (platchosen[i].y >= 105 - 67 && DeVilDirec[i] == LD)
-                    {
-                        DeVilDirec[i] = LU;
-                    }
-                    else if (platchosen[i].y >= 105 - 67 && DeVilDirec[i] == RD)
-                    {
-                        DeVilDirec[i] = RU;
-                    } 
-                    break;
-
-
-                case DeVil4:
-                    sPlatDevil_2_2.setPosition(platchosen[i].x, platchosen[i].y);
-                    app.draw(sPlatDevil_2_2);
-                    DeVilfram[i] = DeVil1;
-                    break;
-                default:
-                    break;
-                }
-                break;
             default:
                 break;
             }
     
         }
 
+
+        if (Devilalive)
+        {
+            switch (DeVilfram)
+            {
+            case DeVil1_1:
+                sPlatDevil_1.setPosition(Devil.x, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_2;
+                break;
+            case DeVil1_2:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_3;
+                break;
+            case DeVil1_3:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_4;
+                break;
+            case DeVil1_4:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_5;
+                break;
+            case DeVil1_5:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_6;
+                break;
+            case DeVil1_6:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_7;
+                break;
+            case DeVil1_7:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_8;
+                break;
+            case DeVil1_8:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_9;
+                break;
+            case DeVil1_9:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil1_10;
+                break;
+            case DeVil1_10:
+                sPlatDevil_1.setPosition(-200, Devil.y);
+                app.draw(sPlatDevil_1);
+                framefristseeDevil++;
+                if (framefristseeDevil >= 12)
+                {
+                    DeVilfram = DeVil1;
+                }
+                else
+                {
+                    DeVilfram = DeVil1_1;
+                }
+                break;
+            case DeVil1:
+                sPlatDevil_1.setPosition(Devil.x, Devil.y);
+                app.draw(sPlatDevil_1);
+                DeVilfram = DeVil2;
+                break;
+            case DeVil2:
+                sPlatDevil_2.setPosition(Devil.x, Devil.y);
+                app.draw(sPlatDevil_2);
+                DeVilfram = DeVil3;
+                break;
+            case DeVil3:
+                sPlatDevil_3.setPosition(Devil.x, Devil.y);
+                app.draw(sPlatDevil_3);
+                DeVilfram = DeVil4;
+                switch (DeVilDirec)
+                {
+                case LU:
+                    if (Devil.y < 105)
+                    {
+                        Devil.x -= 10;
+                        Devil.y -= 10;
+                    }
+                    else
+                    {
+                        Devil.x -= 25;
+                        Devil.y -= 25;
+                    }
+                    break;
+                case LD:
+                    if (Devil.y < 105)
+                    {
+                        Devil.x -= 10;
+                        Devil.y += 10;
+                    }
+                    else
+                    {
+                        Devil.x -= 25;
+                        Devil.y += 25;
+                    }
+                    break;
+                case RU:
+                    if (Devil.y < 105)
+                    {
+                        Devil.x += 10;
+                        Devil.y -= 10;
+                    }
+                    else
+                    {
+                        Devil.x += 25;
+                        Devil.y -= 25;
+                    } 
+                    break;
+                case RD:
+                    if (Devil.y < 105)
+                    {
+                        Devil.x += 10;
+                        Devil.y += 10;
+                    }
+                    else
+                    {
+                        Devil.x += 25;
+                        Devil.y += 25;
+                    }
+                    break;
+                default:
+                    break;
+                }
+
+                if( Devil.x <= 0 && DeVilDirec == LU)
+                {
+                    DeVilDirec = RU;
+                }
+                else if (Devil.x <= 0 && DeVilDirec == LD)
+                {
+                    DeVilDirec = RD;
+                }
+                else if (Devil.x >= 400 - 112 && DeVilDirec == RU)
+                {
+                    DeVilDirec = LU;
+                }
+                else if (Devil.x >= 400 - 112 && DeVilDirec == RD)
+                {
+                    DeVilDirec = LD;
+                }
+                else if (Devil.y <= 0 && DeVilDirec == LU)
+                {
+                    DeVilDirec = LD;
+                }
+                else if (Devil.y <= 0 && DeVilDirec == RU)
+                {
+                    DeVilDirec = RD;
+                }
+                else if (Devil.y >= 105 - 67 && DeVilDirec == LD)
+                {
+                    DeVilDirec = LU;
+                }
+                else if (Devil.y >= 105 - 67 && DeVilDirec == RD)
+                {
+                    DeVilDirec = RU;
+                }
+                break;
+            case DeVil4:
+                sPlatDevil_2_2.setPosition(Devil.x, Devil.y);
+                app.draw(sPlatDevil_2_2);
+                DeVilfram = DeVil1;
+                break;
+            default:
+                break;
+            }
+        }
+        
+
+
+
         if (allb > 0)
         {
             for (int i = 0; i < allb; i++)
             {
-                bullet[i].y-=12; 
-                if (bullet[i].y >= 0)
-                {
-                    SBullet.setPosition(bullet[i].x, bullet[i].y);
-                    app.draw(SBullet);
-                }
-                
+                            if (bullet[i].y >= 0)
+                            {
+                                bullet[i].y -= 12;
+                            }
+                            if ((bullet[i].x + 10 >= Devil.x) && (bullet[i].x <= Devil.x + 112) && (bullet[i].y <= Devil.y + 67) && (bullet[i].y-10 >= Devil.y ) && bullet[i].y>=0 && Devilalive)
+                            {
+                                heartDevil--;
+                                if (heartDevil == 0)
+                                {
+                                    Devilalive = false;
+                                    DeVilfram  = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 533 - 67;
+                                }
+                                bullet[i].y = -10;
+                            }
+                            if (bullet[i].y >= 0)
+                            {
+                                SBullet.setPosition(bullet[i].x, bullet[i].y);
+                                app.draw(SBullet);
+                            }
             }
         }
         //cout << " LEVEL : " << LEVEL  << " score : " << score << " countblock : " << countblock << endl;
