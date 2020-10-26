@@ -8,95 +8,133 @@ using namespace sf;
 using namespace std;
 
 
-
-
-
-
-bool percentrandom(int arryblock, int percent)
-{
-    switch (percent)
-    {
-    case 0:
-        return false;
-        break;
-    case 10:
-        if (arryblock == 0)
-        { return true;}
-        else{return false;}
-    case 20:
-        if (arryblock == 0 || arryblock == 1)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 30:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 40:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2 || arryblock == 3)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 50:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2 || arryblock == 3 || arryblock == 4)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 60:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2 || arryblock == 3 || arryblock == 4 || arryblock == 5)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 70:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2 || arryblock == 3 || arryblock == 4 || arryblock == 5 || arryblock == 6)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 80:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2 || arryblock == 3 || arryblock == 4 || arryblock == 5 || arryblock == 6 || arryblock == 7)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 90:
-        if (arryblock == 0 || arryblock == 1 || arryblock == 2|| arryblock == 3 || arryblock == 4 || arryblock == 5 || arryblock == 6 || arryblock == 7 || arryblock == 8)
-        {
-            return true;
-        }
-        else { return false; }
-        break;
-    case 100:
-            return true;
-        break;
-    default:
-        break;
-    }
-}
-struct point
-{
-    int x, y;
-};
 int randomrang(int lower, int upper)
 {
     return (rand() % (upper - lower + 1)) + lower;
 }
 
+bool randompercenn(int percent)
+{
+    int number;
+    number = randomrang(1, 100);
+    if (number <= percent)
+    {
+        return true;
+    }
+    else if (number > percent)
+    {
+        return false;
+    }
+    
+}
+
+
+
+
+bool haveblock(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+   return  randompercenn(percent);
+}
+bool block_G(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
+bool block_Gsp(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
+bool block_B(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
+bool block_Br(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
+bool have_Devil(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
+
+struct point
+{
+    int x, y;
+};
+
+
 int main()
 {
+    /*
+    S1:
+    srand(time(0));
+    float tt = 0, ff = 0;
+    for (int i = 1; i <= 1000; i++)
+    {
+        if (randompercenn(99))
+        {
+            tt++;
+        }
+        else 
+        {
+            ff++;
+        }
+    }
+  //  cout << "tt : " << tt << endl;
+  //  cout << "ff : " << ff << endl;
+    cout << tt/10 << " %"<< endl;
+    Sleep(500);
+    goto S1;
+
+    */
+
 
     RenderWindow app(VideoMode(400, 650), "Doodle Game!");
     app.setFramerateLimit(60);
@@ -184,6 +222,7 @@ STAR:
     bool Greensp[40];
     for (int i = 0; i < 40; i++)
     {
+        chosenbloack[i] = blank;
         Greensp[i] = false;
     }
 
@@ -261,6 +300,7 @@ STAR:
         int yrow = -1;
         bool yk = false;
         int blockg=32;
+        
         for (int i = 0; i < blockg-4; i++)
         {
             if (i % 4 == 0)
@@ -301,9 +341,13 @@ STAR:
         platchosen[28].x = 300;
         platchosen[28].y = 650 - 40;
         chosenbloack[28] = G;
-
+        /*
+         for (int i = 0; i < 40; i++)
+                    {
+                        chosenbloack[i] = blank;
+                    }
         
-
+         */
 
 
         int countblock = 32;
@@ -311,7 +355,14 @@ STAR:
 
 
         int scoreold = 0;
+       
 
+        enum ChosenblockDUMME { G_dumme, Gsp_dumme, B_dumme, blank_dumme, Br_dumme   };
+        ChosenblockDUMME chosenbloackDumme[40];
+        for (int i = 0; i < 40; i++)
+        {
+            chosenbloackDumme[i] = blank_dumme;
+        }
     while (app.isOpen())
     {
         srand(time(0));
@@ -406,7 +457,144 @@ STAR:
                     x = 380;
                 }
 
+
+              
+
+                if (countblock == 32)
+                {
+                   
+
+                    
+                    for (int i = 0; i < 40; i++)
+                    {
+                        chosenbloackDumme[i] = blank_dumme;
+                    }
+
+                    
+                    
+                    bool rowpass[8];
+                    bool consand[32];
+                    for (int i = 0; i < 8; i++)
+                    {
+
+                        rowpass[i] = false;
+                    }
+                    for (int i = 0; i < blockg; i++)
+                    {
+                        consand[i] = false;
+
+                    }
+
+                    int row = 3;
+                    int low = 0;
+                    //chose constan block//
+                    for (int i = 0; i < 8; i++)
+                    {
+                        int keeprandomrang;
+                        keeprandomrang = randomrang(low, row);
+                        cout << "CONSTANDDD: " << keeprandomrang << endl;
+                        consand[keeprandomrang] = true;
+                        switch (LEVEL)
+                        {
+                        case 1:
+                            cout << "block_B(100) :  " << block_B(100) << endl;
+                            if (block_Gsp(5))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_B(100))
+                            {
+ 
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+                                cout << " rowpass[i]: " << i << endl;
+                            }
+                            else if(block_G(100))
+                            {
+                                cout << "noBBB ??? WHY "  << endl;
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+                            cout << "+++++++++++ " << endl; 
+                            break;
+
+                        default:
+                            break;
+                        }
+                        low += 4;
+                        row += 4;
+                    }
+
+                    //chose normal block//
+                    int row_2 = 3;
+                    int low_2 = 0;
+                    for (int i = 0; i < 8; i++)
+                    {
+                        cout << "i : " << i << endl;
+                        if (!rowpass[i])
+                        {
+                            cout << "findddddddddddd "<< endl;
+                           cout << "low_2 : " << low_2 << endl;
+                            cout << "row_2 : " << row_2 << endl;
+                            for (int j = low_2; j <= row_2; j++)
+                            {
+                                cout << "j : " << j << endl;
+                                if (!consand[j])
+                                {
+                                    switch (LEVEL)
+                                    {
+                                    case 1:
+                                        if (haveblock(80))
+                                        {
+                                            if (block_Br(10))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+                                            }
+                                            else if (block_Gsp(20))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_G(80))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                        if (!Devilalive)
+                                        {
+                                            if (have_Devil(0))
+                                            {
+                                                Devilalive = true;
+                                                heartDevil = 3;
+                                            }
+                                        }
+
+                                        break;
+
+                                    default:
+                                        break;
+                                    }
+
+
+
+                                }
+                            }
+                            
+                        }
+                        row_2 += 4;
+                        low_2 += 4;
+
+                    }
+                    countblock = 0;
+                }
+
+
+               // system("pause");
+
                 // map up
+                    /*
                 if (countblock == 32)
                 {
                     for (int i = 0; i < blockg; i++)
@@ -553,7 +741,7 @@ STAR:
                             }
                         }
                         break;
-                    case 5: /* can not*/
+                    case 5: /* can not*//*
                         for (int i = 0; i < blockg; i++)
                         {
                             if (arryblock[i] == 5)
@@ -602,7 +790,7 @@ STAR:
                             }
                         }
                     case 6:
-                        /*spring*/
+                        /*spring*//*
                         break;
 
                     case 7:
@@ -623,6 +811,7 @@ STAR:
 
                     countblock = 0;
                 }
+                */
                 if (y < h)
                 {
                     score += 1;
@@ -641,6 +830,28 @@ STAR:
                             platchosen[i].y = 0;
                             platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 60));
 
+
+                                switch (chosenbloackDumme[i])
+                                {
+                                case  G_dumme:
+                                    chosenbloack[i] = G;
+                                    break;
+                                case  Gsp_dumme:
+                                    chosenbloack[i] = G;
+                                    break;
+                                case  B_dumme:
+                                    chosenbloack[i] = B;
+                                    break;
+                                case  Br_dumme:
+                                    chosenbloack[i] = Br;
+                                    break;
+                                case  blank_dumme:
+                                    chosenbloack[i] = blank;
+                                    break;
+                                default:
+                                    break;
+                                }
+                            /*
                             switch (LEVEL)
                             {
                             case 1:
@@ -677,7 +888,7 @@ STAR:
                             default:
                                 break;
                             }
-
+                            */
                             prexnew = 100 + (xrownew * 100);
                             xrownew++;
                             // cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
@@ -1411,20 +1622,20 @@ STAR:
 
                 if (score >= 1500)//dis 1
                 {
-                    LEVEL = 6;
+                    LEVEL = 1;
                 }
                 else if (score >= 1000)//dis2
                 {
-                    LEVEL = 6;
+                    LEVEL = 1;
                 }
                 else if (score >= 500)//no sp
                 {
-                    LEVEL = 6;
+                    LEVEL = 1;
 
                 }
                 else if (score >= 0)//new color
                 {
-                    LEVEL = 6;
+                    LEVEL = 1;
                 }
 
 
@@ -1438,7 +1649,7 @@ STAR:
                      //  app.close();
                   //  goto STAR;
                 }
-
+              
                 break;
             }
 
