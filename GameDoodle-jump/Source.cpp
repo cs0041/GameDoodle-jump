@@ -91,6 +91,19 @@ bool block_Br(int percent)
     }
     return  randompercenn(percent);
 }
+bool have_Propller (int percent)
+{
+    if (percent == 100)
+    {
+        
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
 bool have_Devil(int percent)
 {
     if (percent == 100)
@@ -140,7 +153,7 @@ int main()
     app.setFramerateLimit(60);
 
     Texture t1, t2, t3, t4, t5, t6, t7, t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,
-        t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36;
+        t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -178,12 +191,15 @@ int main()
     t34.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/7.png");
     t35.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/8.png");
     t36.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/9.png");
+    t37.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/UFO1.png");
+    t38.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/UFO2.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
         sPlatDevil_1(t18), sPlatDevil_2(t19), sPlatDevil_3(t20), sPlatDevil_2_2(t19),sBack_grid(t21),
         sPropeller_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25),sTopbar(t26)
-        , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36);
+        , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
+        sUFO_1(t37),sUFO_2(t38);
 
 
     enum CHOSEMENU {PLAY,MENU,SCORE};
@@ -198,9 +214,15 @@ STAR:
 
 
     point bullet[1000],platchosen[40],platdelbrown[40],propllerdel
-        ,Devil{};
+        ,Devil{},UFO;
     Devil.x = 0;
     Devil.y = 650-67;
+
+    bool UFO_Warp = true;
+    int timeto_UFOWarp = 0;
+    enum UFODIR {UFO_1,UFO_2 };
+    UFODIR UFOfrme = UFO_1;
+
 
     enum eDirecton { LEFT = 0, RIGHT,  ATK, };
     eDirecton dir = LEFT;
@@ -213,6 +235,7 @@ STAR:
     propller framepropller = propller_1;
     bool propller_on = false;
     bool propller_out = false;
+
 
 
 
@@ -365,7 +388,7 @@ STAR:
         }
     while (app.isOpen())
     {
-        srand(time(0));
+       // srand(time(0));
         Event e;
         while (app.pollEvent(e))
         {
@@ -374,6 +397,7 @@ STAR:
         }
         while (true)
         {
+            srand(time(0));
             if (CHOSEMENU == PLAY)
             {
                 if (Keyboard::isKeyPressed(Keyboard::Right))
@@ -404,6 +428,8 @@ STAR:
                     goto STAR;
 
                 }
+
+             
                 if (score - scoreold >= 200 && propller_on)
                 {
                     speeddoodle = Normal;
@@ -492,29 +518,29 @@ STAR:
                     {
                         int keeprandomrang;
                         keeprandomrang = randomrang(low, row);
-                        cout << "CONSTANDDD: " << keeprandomrang << endl;
+                     
                         consand[keeprandomrang] = true;
                         switch (LEVEL)
                         {
                         case 1:
-                            cout << "block_B(100) :  " << block_B(100) << endl;
-                            if (block_Gsp(5))
+                            
+                            if (block_Gsp(20))
                             {
                                 chosenbloackDumme[keeprandomrang] = Gsp_dumme;
                             }
-                            else if (block_B(100))
+                            else if (block_B(30))
                             {
  
                                 chosenbloackDumme[keeprandomrang] = B_dumme;
                                 rowpass[i] = true;
-                                cout << " rowpass[i]: " << i << endl;
+                                
                             }
                             else if(block_G(100))
                             {
-                                cout << "noBBB ??? WHY "  << endl;
+                                
                                 chosenbloackDumme[keeprandomrang] = G_dumme;
                             }
-                            cout << "+++++++++++ " << endl; 
+                           
                             break;
 
                         default:
@@ -529,31 +555,29 @@ STAR:
                     int low_2 = 0;
                     for (int i = 0; i < 8; i++)
                     {
-                        cout << "i : " << i << endl;
+                       
                         if (!rowpass[i])
                         {
-                            cout << "findddddddddddd "<< endl;
-                           cout << "low_2 : " << low_2 << endl;
-                            cout << "row_2 : " << row_2 << endl;
+                         
                             for (int j = low_2; j <= row_2; j++)
                             {
-                                cout << "j : " << j << endl;
+                             
                                 if (!consand[j])
                                 {
                                     switch (LEVEL)
                                     {
                                     case 1:
-                                        if (haveblock(80))
+                                        if (haveblock(30))
                                         {
-                                            if (block_Br(10))
+                                            if (block_Br(40))
                                             {
                                                 chosenbloackDumme[j] = Br_dumme;
                                             }
-                                            else if (block_Gsp(20))
+                                            else if (block_Gsp(30))
                                             {
                                                 chosenbloackDumme[j] = Gsp_dumme;
                                             }
-                                            else if (block_G(80))
+                                            else if (block_G(100))
                                             {
                                                 chosenbloackDumme[j] = G_dumme;
                                             }
@@ -562,15 +586,6 @@ STAR:
                                         {
                                             chosenbloackDumme[j] = blank_dumme;
                                         }
-                                        if (!Devilalive)
-                                        {
-                                            if (have_Devil(0))
-                                            {
-                                                Devilalive = true;
-                                                heartDevil = 3;
-                                            }
-                                        }
-
                                         break;
 
                                     default:
@@ -587,231 +602,33 @@ STAR:
                         low_2 += 4;
 
                     }
-                    countblock = 0;
-                }
-
-
-               // system("pause");
-
-                // map up
-                    /*
-                if (countblock == 32)
-                {
-                    for (int i = 0; i < blockg; i++)
-                    {
-                        arryblock[i] = randomrang(0, 9);
-                    }
-
                     switch (LEVEL)
                     {
                     case 1:
-                        break;
-                    case 2:
-                        for (int i = 0; i < blockg; i++)
-                        {
-                            if (arryblock[i] == 0)
-                            {
-                                switch (i)
-                                {
-                                case 0:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i + 2] = 10;
-                                    break;
-                                case 1:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i - 1] = 10;
-                                    break;
-                                case 2:
-                                    arryblock[i - 1] = 10;
-                                    arryblock[i - 2] = 10;
-                                    break;
-                                case 3:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i + 2] = 10;
-                                    break;
-                                case 4:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i - 1] = 10;
-                                    break;
-                                case 5:
-                                    arryblock[i - 1] = 10;
-                                    arryblock[i - 2] = 10;
-                                    break;
-                                case 6:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i + 2] = 10;
-                                    break;
-                                case 7:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i - 1] = 10;
-                                    break;
-                                case 8:
-                                    arryblock[i - 1] = 10;
-                                    arryblock[i - 2] = 10;
-                                    break;
-                                default:
-                                    break;
-                                }
-                            }
-
-                        }
-                        break;
-                    case 3:
-
-                        while ((arryblock[0] == 9 || arryblock[0] == 8 || arryblock[0] == 7) && (arryblock[1] == 9 || arryblock[1] == 8 || arryblock[1] == 7) && (arryblock[2] == 9 || arryblock[2] == 8 || arryblock[2] == 7))
-                        {
-                            int indexi = randomrang(0, 2);
-                            arryblock[indexi] = randomrang(0, 8);
-                        }
-                        while ((arryblock[3] == 9 || arryblock[3] == 8 || arryblock[3] == 7) && (arryblock[4] == 9 || arryblock[4] == 8 || arryblock[4] == 7) && (arryblock[5] == 9 || arryblock[5] == 8 || arryblock[5] == 7))
-                        {
-                            int indexi = randomrang(3, 5);
-                            arryblock[indexi] = randomrang(0, 8);
-                        }
-                        while ((arryblock[6] == 9 || arryblock[6] == 8 || arryblock[6] == 7) && (arryblock[7] == 9 || arryblock[7] == 8 || arryblock[7] == 7) && (arryblock[8] == 9 || arryblock[8] == 8 || arryblock[8] == 7))
-                        {
-                            int indexi = randomrang(6, 9);
-                            arryblock[indexi] = randomrang(0, 8);
-                        }
-
-                        break;
-                    case 4:
-
-                        while ((arryblock[0] == 9) && (arryblock[1] == 9) && (arryblock[2] == 9))
-                        {
-                            int indexi = randomrang(0, 2);
-                            arryblock[indexi] = randomrang(0, 8);
-                        }
-                        while ((arryblock[3] == 9) && (arryblock[4] == 9) && (arryblock[5] == 9))
-                        {
-                            int indexi = randomrang(3, 5);
-                            arryblock[indexi] = randomrang(0, 8);
-                        }
-                        while ((arryblock[6] == 9) && (arryblock[7] == 9) && (arryblock[8] == 9))
-                        {
-                            int indexi = randomrang(6, 9);
-                            arryblock[indexi] = randomrang(0, 8);
-                        }
-
-                        for (int i = 0; i < blockg; i++)
-                        {
-                            if (arryblock[i] == 0)
-                            {
-                                switch (i)
-                                {
-                                case 0:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i + 2] = 10;
-                                    break;
-                                case 1:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i - 1] = 10;
-                                    break;
-                                case 2:
-                                    arryblock[i - 1] = 10;
-                                    arryblock[i - 2] = 10;
-                                    break;
-                                case 3:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i + 2] = 10;
-                                    break;
-                                case 4:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i - 1] = 10;
-                                    break;
-                                case 5:
-                                    arryblock[i - 1] = 10;
-                                    arryblock[i - 2] = 10;
-                                    break;
-                                case 6:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i + 2] = 10;
-                                    break;
-                                case 7:
-                                    arryblock[i + 1] = 10;
-                                    arryblock[i - 1] = 10;
-                                    break;
-                                case 8:
-                                    arryblock[i - 1] = 10;
-                                    arryblock[i - 2] = 10;
-                                    break;
-                                default:
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    case 5: /* can not*//*
-                        for (int i = 0; i < blockg; i++)
-                        {
-                            if (arryblock[i] == 5)
-                            {
-                                switch (i)
-                                {
-                                case 0:
-                                    arryblock[i + 3] = 10;
-                                    arryblock[i + 6] = 10;
-                                    break;
-                                case 1:
-                                    arryblock[i + 3] = 10;
-                                    arryblock[i + 6] = 10;
-                                    break;
-                                case 2:
-                                    arryblock[i + 3] = 10;
-                                    arryblock[i + 6] = 10;
-                                    break;
-                                case 3:
-                                    arryblock[i - 3] = 10;
-                                    arryblock[i + 3] = 10;
-                                    break;
-                                case 4:
-                                    arryblock[i - 3] = 10;
-                                    arryblock[i + 3] = 10;
-                                    break;
-                                case 5:
-                                    arryblock[i - 3] = 10;
-                                    arryblock[i + 3] = 10;
-                                    break;
-                                case 6:
-                                    arryblock[i - 3] = 10;
-                                    arryblock[i - 6] = 10;
-                                    break;
-                                case 7:
-                                    arryblock[i - 3] = 10;
-                                    arryblock[i - 6] = 10;
-                                    break;
-                                case 8:
-                                    arryblock[i - 3] = 10;
-                                    arryblock[i - 6] = 10;
-                                    break;
-                                default:
-                                    break;
-                                }
-                            }
-                        }
-                    case 6:
-                        /*spring*//*
-                        break;
-
-                    case 7:
                         if (!Devilalive)
                         {
-                            int chosedevil;
-                            chosedevil = randomrang(-1, 9);
-                            if (chosedevil == -1 || chosedevil == 0 || chosedevil == 1 || chosedevil == 2 || chosedevil == 3 || chosedevil == 4 || chosedevil == 5 || chosedevil == 6)
+                            if (have_Devil(5))
                             {
                                 Devilalive = true;
                                 heartDevil = 3;
                             }
                         }
+
+                        if (have_Propller(5))
+                        {
+                        }
                         break;
+
                     default:
                         break;
                     }
-
+                    
                     countblock = 0;
                 }
-                */
+
+               
+                // map up
+                 
                 if (y < h)
                 {
                     score += 1;
@@ -829,7 +646,7 @@ STAR:
                             }
                             platchosen[i].y = 0;
                             platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 60));
-
+                           
 
                                 switch (chosenbloackDumme[i])
                                 {
@@ -837,7 +654,7 @@ STAR:
                                     chosenbloack[i] = G;
                                     break;
                                 case  Gsp_dumme:
-                                    chosenbloack[i] = G;
+                                    chosenbloack[i] = Gsp;
                                     break;
                                 case  B_dumme:
                                     chosenbloack[i] = B;
@@ -851,44 +668,7 @@ STAR:
                                 default:
                                     break;
                                 }
-                            /*
-                            switch (LEVEL)
-                            {
-                            case 1:
-                                chosenbloack[i] = G;
-                                break;
-                            case 2:
-                                if (arryblock[i] == 0) { chosenbloack[i] = B; }
-                                else if (arryblock[i] == 10) { chosenbloack[i] = blank; }
-                                else { chosenbloack[i] = G; }
-                                break;
-                            case 3:
-                                if (arryblock[i] == 9 || arryblock[i] == 8 || arryblock[i] == 7) { chosenbloack[i] = Br; }
-                                else { chosenbloack[i] = G; }
-                                break;
-                            case 4:
-                                if (arryblock[i] == 0) { chosenbloack[i] = B; }
-                                else if (arryblock[i] == 10) { chosenbloack[i] = blank; }
-                                else if (arryblock[i] == 9) { chosenbloack[i] = Br; }
-                                else { chosenbloack[i] = G; }
-                                break;
-                            case 5:
-                                if (arryblock[i] == 5) { chosenbloack[i] = Gy; }
-                                else if (arryblock[i] == 10) { chosenbloack[i] = blank; }
-                                else { chosenbloack[i] = G; }
-                                break;
-                            case 6:
-                                if (arryblock[i] == 6 || arryblock[i] == 5 || arryblock[i] == 4 || arryblock[i] == 3) { chosenbloack[i] = Gsp; }
-                                else { chosenbloack[i] = G; }
-                                break;
-
-                            case 7:
-                                chosenbloack[i] = G;
-                                break;
-                            default:
-                                break;
-                            }
-                            */
+                           
                             prexnew = 100 + (xrownew * 100);
                             xrownew++;
                             // cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
@@ -1069,6 +849,7 @@ STAR:
                 }
 
 
+
                 for (int i = 0; i < blockg; i++)
                 {
                     switch (chosenbloack[i])
@@ -1082,11 +863,11 @@ STAR:
                         {
                             platchosen[i].x--;
                         }
-                        if (platchosen[i].x == 335)
+                        if (platchosen[i].x >= 335)
                         {
                             directionplatB[i] = true;
                         }
-                        else if (platchosen[i].x == 0)
+                        else if (platchosen[i].x <= 0)
                         {
                             directionplatB[i] = false;
                         }
@@ -1192,37 +973,38 @@ STAR:
                     case Br:
                         if (brownout[i])
                         {
+                            int speedbrown_out = 8;
                             switch (brownfram[i])
                             {
                             case Br1:
                                 sPlatBrown1.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown1);
                                 brownfram[i] = Br2;
-                                platdelbrown[i].y += 6;
+                                platdelbrown[i].y += speedbrown_out;
                                 break;
                             case Br2:
                                 sPlatBrown2.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown2);
                                 brownfram[i] = Br3;
-                                platdelbrown[i].y += 6;
+                                platdelbrown[i].y += speedbrown_out;
                                 break;
                             case Br3:
                                 sPlatBrown3.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown3);
                                 brownfram[i] = Br4;
-                                platdelbrown[i].y += 6;
+                                platdelbrown[i].y += speedbrown_out;
                                 break;
                             case Br4:
                                 sPlatBrown4.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown4);
                                 brownfram[i] = Br5;
-                                platdelbrown[i].y += 6;
+                                platdelbrown[i].y += speedbrown_out;
                                 break;
                             case Br5:
                                 sPlatBrown5.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown5);
                                 brownfram[i] = Br6;
-                                platdelbrown[i].y += 6;
+                                platdelbrown[i].y += speedbrown_out;
                                 break;
                             case Br6:
                                 if (platdelbrown[i].y > 650)
@@ -1232,7 +1014,7 @@ STAR:
                                 }
                                 sPlatBrown6.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown6);
-                                platdelbrown[i].y += 6;
+                                platdelbrown[i].y += speedbrown_out;
                                 break;
                             default:
                                 break;
@@ -1467,8 +1249,7 @@ STAR:
                     sPropeller_1.setPosition(propllerdel.x, propllerdel.y);
                     app.draw(sPropeller_1);
                 }
-
-
+                
 
 
 
@@ -1656,19 +1437,7 @@ STAR:
 
             if (CHOSEMENU == MENU)
             {
-                if (dir == LEFT)
-                {
-
-                    app.draw(sPersLeftt);
-                }
-                if (dir == RIGHT)
-                {
-                    app.draw(sPersRight);
-                }
-                if (dir == ATK)
-                {
-                    app.draw(sPersATK);
-                }
+                
                     if (Keyboard::isKeyPressed(Keyboard::P))
                     {
                         system("CLS");
@@ -1699,7 +1468,7 @@ STAR:
                     {
                         dy = jump;
                     }
-
+                
 
                     app.draw(sMENU);
 
@@ -1708,6 +1477,36 @@ STAR:
                     
                     sPlatG.setPosition(platchosen[0].x, platchosen[0].y);
                     app.draw(sPlatG);
+                    
+                    
+                    if (UFO_Warp)
+                    {
+                        UFO.x = randomrang(0, 400 - 100);
+                        UFO.y = randomrang(0, 650 - 235);
+                        UFO_Warp = false;
+                    }
+
+                   switch (UFOfrme)
+                    {
+                    case UFO_1:
+                        sUFO_1.setPosition(UFO.x, UFO.y);
+                        app.draw(sUFO_1);
+                        UFOfrme = UFO_2; 
+                        break;
+                    case UFO_2:
+                        sUFO_2.setPosition(UFO.x, UFO.y);
+                        app.draw(sUFO_2);
+                        UFOfrme = UFO_1;
+                        timeto_UFOWarp++;
+                        if (timeto_UFOWarp == 20)
+                        {
+                            UFO_Warp = true;
+                            timeto_UFOWarp = 0;
+                        }
+                        break;
+                    default:
+                        break;
+                    }
                 break;
             }
         }
