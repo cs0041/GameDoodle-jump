@@ -91,6 +91,18 @@ bool block_Br(int percent)
     }
     return  randompercenn(percent);
 }
+bool block_Gpp(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
 bool have_Propller (int percent)
 {
     if (percent == 100)
@@ -116,6 +128,7 @@ bool have_Devil(int percent)
     }
     return  randompercenn(percent);
 }
+
 
 struct point
 {
@@ -153,7 +166,8 @@ int main()
     app.setFramerateLimit(60);
 
     Texture t1, t2, t3, t4, t5, t6, t7, t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,
-        t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38;
+        t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38,t39,t40,t41,t42,
+        t43;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -193,13 +207,18 @@ int main()
     t36.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/9.png");
     t37.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/UFO1.png");
     t38.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/UFO2.png");
+    t39.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/play.png");
+    t40.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/play1.png");
+    t41.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/scores.png");
+    t42.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/scores1.png");
+    t43.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/GPP.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
         sPlatDevil_1(t18), sPlatDevil_2(t19), sPlatDevil_3(t20), sPlatDevil_2_2(t19),sBack_grid(t21),
         sPropeller_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25),sTopbar(t26)
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
-        sUFO_1(t37),sUFO_2(t38);
+        sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43);
 
 
     enum CHOSEMENU {PLAY,MENU,SCORE};
@@ -240,7 +259,7 @@ STAR:
 
 
 
-    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br};
+    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp};
     Chosenblock chosenbloack[40] ;
     bool Greensp[40];
     for (int i = 0; i < 40; i++)
@@ -380,7 +399,7 @@ STAR:
         int scoreold = 0;
        
 
-        enum ChosenblockDUMME { G_dumme, Gsp_dumme, B_dumme, blank_dumme, Br_dumme   };
+        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme   };
         ChosenblockDUMME chosenbloackDumme[40];
         for (int i = 0; i < 40; i++)
         {
@@ -523,17 +542,20 @@ STAR:
                         switch (LEVEL)
                         {
                         case 1:
-                            
-                            if (block_Gsp(20))
+                            if (block_B(30))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(20))
                             {
                                 chosenbloackDumme[keeprandomrang] = Gsp_dumme;
                             }
-                            else if (block_B(30))
+                            else  if (block_Gpp(2))
                             {
- 
-                                chosenbloackDumme[keeprandomrang] = B_dumme;
-                                rowpass[i] = true;
-                                
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
                             }
                             else if(block_G(100))
                             {
@@ -577,6 +599,10 @@ STAR:
                                             {
                                                 chosenbloackDumme[j] = Gsp_dumme;
                                             }
+                                            if (block_Gpp(1))
+                                            {
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
                                             else if (block_G(100))
                                             {
                                                 chosenbloackDumme[j] = G_dumme;
@@ -607,18 +633,12 @@ STAR:
                     case 1:
                         if (!Devilalive)
                         {
-                            if (have_Devil(5))
+                            if (have_Devil(50))
                             {
                                 Devilalive = true;
                                 heartDevil = 3;
                             }
                         }
-
-                        if (have_Propller(5))
-                        {
-                        }
-                        break;
-
                     default:
                         break;
                     }
@@ -662,6 +682,9 @@ STAR:
                                 case  Br_dumme:
                                     chosenbloack[i] = Br;
                                     break;
+                                case Gpp_dumme:
+                                    chosenbloack[i] = Gpp;
+                                    break;
                                 case  blank_dumme:
                                     chosenbloack[i] = blank;
                                     break;
@@ -690,16 +713,13 @@ STAR:
                     case G:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-                            // Sleep(500);
-                             // if jump and what to do ?
-                            dy = jump; //-16 spring
+                            dy = jump; 
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
-                            //Sleep(500);
-                            // if jump and what to do ?
-                            dy = jump; //-16 spring
+                           
+                            dy = jump; 
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -713,21 +733,13 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-                                /*
-                                speeddoodle = Rocket;
-                                scoreold = score;
-                                propller_on = true;
-                                */
+                              
                             }
                             else
                             {
                                 dy = jump;
                             }
-                            // Sleep(500);
-                             // if jump and what to do ?
-
-                            //dy = -16; //-16 spring
-                           // Greensp[i] = true;
+                         
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
@@ -735,19 +747,13 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-                                /*
-                                speeddoodle = Rocket;
-                                scoreold = score;
-                                propller_on = true;*/
+                               
                             }
                             else
                             {
                                 dy = jump;
                             }
-                            //Sleep(500);
-                            // if jump and what to do ?
-                            //dy = -16; //-16 spring
-                            //Greensp[i] = true;
+                         
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -755,12 +761,7 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-                                /*
-                                dir = RIGHT;
-                                speeddoodle = Rocket;
-                                scoreold = score;
-                                propller_on = true;
-                                */
+                               
                             }
                             else
                             {
@@ -771,16 +772,14 @@ STAR:
                     case B:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-                            // Sleep(500);
-                             // if jump and what to do ?
-                            dy = jump; //-16 spring
+                           
+                            dy = jump; 
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
-                            //Sleep(500);
-                            // if jump and what to do ?
-                            dy = jump; //-16 spring
+
+                            dy = jump; 
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -792,11 +791,10 @@ STAR:
                         {
                             if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                             {
-                                // Sleep(500);
-                                 // if jump and what to do ?
+
                                 platdelbrown[i].x = platchosen[i].x;
                                 platdelbrown[i].y = platchosen[i].y;
-                                platchosen[i].x = 500; //-16 spring
+                                platchosen[i].x = 500; 
 
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
@@ -806,11 +804,10 @@ STAR:
                             if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                             {
 
-                                //Sleep(500);
-                                // if jump and what to do ?
+
                                 platdelbrown[i].x = platchosen[i].x;
                                 platdelbrown[i].y = platchosen[i].y;
-                                platchosen[i].x = 500;  //-16 spring
+                                platchosen[i].x = 500;  
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
                             }
@@ -818,7 +815,7 @@ STAR:
                             {
                                 platdelbrown[i].x = platchosen[i].x;
                                 platdelbrown[i].y = platchosen[i].y;
-                                platchosen[i].x = 500;  //-16 spring
+                                platchosen[i].x = 500;  
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
                             }
@@ -827,22 +824,75 @@ STAR:
                     case Gy:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-                            // Sleep(500);
-                             // if jump and what to do ?
-                            dy = jump; //-16 spring
+
+                            dy = jump; 
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
-                            //Sleep(500);
-                            // if jump and what to do ?
-                            dy = jump; //-16 spring
+
+                            dy = jump;
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
                             dy = jump;
                         }
                         break;
+                    case Gpp:
+                        if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                        {
+                            if ((x + 33 >= platchosen[i].x ) && (x <= platchosen[i].x+20))
+                            {
+
+                                speeddoodle = Rocket;
+                                scoreold = score;
+                                propller_on = true;
+                                chosenbloack[i] = G;
+                                platchosen[i].y += 15;
+                            }
+                            else
+                            {
+                                dy = jump;
+                            }
+
+                        }
+                        if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                        {
+                            if ((x + 24 >= platchosen[i].x ) && (x <= platchosen[i].x + 40))
+                            {
+
+                                
+                                speeddoodle = Rocket;
+                                scoreold = score;
+                                propller_on = true;
+                                chosenbloack[i] = G;
+                                platchosen[i].y += 15;
+                            }
+                            else
+                            {
+                                dy = jump;
+                            }
+
+                        }
+                        if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                        {
+                            if ((x + 33 >= platchosen[i].x ) && (x <= platchosen[i].x + 40))
+                            {
+ 
+                                dir = RIGHT;
+                                speeddoodle = Rocket;
+                                scoreold = score;
+                                propller_on = true;
+                                chosenbloack[i] = G;
+                                platchosen[i].y += 15;
+                            }
+                            else
+                            {
+                                dy = jump;
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                     }
@@ -958,13 +1008,16 @@ STAR:
 
                                 Greensp[i] = false;
                             }
-
                         }
                         else
                         {
                             sPlatGSp.setPosition(platchosen[i].x, platchosen[i].y);
                             app.draw(sPlatGSp);
                         }
+                        break;
+                    case Gpp:
+                        sGPP.setPosition(platchosen[i].x, platchosen[i].y);
+                        app.draw(sGPP);
                         break;
                     case B:
                         sPlatB.setPosition(platchosen[i].x, platchosen[i].y);
@@ -1030,6 +1083,7 @@ STAR:
                         sPlatGy.setPosition(platchosen[i].x, platchosen[i].y);
                         app.draw(sPlatGy);
                         break;
+                   
                     default:
                         break;
                     }
@@ -1445,32 +1499,74 @@ STAR:
                         goto STAR;
 
                     }
-                   
-
                     platchosen[0].x = 30;
                     platchosen[0].y = 520;
                     dir = RIGHT;
                     int jump = -7;
                     dy += 0.2;
                     y += dy;
+                    if ((x + 31 >= platchosen[0].x) && (x <= platchosen[0].x + 47) && (y + 52 >= platchosen[0].y) && (y + 52 <= platchosen[0].y + 14) && (dy > 0) && (dir == RIGHT))
+                    {
+
+
+                        dy = jump;
+                    }
+                    
                     if ((x + 50 >= platchosen[0].x) && (x <= platchosen[0].x + 35) && (y + 52 >= platchosen[0].y) && (y + 52 <= platchosen[0].y + 14) && (dy > 0) && (dir == LEFT))
                     {
                         
                         dy = jump; 
                     }
-                    if ((x + 31 >= platchosen[0].x) && (x <= platchosen[0].x + 47) && (y + 52 >= platchosen[0].y) && (y + 52 <= platchosen[0].y + 14) && (dy > 0) && (dir == RIGHT))
-                    {
-
-                       
-                        dy = jump; 
-                    }
+                   
                     if ((x + 34 >= platchosen[0].x) && (x <= platchosen[0].x + 50) && (y + 77 >= platchosen[0].y) && (y + 77 <= platchosen[0].y + 14) && (dy > 0) && (dir == ATK))
                     {
                         dy = jump;
                     }
                 
-
+                    
                     app.draw(sMENU);
+
+                    sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+
+
+                    if (sPlay1.getGlobalBounds().contains(Mouse))
+                    {
+                        sPlay.setPosition(80, 150);
+                        app.draw(sPlay);
+                        if (sPlay1.getGlobalBounds().contains(Mouse)  && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                        {
+                            system("CLS");
+                            CHOSEMENU = PLAY;
+                            goto STAR;
+                        }
+                    }
+                    else
+                    {
+                        sPlay1.setPosition(80, 150);
+                        app.draw(sPlay1);
+                    }
+
+                    if (sScores1.getGlobalBounds().contains(Mouse))
+                    {
+                        sScores.setPosition(120, 250);
+                        app.draw(sScores);
+                        if (sScores1.getGlobalBounds().contains(Mouse) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                        {
+                            system("CLS");
+                            CHOSEMENU = PLAY;
+                            goto STAR;
+                        }
+                    }
+                    else
+                    {
+                        sScores1.setPosition(120, 250);
+                        app.draw(sScores1);
+                    }
+
+
+
+
+
 
                     sPersRight.setPosition(x,y);
                     app.draw(sPersRight);
@@ -1498,7 +1594,7 @@ STAR:
                         app.draw(sUFO_2);
                         UFOfrme = UFO_1;
                         timeto_UFOWarp++;
-                        if (timeto_UFOWarp == 20)
+                        if (timeto_UFOWarp == 1)
                         {
                             UFO_Warp = true;
                             timeto_UFOWarp = 0;
@@ -1507,7 +1603,12 @@ STAR:
                     default:
                         break;
                     }
-                break;
+
+
+                  
+
+
+                   break;
             }
         }
            
