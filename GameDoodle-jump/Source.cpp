@@ -212,7 +212,7 @@ int main()
     t18.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bat1.png");
     t19.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bat2.png");
     t20.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bat3.png");
-    t21.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bg-grid3.png");
+    t21.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bg-grid33.png");
     t22.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Propeller_1_1.png");
     t23.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Propeller_5_1.png");
     t24.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Propeller_3_1.png");
@@ -584,15 +584,12 @@ STAR:
                         if (y > 650 - tall_y)
                         {
                          
-                            cout << "333331" << endl; 
                             first_for_doolerfall = false;
                             
                         }
 
                         if(!first_for_doolerfall)
                         {
-                            cout << " x : " << x << "y  " << y << endl;
-                            cout << "dy : " << dy << endl;
                             if (dooler_dieby_Devil)
                             {
 
@@ -607,7 +604,6 @@ STAR:
                             }
 
                             int dumme_dy = -15;
-                            cout << "1111" << endl;
                             for (int i = 0; i < blockg; i++)
                             {
                                 platchosen[i].y = platchosen[i].y + dumme_dy;
@@ -636,7 +632,6 @@ STAR:
                         else 
                         {
                             dooler_dieby_Devil = true;
-                            cout << "2222" << endl;
                             dy -= 0.4;
                             y -= dy;
                         }
@@ -647,13 +642,10 @@ STAR:
  
                         if (Background.y >= -630)
                         {
-                            sBack_grid.setPosition(Background.x, Background.y-=15);
+                            sBack_grid.setPosition(Background.x, Background.y -= 20);
                         }
                         if (Background.y <= -630)
                         {
-                            cout << "byself" << endl;
-                                cout << " x : " << x << "y  " << y << endl;
-                                cout << "dy : " << dy << endl;
                                 dy = 12;
                                 y += dy;
 
@@ -803,9 +795,9 @@ STAR:
                     case 1:
                         if (!Devilalive)
                         {
-                            if (have_Devil(100))
+                            if (have_Devil(20))
                             {
-                                if( Devil_haveBat(0))
+                                if( Devil_haveBat(10))
                                 {
                                     Devilalive = true;
                                     heartDevil = 3;
@@ -817,7 +809,7 @@ STAR:
                                     Devil.x = 0;
                                     Devil.y = 650 - 67;
                                 }
-                                else if (Devil_haveBlue(100))
+                                else if (Devil_haveBlue(20))
                                 {
                                     Devil_die_by_foot = false;
                                     direction_BLue = true;
@@ -1691,9 +1683,7 @@ STAR:
                             }
                             break;
                         case Devil_Blue:  
-                            switch (DeVil_Bluet_fram)
-                            {
-                            case Blue_1:
+                          
                                 if ((bullet[i].x + 5 >= Devil.x) && (bullet[i].x <= Devil.x + 40) && (bullet[i].y <= Devil.y + 50) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                                 {
                                     heartDevil--;
@@ -1705,22 +1695,8 @@ STAR:
                                     bullet[i].y = -50;
                                     bullet[i].x = -50;
                                 }
-                                break;
-                            case Blue_2:
-                                if ((bullet[i].x + 5 >= Devil.x) && (bullet[i].x <= Devil.x + 40) && (bullet[i].y <= Devil.y + 50) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
-                                {
-                                    heartDevil--;
-                                    if (heartDevil == 0)
-                                    {
-                                        Devilalive = false;
-
-                                    }
-                                    bullet[i].y = -50;
-                                    bullet[i].x = -50;
-                                }
-                                break;
-
-                            }
+                               
+                            
                             break;
                         default:
                             break;
