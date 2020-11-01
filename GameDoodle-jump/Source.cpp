@@ -212,7 +212,7 @@ int main()
     t18.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bat1.png");
     t19.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bat2.png");
     t20.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bat3.png");
-    t21.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bg-grid.png");
+    t21.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bg-grid3.png");
     t22.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Propeller_1_1.png");
     t23.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Propeller_5_1.png");
     t24.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Propeller_3_1.png");
@@ -248,7 +248,7 @@ int main()
         sDE_2_1(t45),sDE_2_0(t46);
 
 
-    enum CHOSEMENU {PLAY,MENU,SCORE};
+    enum CHOSEMENU {PLAY,MENU,SCORE,PLAY_AGIN};
     CHOSEMENU CHOSEMENU = MENU;
 STAR:
 
@@ -260,7 +260,13 @@ STAR:
 
 
     point bullet[1000],platchosen[40],platdelbrown[40],propllerdel
-        ,Devil,UFO;
+        ,Devil,UFO,Background;
+
+
+
+
+    Background.x = 0;
+    Background.y = 0;
 
 
     bool UFO_Warp = true;
@@ -271,6 +277,7 @@ STAR:
 
     enum eDirecton { LEFT , RIGHT,  ATK, };
     eDirecton dir = LEFT;
+    bool dooler_alive = true;
 
 
     enum amongspeedoodle { Normal, Spring, Propeller, Rocket};
@@ -306,7 +313,7 @@ STAR:
 
     enum CHOSENDevil { Empty,Devil_Bat, Devil_Blue};
     CHOSENDevil CHOSENDEVIL= Empty;
-
+    bool Devil_die_by_foot = false;
 
     enum framDevil_Blue {Blue_1,Blue_2 };
     framDevil_Blue DeVil_Bluet_fram = Blue_1;
@@ -345,7 +352,7 @@ STAR:
             
 
 
-    int x = 200, y =650-100, h = 400;
+    int x = 200, y =570, h = 400;
     switch (CHOSEMENU)
     {
     case PLAY:
@@ -408,10 +415,10 @@ STAR:
             cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
         }
         platchosen[31].x = 160;
-        platchosen[31].y = 650-20;
+        platchosen[31].y = 650-(20);
         chosenbloack[31] = G;
         platchosen[30].x = 240;
-        platchosen[30].y = 650-20;
+        platchosen[30].y = 650- (20 );
         chosenbloack[30] = G;
         platchosen[29].x = 100;
         platchosen[29].y = 650 - 40;
@@ -444,6 +451,8 @@ STAR:
 
         int delaybullet = 0;
         bool bullet_can_on = true;
+        bool first_for_doolerfall = true;
+        bool dooler_dieby_Devil = false;
     while (app.isOpen())
     {
        // srand(time(0));
@@ -471,7 +480,7 @@ STAR:
 
                 }
 
-                if (((Keyboard::isKeyPressed(Keyboard::Up))) && !propller_on )
+                if (((Keyboard::isKeyPressed(Keyboard::Up))) && !propller_on && dooler_alive)
                 {
                     if (bullet_can_on)
                     {
@@ -519,31 +528,142 @@ STAR:
 
                     }
                 }
-
-                switch (speeddoodle)
+                if (dooler_alive)
                 {
-                case Normal:
-                    dy += 0.2;
-                    y += dy;
-                    break;
-                case Spring:
-                    dy  +0.2;
-                    y += dy;
-                    break;
-                case Propeller:
-                    dy = -8;
-                    y += dy;
-                    break;
-                case Rocket:
-                    dy = -10;
-                    y += dy;
-                    break;
-                default:
-                    break;
+                    switch (speeddoodle)
+                    {
+                    case Normal:
+                        dy += 0.2;
+                        y += dy;
+                        break;
+                    case Spring:
+                        dy + 0.2;
+                        y += dy;
+                        break;
+                    case Propeller:
+                        dy = -8;
+                        y += dy;
+                        break;
+                    case Rocket:
+                        dy = -10;
+                        y += dy;
+                        break;
+                    default:
+                        break;
+                    }
+                    // dy += 0.2;   //force g
+                   //  y += dy;     //jump
+                     //x  cross
                 }
-                // dy += 0.2;   //force g
-               //  y += dy;     //jump
-                 //x  cross
+                else
+                {
+                    bool bloack_out_all = true;
+                    for (int i = 0; i < blockg; i++)
+                    {
+                        if (platchosen[i].y >= -15)
+                        {
+                            bloack_out_all = false;
+                        }
+                    }
+                    if ( !bloack_out_all )
+                    {
+                      
+                        int tall_y;
+                        if (dir == LEFT)
+                        {
+                            tall_y = 65;
+                        }
+                        if (dir == RIGHT)
+                        {
+                            tall_y = 65;
+                        }
+                        if (dir == ATK)
+                        {
+                            tall_y = 80;
+                        }
+                        if (y > 650 - tall_y)
+                        {
+                         
+                            cout << "333331" << endl; 
+                            first_for_doolerfall = false;
+                            
+                        }
+
+                        if(!first_for_doolerfall)
+                        {
+                            cout << " x : " << x << "y  " << y << endl;
+                            cout << "dy : " << dy << endl;
+                            if (dooler_dieby_Devil)
+                            {
+
+                                dy += 0.4;
+                                y += dy;
+                            }
+                            else
+                            {
+
+                                dy -= 0.3;
+                                y -= dy;
+                            }
+
+                            int dumme_dy = -15;
+                            cout << "1111" << endl;
+                            for (int i = 0; i < blockg; i++)
+                            {
+                                platchosen[i].y = platchosen[i].y + dumme_dy;
+                            }
+                            if (Devilalive)
+                            {
+                                switch (CHOSENDEVIL)
+                                {
+                                case Empty:
+                                    break;
+                                case Devil_Bat:
+                                    break;
+                                case Devil_Blue:
+                                    Devil.y = Devil.y + dumme_dy;
+                                    if (Devil.y > 650)
+                                    {
+                                        Devilalive = false;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                                }
+
+                            }
+                        }
+                        else 
+                        {
+                            dooler_dieby_Devil = true;
+                            cout << "2222" << endl;
+                            dy -= 0.4;
+                            y -= dy;
+                        }
+                        
+                    }
+                    else
+                    {
+ 
+                        if (Background.y >= -630)
+                        {
+                            sBack_grid.setPosition(Background.x, Background.y-=15);
+                        }
+                        if (Background.y <= -630)
+                        {
+                            cout << "byself" << endl;
+                                cout << " x : " << x << "y  " << y << endl;
+                                cout << "dy : " << dy << endl;
+                                dy = 12;
+                                y += dy;
+
+                        }
+                        
+                     
+                    }
+
+                    
+                }
 
                 if (x > 380)
                 {
@@ -553,8 +673,6 @@ STAR:
                 {
                     x = 380;
                 }
-
-
               
 
                 if (countblock == 32)
@@ -685,9 +803,9 @@ STAR:
                     case 1:
                         if (!Devilalive)
                         {
-                            if (have_Devil(500))
+                            if (have_Devil(100))
                             {
-                                if( Devil_haveBat(20))
+                                if( Devil_haveBat(0))
                                 {
                                     Devilalive = true;
                                     heartDevil = 3;
@@ -699,8 +817,9 @@ STAR:
                                     Devil.x = 0;
                                     Devil.y = 650 - 67;
                                 }
-                                else if (Devil_haveBlue(500))
+                                else if (Devil_haveBlue(100))
                                 {
+                                    Devil_die_by_foot = false;
                                     direction_BLue = true;
                                     Devilalive = true;
                                     heartDevil = 3;
@@ -725,7 +844,7 @@ STAR:
                 if (y < h)
                 {
                     score += 1;      
-                    if (Devilalive)
+                    if (Devilalive && dooler_alive)
                     {
                         switch (CHOSENDEVIL)
                         {
@@ -746,9 +865,14 @@ STAR:
                         
                     }
                     for (int i = 0; i < blockg; i++)
-                    {
+                     {
                         y = h;
-                        platchosen[i].y = platchosen[i].y - dy;
+                        if (dooler_alive)
+                        {
+                        
+                            platchosen[i].y = platchosen[i].y - dy;
+                        }
+                       
                         if (platchosen[i].y > 650)
                         {
                             if (xrownew % 4 == 0)
@@ -991,7 +1115,7 @@ STAR:
                     }
                 }
 
-                if (Devilalive)
+                if (Devilalive && !Devil_die_by_foot && dooler_alive)
                 {
                     switch (CHOSENDEVIL)
                     {
@@ -1000,122 +1124,69 @@ STAR:
                     case Devil_Bat:
                         break;
                     case Devil_Blue:
-
-                        switch (DeVil_Bluet_fram)
-                        {
-                        case Blue_1:
-                            if (dir == LEFT)
-                            {
-                                if (sPersLeftt.getGlobalBounds().intersects(sDE_2_0.getGlobalBounds()) )
+                                if ((x + 32 >= Devil.x) && (x <= Devil.x + 37) && (y + 70 >= Devil.y) && (y  <= Devil.y + 50) && (dir == ATK))
                                 {
-                                    if (y < Devil.y)
+                                    if (y+(75-30) < Devil.y && dy > 0)
                                     {
-                                        Devilalive = false;
+                                        score += 100;
+                                        Devil_die_by_foot = true;
+                                        dy = jump;
                                     }
                                     else
                                     {
+                                        dooler_alive = false;
                                         sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
                                         app.draw(sGameOver);
-                                        cout << "DIEEEEEE" << endl;
+                                        cout << "DIE1" << endl;
                                     }                     
                                 }
-                            }
+                            
                             if (dir == RIGHT)
                             {
 
-                                if (sPersRight.getGlobalBounds().intersects(sDE_2_0.getGlobalBounds()))
+                                if ((x + 50 >= Devil.x) && (x <= Devil.x + 37) && (y + 50 >= Devil.y) && (y <= Devil.y + 50) && (dir == RIGHT))
                                 {
-                                    if (y < Devil.y)
+                                    if (y+(60-30) < Devil.y && dy > 0)
                                     {
-                                        Devilalive = false;
+                                        Devil_die_by_foot = true;
+                                        score += 100;
+                                        dy = jump;
                                     }
                                     else
                                     {
+                                        dooler_alive = false;
                                         sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
                                         app.draw(sGameOver);
-                                        cout << "DIEEEEEE" << endl;
-                                    }
-                                }
-                            }
-                            if (dir == ATK)
-                            {
-                                if (sPersATK.getGlobalBounds().intersects(sDE_2_0.getGlobalBounds()))
-                                {
-                                    if (y < Devil.y)
-                                    {
-                                        Devilalive = false;
-                                    }
-                                    else
-                                    {
-                                        sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                                        app.draw(sGameOver);
-                                        cout << "DIEEEEEE" << endl;
+                                        cout << "DIE2" << endl;
                                     }
                                 }
                             }
 
-
-                            break;
-                        case Blue_2:
-                            if (dir == LEFT)
-                            {
-                                if (sPersLeftt.getGlobalBounds().intersects(sDE_2_1.getGlobalBounds()))
+                                if ((x + 50 >= Devil.x) && (x <= Devil.x + 37) && (y + 50 >= Devil.y) && (y <= Devil.y + 50) && (dir == LEFT))
                                 {
-                                    if (y < Devil.y)
+                                    if (y +(60-30)< Devil.y && dy > 0)
                                     {
-                                        Devilalive = false;
+                                        Devil_die_by_foot = true;
+                                        score += 100;
+                                        dy = jump;
                                     }
                                     else
                                     {
-                                        sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                                        app.draw(sGameOver);
-                                        cout << "DIEEEEEE" << endl;
-                                    }
-                                }
-                            }
-                            if (dir == RIGHT)
-                            {
 
-                                if (sPersRight.getGlobalBounds().intersects(sDE_2_1.getGlobalBounds()))
-                                {
-                                    if (y < Devil.y)
-                                    {
-                                        Devilalive = false;
-                                    }
-                                    else
-                                    {
+                                        dooler_alive = false;
                                         sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
                                         app.draw(sGameOver);
-                                        cout << "DIEEEEEE" << endl;
+                                        cout << "DIE3" << endl;
                                     }
                                 }
-                            }
-                            if (dir == ATK)
-                            {
-                                if (sPersATK.getGlobalBounds().intersects(sDE_2_1.getGlobalBounds()))
-                                {
-                                    if (y < Devil.y)
-                                    {
-                                        Devilalive = false;
-                                    }
-                                    else
-                                    {
-                                        sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                                        app.draw(sGameOver);
-                                        cout << "DIEEEEEE" << endl;
-                                    }
-                                }
-                            }
-                            break;
-
-                        }
-                        break;
+                            
 
                     default:
                         break;
 
                     }
                 }
+       
               
                 
                     
@@ -1164,6 +1235,7 @@ STAR:
                 sPersRight.setPosition(x, y);
                 sPersATK.setPosition(x, y);
 
+                sBack_grid.setPosition(Background.x, Background.y );
                 app.draw(sBack_grid);
                 // app.draw(sBackground);
 
@@ -1454,25 +1526,26 @@ STAR:
                         }
                         break;
                     case Devil_Blue:
-
-                                if (!direction_BLue)
-                                {
-                                    Devil.x+=3;
-                                }
-                                else if (direction_BLue)
-                                {
-                                    Devil.x-=3;
-                                }
-                                if (Devil.x >= 335)
-                                {
-                                    direction_BLue = true;
-                                    DeVil_Bluet_fram = Blue_1;
-                                }
-                                else if (Devil.x <= 0)
-                                {
-                                    direction_BLue = false;
-                                    DeVil_Bluet_fram = Blue_2;
-                                }
+                        if (!Devil_die_by_foot)
+                        {
+                            if (!direction_BLue)
+                            {
+                                Devil.x += 3;
+                            }
+                            else if (direction_BLue)
+                            {
+                                Devil.x -= 3;
+                            }
+                            if (Devil.x >= 335)
+                            {
+                                direction_BLue = true;
+                                DeVil_Bluet_fram = Blue_1;
+                            }
+                            else if (Devil.x <= 0)
+                            {
+                                direction_BLue = false;
+                                DeVil_Bluet_fram = Blue_2;
+                            }
                             switch (DeVil_Bluet_fram)
                             {
                             case Blue_1:
@@ -1486,8 +1559,26 @@ STAR:
                             default:
                                 break;
                             }
-                            
-                            break;
+
+                        }
+                        else
+                        {
+                            switch (DeVil_Bluet_fram)
+                            {
+                            case Blue_1:
+                                sDE_2_0.setPosition(Devil.x, Devil.y +=8);
+                                app.draw(sDE_2_0);
+                                break;
+                            case Blue_2:
+                                sDE_2_1.setPosition(Devil.x, Devil.y += 8);
+                                app.draw(sDE_2_1);
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                             
+                    break;
 
                     default:
                     break;
@@ -1773,8 +1864,25 @@ STAR:
                 }
 
 
-                if (y > 650)
+
+                int tall_y;
+                if (dir == LEFT)
                 {
+                    tall_y = 65;
+                }
+                if (dir == RIGHT)
+                {
+                    tall_y = 65;
+                }
+                if (dir == ATK)
+                {
+                    tall_y = 80;
+                }
+                if (y > 665-tall_y && dooler_alive )
+                {
+                   
+
+                    dooler_alive = false;
                     sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
                     app.draw(sGameOver);
                     cout << "dawdawd" << endl;
