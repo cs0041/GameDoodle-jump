@@ -4,8 +4,16 @@
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
+#include <fstream>
 using namespace sf;
 using namespace std;
+
+
+
+struct point
+{
+    int x, y;
+};
 
 
 int randomrang(int lower, int upper)
@@ -27,6 +35,9 @@ bool randompercenn(int percent)
     }
     
 }
+
+
+
 
 
 
@@ -153,10 +164,6 @@ bool Devil_haveBlue(int percent)
     return  randompercenn(percent);
 }
 
-struct point
-{
-    int x, y;
-};
 
 
 int main()
@@ -424,7 +431,7 @@ STAR:
          // prex = 140 + (xrow * 126);
             prex = 100 + (xrow * 100);
             xrow++;
-            cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
+         //   cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
         }
         platchosen[31].x = 160;
         platchosen[31].y = 650-(20);
@@ -465,6 +472,9 @@ STAR:
         bool bullet_can_on = true;
         bool first_for_doolerfall = true;
         bool dooler_dieby_Devil = false;
+        bool one_read_write = true;
+        int score_read_write[5];
+        int star_y[] = { 305+650,352+650 };
     while (app.isOpen())
     {
        // srand(time(0));
@@ -508,13 +518,6 @@ STAR:
                         bullet_can_on = true;
                     }
                     fflush(stdin);
-                }
-                if (Keyboard::isKeyPressed(Keyboard::M))
-                {
-                    system("CLS");
-                    CHOSEMENU = MENU;
-                    goto STAR;
-
                 }
                 if (!bullet_can_on)
                 {
@@ -569,6 +572,69 @@ STAR:
                 }
                 else
                 {
+                    if (one_read_write)
+                    {
+                        ifstream readfile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Config/scores.txt");
+                        if (readfile.is_open())
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                readfile >> score_read_write[i];
+                                cout << "score[i]" << score_read_write[i] << endl;
+                            }
+                            cout << "read suscess" << endl;
+                        }
+                        else
+                        {
+                            cout << "ERROE" << endl;
+                        }
+                        readfile.close();
+
+
+                        ofstream writer("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Config/scores.txt");
+                        if (writer.is_open())
+                        {
+                            int index_score;
+                            bool index_on = false;
+                            for (int i = 0; i < 5; i++)
+                            {
+                                if (score > score_read_write[i])
+                                {
+                                    index_score = i;
+                                    index_on = true;
+                                    break;
+                                }
+                            }
+
+                            if (index_on)
+                            {
+                                for (int i = 4; i > index_score; i--)
+                                {
+                                    score_read_write[i] = score_read_write[i - 1];
+
+                                }
+
+                                score_read_write[index_score] = score;
+
+
+                            }
+                            for (int i = 0; i < 5; i++)
+                            {
+                                writer << score_read_write[i] << endl;
+                                cout << "score[i]" << score_read_write[i] << endl;
+                            }
+                            cout << "writer suscess" << endl;
+                        }
+                        else
+                        {
+                            cout << "ERROE" << endl;
+                        }
+
+                        writer.close();
+                        one_read_write = false;
+                    }
+
+
                     bool bloack_out_all = true;
                     for (int i = 0; i < blockg; i++)
                     {
@@ -1804,6 +1870,8 @@ STAR:
 
                 if (Background.y < -630)
                 {
+              //      cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
+              //      cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
 
                     sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
 
@@ -1816,6 +1884,7 @@ STAR:
                         {
                             system("CLS");
                             CHOSEMENU = PLAY;
+                            one_read_write = true;
                             goto STAR;
                         }
                     }
@@ -1833,6 +1902,7 @@ STAR:
                         {
                             system("CLS");
                             CHOSEMENU = MENU;
+                            one_read_write = true;
                             goto STAR;
                         }
                     }
@@ -1842,108 +1912,122 @@ STAR:
                         app.draw(sbutton_menu);
                     }
 
-                    position_digit_forbackground.y = 305;
-                    int scorefordigit = score;
-                    int digit = 1;
-                    int Total_digits = to_string(score).length();
-                    for (int digit = 1; digit <= Total_digits; digit++)
+                    for (int k = 1; k <= 2; k++)
                     {
-                        int number_digit = scorefordigit;
-                        if (Total_digits != 1)
+                        int scorefordigit ,star_x;
+                        if (k == 1)
                         {
-                            for (int k = 1; k <= Total_digits - digit; k++)
+                            position_digit_forbackground.y = 305;
+                            star_x = 275;
+                            scorefordigit = score;
+                        }
+                        else if (k == 2)
+                        {
+                            position_digit_forbackground.y = 352;
+                            star_x = 251;
+                            scorefordigit = score_read_write[0];
+                        }
+                    
+                        
+                        int digit = 1;
+                        int Total_digits = to_string(scorefordigit).length();
+                        for (int digit = 1; digit <= Total_digits; digit++)
+                        {
+                            int number_digit = scorefordigit;
+                            if (Total_digits != 1)
                             {
-                                number_digit /= 10;
-                            }
-                            number_digit = number_digit % 10;
-                            switch (digit)
-                            {
-                            case 1:
+                                for (int k = 1; k <= Total_digits - digit; k++)
+                                {
+                                    number_digit /= 10;
+                                }
+                                number_digit = number_digit % 10;
+                                switch (digit)
+                                {
+                                case 1:
 
-                                position_digit_forbackground.x = 275;
-                                break;
-                            case 2:
+                                    position_digit_forbackground.x = star_x;
+                                    break;
+                                case 2:
 
-                                position_digit_forbackground.x = 300;
-                                break;
-                            case 3:
+                                    position_digit_forbackground.x = star_x+25;
+                                    break;
+                                case 3:
 
 
-                                position_digit_forbackground.x = 325;
-                                break;
-                            case 4:
+                                    position_digit_forbackground.x =  star_x+50;
+                                    break;
+                                case 4:
 
-                                position_digit_forbackground.x = 350;
-                                break;
-                            case 5:
-                                position_digit_forbackground.x = 375;
-                                break;
-                            case 6:
+                                    position_digit_forbackground.x =  star_x+75;
+                                    break;
+                                case 5:
+                                    position_digit_forbackground.x =  star_x+100;
+                                    break;
+                                case 6:
 
-                                position_digit_forbackground.x = 400;
-                                break;
-                            case 7:
+                                    position_digit_forbackground.x =  star_x+125;
+                                    break;
+                                case 7:
 
-                                position_digit_forbackground.x = 425;
-                                break;
-                            case 8:
+                                    position_digit_forbackground.x =  star_x+150;
+                                    break;
+                                case 8:
 
-                                position_digit_forbackground.x = 450;
-                                break;
-                            default:
-                                break;
-                            }
+                                    position_digit_forbackground.x =  star_x+175;
+                                    break;
+                                default:
+                                    break;
+                                }
 
-                            switch (number_digit)
-                            {
-                            case 0:
-                                s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s0);
-                                break;
-                            case 1:
-                                s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s1);
-                                break;
-                            case 2:
-                                s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s2);
-                                break;
-                            case 3:
-                                s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s3);
-                                break;
-                            case 4:
-                                s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s4);
-                                break;
-                            case 5:
-                                s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s5);
-                                break;
-                            case 6:
-                                s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s6);
-                                break;
-                            case 7:
-                                s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s7);
-                                break;
-                            case 8:
-                                s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                app.draw(s8);
-                                break;
-                            case 9:
-                                s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
-                                app.draw(s9);
-                                break;
-                            default:
-                                break;
+                                switch (number_digit)
+                                {
+                                case 0:
+                                    s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s0);
+                                    break;
+                                case 1:
+                                    s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s1);
+                                    break;
+                                case 2:
+                                    s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s2);
+                                    break;
+                                case 3:
+                                    s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s3);
+                                    break;
+                                case 4:
+                                    s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s4);
+                                    break;
+                                case 5:
+                                    s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s5);
+                                    break;
+                                case 6:
+                                    s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s6);
+                                    break;
+                                case 7:
+                                    s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s7);
+                                    break;
+                                case 8:
+                                    s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                    app.draw(s8);
+                                    break;
+                                case 9:
+                                    s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
+                                    app.draw(s9);
+                                    break;
+                                default:
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-              //      cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
-              //      cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
                 else
                 {
 
@@ -1958,119 +2042,132 @@ STAR:
                             if (bloack_out_all && Background.y >= -630)
                             {
 
-                                position_digit_forbackground.y -= 20;
-                                int scorefordigit = score;
-                                int digit = 1;
-                                int Total_digits = to_string(score).length();
-                                for (int digit = 1; digit <= Total_digits; digit++)
+                                star_y[0] -= 20;
+                                star_y[1] -= 20;
+
+                                for (int k = 1; k <= 2; k++)
                                 {
-                                    int number_digit = scorefordigit;
-                                    if (Total_digits != 1)
+                                    int scorefordigit, star_x;
+                                    if (k == 1)
                                     {
-                                        for (int k = 1; k <= Total_digits - digit; k++)
+                                        position_digit_forbackground.y = star_y[0];
+                                        star_x = 275;
+                                        scorefordigit = score;
+                                    }
+                                    else if (k == 2)
+                                    {
+                                        position_digit_forbackground.y = star_y[1];
+                                        star_x = 251;
+                                        scorefordigit = score_read_write[0];
+                                    }
+
+
+                                    int digit = 1;
+                                    int Total_digits = to_string(scorefordigit).length();
+                                    for (int digit = 1; digit <= Total_digits; digit++)
+                                    {
+                                        int number_digit = scorefordigit;
+                                        if (Total_digits != 1)
                                         {
-                                            number_digit /= 10;
-                                        }
-                                        number_digit = number_digit % 10;
-                                        switch (digit)
-                                        {
-                                        case 1:
+                                            for (int k = 1; k <= Total_digits - digit; k++)
+                                            {
+                                                number_digit /= 10;
+                                            }
+                                            number_digit = number_digit % 10;
+                                            switch (digit)
+                                            {
+                                            case 1:
 
-                                            position_digit_forbackground.x = 275;
-                                            break;
-                                        case 2:
+                                                position_digit_forbackground.x = star_x;
+                                                break;
+                                            case 2:
 
-                                            position_digit_forbackground.x = 300;
-                                            break;
-                                        case 3:
+                                                position_digit_forbackground.x = star_x + 25;
+                                                break;
+                                            case 3:
 
 
-                                            position_digit_forbackground.x = 325;
-                                            break;
-                                        case 4:
+                                                position_digit_forbackground.x = star_x + 50;
+                                                break;
+                                            case 4:
 
-                                            position_digit_forbackground.x = 350;
-                                            break;
-                                        case 5:
-                                            position_digit_forbackground.x = 375;
-                                            break;
-                                        case 6:
+                                                position_digit_forbackground.x = star_x + 75;
+                                                break;
+                                            case 5:
+                                                position_digit_forbackground.x = star_x + 100;
+                                                break;
+                                            case 6:
 
-                                            position_digit_forbackground.x = 400;
-                                            break;
-                                        case 7:
+                                                position_digit_forbackground.x = star_x + 125;
+                                                break;
+                                            case 7:
 
-                                            position_digit_forbackground.x = 425;
-                                            break;
-                                        case 8:
+                                                position_digit_forbackground.x = star_x + 150;
+                                                break;
+                                            case 8:
 
-                                            position_digit_forbackground.x = 450;
-                                            break;
-                                        default:
-                                            break;
-                                        }
+                                                position_digit_forbackground.x = star_x + 175;
+                                                break;
+                                            default:
+                                                break;
+                                            }
 
-                                        switch (number_digit)
-                                        {
-                                        case 0:
-                                            s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s0);
-                                            break;
-                                        case 1:
-                                            s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s1);
-                                            break;
-                                        case 2:
-                                            s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s2);
-                                            break;
-                                        case 3:
-                                            s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s3);
-                                            break;
-                                        case 4:
-                                            s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s4);
-                                            break;
-                                        case 5:
-                                            s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s5);
-                                            break;
-                                        case 6:
-                                            s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s6);
-                                            break;
-                                        case 7:
-                                            s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s7);
-                                            break;
-                                        case 8:
-                                            s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
-                                            app.draw(s8);
-                                            break;
-                                        case 9:
-                                            s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
-                                            app.draw(s9);
-                                            break;
-                                        default:
-                                            break;
+                                            switch (number_digit)
+                                            {
+                                            case 0:
+                                                s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s0);
+                                                break;
+                                            case 1:
+                                                s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s1);
+                                                break;
+                                            case 2:
+                                                s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s2);
+                                                break;
+                                            case 3:
+                                                s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s3);
+                                                break;
+                                            case 4:
+                                                s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s4);
+                                                break;
+                                            case 5:
+                                                s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s5);
+                                                break;
+                                            case 6:
+                                                s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s6);
+                                                break;
+                                            case 7:
+                                                s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s7);
+                                                break;
+                                            case 8:
+                                                s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                                app.draw(s8);
+                                                break;
+                                            case 9:
+                                                s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
+                                                app.draw(s9);
+                                                break;
+                                            default:
+                                                break;
+                                            }
                                         }
                                     }
                                 }
 
+                               
 
                             }
 
                 }
                 
                 
-                
-            
-
-
-
-
-
 
 
                 if (dir == LEFT)
@@ -2167,13 +2264,7 @@ STAR:
             if (CHOSEMENU == MENU)
             {
                   
-                    if (Keyboard::isKeyPressed(Keyboard::P))
-                    {
-                        system("CLS");
-                        CHOSEMENU = PLAY;
-                        goto STAR;
-
-                    }
+                   
                     platchosen[0].x = 30;
                     platchosen[0].y = 520;
                     dir = RIGHT;
@@ -2284,6 +2375,10 @@ STAR:
 
             if (CHOSEMENU == SCORE)
             {
+
+
+            //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
+            //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
                 app.draw(sMenu_scores);
 
 
@@ -2298,6 +2393,7 @@ STAR:
                     {
                         system("CLS");
                         CHOSEMENU = MENU;
+                        one_read_write = true;
                         goto STAR;
                     }
                 }
@@ -2307,6 +2403,153 @@ STAR:
                     app.draw(sbutton_menu);
                 }
 
+                if (one_read_write)
+                {
+                    ifstream readfile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Config/scores.txt");
+                    if (readfile.is_open())
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            readfile >> score_read_write[i];
+                            cout << "score[i]" << score_read_write[i] << endl;
+                        }
+                        cout << "read suscess" << endl;
+                    }
+                    else
+                    {
+                        cout << "ERROE" << endl;
+                    }
+                    readfile.close();
+                    one_read_write = false;
+                }
+
+
+                
+                for (int k = 0; k < 5; k++)
+                {
+                   
+                    int scorefordigit, star_x=100;
+                    scorefordigit = score_read_write[k];
+                    if (k == 0)
+                    {
+                        position_digit_forbackground.y = 165;
+                    }
+                    if (k == 1)
+                    {
+                        position_digit_forbackground.y = 221;
+                    }
+                    if (k == 2)
+                    {
+                        position_digit_forbackground.y = 280;
+                    }
+                    if (k == 3)
+                    {
+                        position_digit_forbackground.y = 340;
+                    }
+                    if (k == 4)
+                    {
+                        position_digit_forbackground.y = 400;
+                    }
+                    int digit = 1;
+                    int Total_digits = to_string(scorefordigit).length();
+                    for (int digit = 1; digit <= Total_digits; digit++)
+                    {
+                        int number_digit = scorefordigit;
+                        if (Total_digits != 1)
+                        {
+                            for (int k = 1; k <= Total_digits - digit; k++)
+                            {
+                                number_digit /= 10;
+                            }
+                            number_digit = number_digit % 10;
+                            switch (digit)
+                            {
+                            case 1:
+
+                                position_digit_forbackground.x = star_x;
+                                break;
+                            case 2:
+
+                                position_digit_forbackground.x = star_x + 25;
+                                break;
+                            case 3:
+
+
+                                position_digit_forbackground.x = star_x + 50;
+                                break;
+                            case 4:
+
+                                position_digit_forbackground.x = star_x + 75;
+                                break;
+                            case 5:
+                                position_digit_forbackground.x = star_x + 100;
+                                break;
+                            case 6:
+
+                                position_digit_forbackground.x = star_x + 125;
+                                break;
+                            case 7:
+
+                                position_digit_forbackground.x = star_x + 150;
+                                break;
+                            case 8:
+
+                                position_digit_forbackground.x = star_x + 175;
+                                break;
+                            default:
+                                break;
+                            }
+
+                            switch (number_digit)
+                            {
+                            case 0:
+                                s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s0);
+                                break;
+                            case 1:
+                                s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s1);
+                                break;
+                            case 2:
+                                s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s2);
+                                break;
+                            case 3:
+                                s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s3);
+                                break;
+                            case 4:
+                                s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s4);
+                                break;
+                            case 5:
+                                s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s5);
+                                break;
+                            case 6:
+                                s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s6);
+                                break;
+                            case 7:
+                                s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s7);
+                                break;
+                            case 8:
+                                s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s8);
+                                break;
+                            case 9:
+                                s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
+                                app.draw(s9);
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                
                 break;
             }
         }
@@ -2323,3 +2566,5 @@ STAR:
 
     return 0;
 }
+
+
