@@ -190,7 +190,7 @@ int main()
 
     Texture t1, t2, t3, t4, t5, t6, t7, t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,
         t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38,t39,t40,t41,t42,
-        t43,t44,t45,t46;
+        t43,t44,t45,t46,t47,t48,t49,t50;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -238,6 +238,10 @@ int main()
     t44.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_1_0.png");
     t45.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_2_1.png");
     t46.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_2_0.png");
+    t47.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonplayagin1.png");
+    t48.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonmenu1.png");
+    t49.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonplayagin2.png");
+    t50.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonmenu2.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -245,7 +249,7 @@ int main()
         sPropeller_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25),sTopbar(t26)
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
         sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),sDE_1_0(t44),
-        sDE_2_1(t45),sDE_2_0(t46);
+        sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50);
 
 
     enum CHOSEMENU {PLAY,MENU,SCORE,PLAY_AGIN};
@@ -260,17 +264,18 @@ STAR:
 
 
     point bullet[1000],platchosen[40],platdelbrown[40],propllerdel
-        ,Devil,UFO,Background;
+        ,Devil,Background, position_digit_forbackground;
 
-
+    position_digit_forbackground.x = 275;
+    position_digit_forbackground.y = 305+650;
 
 
     Background.x = 0;
     Background.y = 0;
 
 
-    bool UFO_Warp = true;
-    int timeto_UFOWarp = 0;
+
+
     enum UFODIR {UFO_1,UFO_2 };
     UFODIR UFOfrme = UFO_1;
 
@@ -352,18 +357,24 @@ STAR:
             
 
 
-    int x = 200, y =570, h = 400;
+  
+
+    float dx = 0, dy = 0;
+    int x = 200, y = 570, h = 400;
     switch (CHOSEMENU)
     {
     case PLAY:
 
         x = 200;
         y = 650 - 100;
+        
         break;
     case MENU:
 
         x = 30 + 10;
-        y = 520 - 60;
+        //    y = 520 - 60;
+        y = 620;
+        dy = -8;
         break;
     case SCORE:
         break;
@@ -371,7 +382,6 @@ STAR:
         break;
     }
 
-    float dx = 0, dy = 0;
     bool directionplatB[40];
     bool directionplatGy[40];
     int score = 0;
@@ -639,11 +649,11 @@ STAR:
                     }
                     else
                     {
- 
                         if (Background.y >= -630)
                         {
                             sBack_grid.setPosition(Background.x, Background.y -= 20);
                         }
+                     
                         if (Background.y <= -630)
                         {
                                 dy = 12;
@@ -1223,27 +1233,10 @@ STAR:
 
 
 
-                sPersLeftt.setPosition(x, y);
-                sPersRight.setPosition(x, y);
-                sPersATK.setPosition(x, y);
-
                 sBack_grid.setPosition(Background.x, Background.y );
                 app.draw(sBack_grid);
                 // app.draw(sBackground);
 
-                if (dir == LEFT)
-                {
-
-                    app.draw(sPersLeftt);
-                }
-                if (dir == RIGHT)
-                {
-                    app.draw(sPersRight);
-                }
-                if (dir == ATK)
-                {
-                    app.draw(sPersATK);
-                }
 
 
 
@@ -1580,74 +1573,7 @@ STAR:
 
 
 
-                if (propller_on)
-                {
-                    switch (framepropller)
-                    {
-                    case propller_1:
-                        if (dir == LEFT)
-                        {
-                            sPropeller_1.setPosition(x + 19, y - 9);
-                        }
-                        else if (dir == RIGHT)
-                        {
-                            sPropeller_1.setPosition(x - 2, y - 9);
-                        }
-                        app.draw(sPropeller_1);
-                        framepropller = propller_2;
-                        break;
-                    case propller_2:
-                        if (dir == LEFT)
-                        {
-                            sPropeller_2.setPosition(x + 19, y - 21);
-                        }
-                        else if (dir == RIGHT)
-                        {
-                            sPropeller_2.setPosition(x - 2, y - 21);
-                        }
-                        app.draw(sPropeller_2);
-                        framepropller = propller_3;
-                        break;
-                    case propller_3:
-                        if (dir == LEFT)
-                        {
-                            sPropeller_3.setPosition(x + 19, y - 21);
-                        }
-                        else if (dir == RIGHT)
-                        {
-                            sPropeller_3.setPosition(x - 2, y - 21);
-                        }
-                        app.draw(sPropeller_3);
-                        framepropller = propller_4;
-                        break;
-                    case propller_4:
-                        if (dir == LEFT)
-                        {
-                            sPropeller_4.setPosition(x + 19, y - 21);
-                        }
-                        else if (dir == RIGHT)
-                        {
-                            sPropeller_4.setPosition(x - 2, y - 21);
-                        }
-                        app.draw(sPropeller_4);
-                        framepropller = propller_3;
-                        break;
-                    default:
-                        break;
-                    }
-                }
-                else if (propller_out && !propller_on)
-                {
-                    if (propllerdel.y > 650)
-                    {
-                        propller_on = false;
-                        propller_out = false;
-                    }
-                    propllerdel.y += 8;
-                    sPropeller_1.setPosition(propllerdel.x, propllerdel.y);
-                    app.draw(sPropeller_1);
-                }
-                
+             
 
 
 
@@ -1859,14 +1785,378 @@ STAR:
                    
 
                     dooler_alive = false;
-                    sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                    app.draw(sGameOver);
+                  //  sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
+                 //   app.draw(sGameOver);
                     cout << "dawdawd" << endl;
                     // Sleep(10000); 
                     // system("cls"); //system("clear");
                      //  app.close();
                   //  goto STAR;
                 }
+
+                //  sbutton_playagin(t47), sbutton_menu(t48);
+
+
+
+
+
+                if (Background.y < -630)
+                {
+
+                    sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+
+
+                    if (sbutton_playagin.getGlobalBounds().contains(Mouse))
+                    {
+                        sbutton_playagin2.setPosition(150, 452);
+                        app.draw(sbutton_playagin2);
+                        if (sbutton_playagin.getGlobalBounds().contains(Mouse) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                        {
+                            system("CLS");
+                            CHOSEMENU = PLAY;
+                            goto STAR;
+                        }
+                    }
+                    else
+                    {
+                        sbutton_playagin.setPosition(150, 452);
+                        app.draw(sbutton_playagin);
+                    }
+
+                    if (sbutton_menu.getGlobalBounds().contains(Mouse))
+                    {
+                        sbutton_menu2.setPosition(161, 514);
+                        app.draw(sbutton_menu2);
+                        if (sbutton_menu.getGlobalBounds().contains(Mouse) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                        {
+                            system("CLS");
+                            CHOSEMENU = MENU;
+                            goto STAR;
+                        }
+                    }
+                    else
+                    {
+                        sbutton_menu.setPosition(161, 514);
+                        app.draw(sbutton_menu);
+                    }
+
+                    position_digit_forbackground.y = 305;
+                    int scorefordigit = score;
+                    int digit = 1;
+                    int Total_digits = to_string(score).length();
+                    for (int digit = 1; digit <= Total_digits; digit++)
+                    {
+                        int number_digit = scorefordigit;
+                        if (Total_digits != 1)
+                        {
+                            for (int k = 1; k <= Total_digits - digit; k++)
+                            {
+                                number_digit /= 10;
+                            }
+                            number_digit = number_digit % 10;
+                            switch (digit)
+                            {
+                            case 1:
+
+                                position_digit_forbackground.x = 275;
+                                break;
+                            case 2:
+
+                                position_digit_forbackground.x = 300;
+                                break;
+                            case 3:
+
+
+                                position_digit_forbackground.x = 325;
+                                break;
+                            case 4:
+
+                                position_digit_forbackground.x = 350;
+                                break;
+                            case 5:
+                                position_digit_forbackground.x = 375;
+                                break;
+                            case 6:
+
+                                position_digit_forbackground.x = 400;
+                                break;
+                            case 7:
+
+                                position_digit_forbackground.x = 425;
+                                break;
+                            case 8:
+
+                                position_digit_forbackground.x = 450;
+                                break;
+                            default:
+                                break;
+                            }
+
+                            switch (number_digit)
+                            {
+                            case 0:
+                                s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s0);
+                                break;
+                            case 1:
+                                s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s1);
+                                break;
+                            case 2:
+                                s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s2);
+                                break;
+                            case 3:
+                                s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s3);
+                                break;
+                            case 4:
+                                s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s4);
+                                break;
+                            case 5:
+                                s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s5);
+                                break;
+                            case 6:
+                                s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s6);
+                                break;
+                            case 7:
+                                s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s7);
+                                break;
+                            case 8:
+                                s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                app.draw(s8);
+                                break;
+                            case 9:
+                                s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
+                                app.draw(s9);
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }
+                }
+              //      cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
+              //      cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
+                else
+                {
+
+                            bool bloack_out_all = true;
+                            for (int i = 0; i < blockg; i++)
+                            {
+                                if (platchosen[i].y >= -15)
+                                {
+                                    bloack_out_all = false;
+                                }
+                            }
+                            if (bloack_out_all && Background.y >= -630)
+                            {
+
+                                position_digit_forbackground.y -= 20;
+                                int scorefordigit = score;
+                                int digit = 1;
+                                int Total_digits = to_string(score).length();
+                                for (int digit = 1; digit <= Total_digits; digit++)
+                                {
+                                    int number_digit = scorefordigit;
+                                    if (Total_digits != 1)
+                                    {
+                                        for (int k = 1; k <= Total_digits - digit; k++)
+                                        {
+                                            number_digit /= 10;
+                                        }
+                                        number_digit = number_digit % 10;
+                                        switch (digit)
+                                        {
+                                        case 1:
+
+                                            position_digit_forbackground.x = 275;
+                                            break;
+                                        case 2:
+
+                                            position_digit_forbackground.x = 300;
+                                            break;
+                                        case 3:
+
+
+                                            position_digit_forbackground.x = 325;
+                                            break;
+                                        case 4:
+
+                                            position_digit_forbackground.x = 350;
+                                            break;
+                                        case 5:
+                                            position_digit_forbackground.x = 375;
+                                            break;
+                                        case 6:
+
+                                            position_digit_forbackground.x = 400;
+                                            break;
+                                        case 7:
+
+                                            position_digit_forbackground.x = 425;
+                                            break;
+                                        case 8:
+
+                                            position_digit_forbackground.x = 450;
+                                            break;
+                                        default:
+                                            break;
+                                        }
+
+                                        switch (number_digit)
+                                        {
+                                        case 0:
+                                            s0.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s0);
+                                            break;
+                                        case 1:
+                                            s1.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s1);
+                                            break;
+                                        case 2:
+                                            s2.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s2);
+                                            break;
+                                        case 3:
+                                            s3.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s3);
+                                            break;
+                                        case 4:
+                                            s4.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s4);
+                                            break;
+                                        case 5:
+                                            s5.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s5);
+                                            break;
+                                        case 6:
+                                            s6.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s6);
+                                            break;
+                                        case 7:
+                                            s7.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s7);
+                                            break;
+                                        case 8:
+                                            s8.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);
+                                            app.draw(s8);
+                                            break;
+                                        case 9:
+                                            s9.setPosition(position_digit_forbackground.x, position_digit_forbackground.y);;
+                                            app.draw(s9);
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                    }
+                                }
+
+
+                            }
+
+                }
+                
+                
+                
+            
+
+
+
+
+
+
+
+                if (dir == LEFT)
+                {
+                    sPersLeftt.setPosition(x, y);
+                    app.draw(sPersLeftt);
+                }
+                if (dir == RIGHT)
+                {
+                    sPersRight.setPosition(x, y);
+                    app.draw(sPersRight);
+                }
+                if (dir == ATK)
+                {
+                    sPersATK.setPosition(x, y);
+                    app.draw(sPersATK);
+                }
+       
+
+
+                if (propller_on)
+                {
+                    switch (framepropller)
+                    {
+                    case propller_1:
+                        if (dir == LEFT)
+                        {
+                            sPropeller_1.setPosition(x + 19, y - 9);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sPropeller_1.setPosition(x - 2, y - 9);
+                        }
+                        app.draw(sPropeller_1);
+                        framepropller = propller_2;
+                        break;
+                    case propller_2:
+                        if (dir == LEFT)
+                        {
+                            sPropeller_2.setPosition(x + 19, y - 21);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sPropeller_2.setPosition(x - 2, y - 21);
+                        }
+                        app.draw(sPropeller_2);
+                        framepropller = propller_3;
+                        break;
+                    case propller_3:
+                        if (dir == LEFT)
+                        {
+                            sPropeller_3.setPosition(x + 19, y - 21);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sPropeller_3.setPosition(x - 2, y - 21);
+                        }
+                        app.draw(sPropeller_3);
+                        framepropller = propller_4;
+                        break;
+                    case propller_4:
+                        if (dir == LEFT)
+                        {
+                            sPropeller_4.setPosition(x + 19, y - 21);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sPropeller_4.setPosition(x - 2, y - 21);
+                        }
+                        app.draw(sPropeller_4);
+                        framepropller = propller_3;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                else if (propller_out && !propller_on)
+                {
+                    if (propllerdel.y > 650)
+                    {
+                        propller_on = false;
+                        propller_out = false;
+                    }
+                    propllerdel.y += 8;
+                    sPropeller_1.setPosition(propllerdel.x, propllerdel.y);
+                    app.draw(sPropeller_1);
+                }
+
               
                 break;
             }
@@ -1874,7 +2164,7 @@ STAR:
 
             if (CHOSEMENU == MENU)
             {
-                
+                  
                     if (Keyboard::isKeyPressed(Keyboard::P))
                     {
                         system("CLS");
@@ -1957,36 +2247,24 @@ STAR:
                     sPlatG.setPosition(platchosen[0].x, platchosen[0].y);
                     app.draw(sPlatG);
                     
-                    
-                    if (UFO_Warp)
-                    {
-                        UFO.x = randomrang(0, 400 - 100);
-                        UFO.y = randomrang(0, 650 - 235);
-                        UFO_Warp = false;
-                    }
-
+            
                    switch (UFOfrme)
                     {
                     case UFO_1:
-                        sUFO_1.setPosition(UFO.x, UFO.y);
+                        sUFO_1.setPosition(266, 29);
                         app.draw(sUFO_1);
                         UFOfrme = UFO_2; 
                         break;
                     case UFO_2:
-                        sUFO_2.setPosition(UFO.x, UFO.y);
+                        sUFO_2.setPosition(266,29);
                         app.draw(sUFO_2);
                         UFOfrme = UFO_1;
-                        timeto_UFOWarp++;
-                        if (timeto_UFOWarp == 1)
-                        {
-                            UFO_Warp = true;
-                            timeto_UFOWarp = 0;
-                        }
                         break;
                     default:
                         break;
                     }
 
+                   /*
                    sDE_1_0.setPosition(200, 200);
                    app.draw(sDE_1_0);
               
@@ -1997,7 +2275,8 @@ STAR:
                    app.draw(sPlatG);
 
                    sDE_2_1.setPosition(200, 400);
-                   app.draw(sDE_2_1);
+                   app.draw(sDE_2_1);*/
+
                    break;
             }
         }
