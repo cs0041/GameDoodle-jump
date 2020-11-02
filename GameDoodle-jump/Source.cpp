@@ -190,7 +190,7 @@ int main()
 
     Texture t1, t2, t3, t4, t5, t6, t7, t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,
         t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38,t39,t40,t41,t42,
-        t43,t44,t45,t46,t47,t48,t49,t50;
+        t43,t44,t45,t46,t47,t48,t49,t50,t51;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -242,6 +242,7 @@ int main()
     t48.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonmenu1.png");
     t49.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonplayagin2.png");
     t50.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonmenu2.png");
+    t51.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/menuscores.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -249,10 +250,11 @@ int main()
         sPropeller_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25),sTopbar(t26)
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
         sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),sDE_1_0(t44),
-        sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50);
+        sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
+        sMenu_scores(t51);
 
 
-    enum CHOSEMENU {PLAY,MENU,SCORE,PLAY_AGIN};
+    enum CHOSEMENU {PLAY,MENU,SCORE};
     CHOSEMENU CHOSEMENU = MENU;
 STAR:
 
@@ -1794,7 +1796,7 @@ STAR:
                   //  goto STAR;
                 }
 
-                //  sbutton_playagin(t47), sbutton_menu(t48);
+
 
 
 
@@ -2226,7 +2228,7 @@ STAR:
                         if (sScores1.getGlobalBounds().contains(Mouse) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
                         {
                             system("CLS");
-                            CHOSEMENU = PLAY;
+                            CHOSEMENU = SCORE;
                             goto STAR;
                         }
                     }
@@ -2279,13 +2281,41 @@ STAR:
 
                    break;
             }
+
+            if (CHOSEMENU == SCORE)
+            {
+                app.draw(sMenu_scores);
+
+
+                sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+
+                 
+                if (sbutton_menu.getGlobalBounds().contains(Mouse))
+                {
+                    sbutton_menu2.setPosition(238,525);
+                    app.draw(sbutton_menu2);
+                    if (sbutton_menu.getGlobalBounds().contains(Mouse) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                    {
+                        system("CLS");
+                        CHOSEMENU = MENU;
+                        goto STAR;
+                    }
+                }
+                else
+                {
+                    sbutton_menu.setPosition(238,525);
+                    app.draw(sbutton_menu);
+                }
+
+                break;
+            }
         }
            
 
         app.display();
        
     }
-
+   
 
 
 
