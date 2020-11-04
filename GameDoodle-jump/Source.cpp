@@ -114,6 +114,18 @@ bool block_Gpp(int percent)
     }
     return  randompercenn(percent);
 }
+bool block_White(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
 bool have_Propller (int percent)
 {
     if (percent == 100)
@@ -197,7 +209,7 @@ int main()
 
     Texture t1, t2, t3, t4, t5, t6, t7, t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,
         t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38,t39,t40,t41,t42,
-        t43,t44,t45,t46,t47,t48,t49,t50,t51;
+        t43,t44,t45,t46,t47,t48,t49,t50,t51,t52,t53,t54,t55;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -250,6 +262,10 @@ int main()
     t49.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonplayagin2.png");
     t50.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonmenu2.png");
     t51.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/menuscores.png");
+    t52.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/bullet01.png");
+    t53.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformW0.png");
+    t54.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformW2.png");
+    t55.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformW3.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -258,10 +274,10 @@ int main()
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
         sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),sDE_1_0(t44),
         sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
-        sMenu_scores(t51);
+        sMenu_scores(t51),stestxy(t52),sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55);
 
 
-    enum CHOSEMENU {PLAY,MENU,SCORE};
+    enum CHOSEMENU {PLAY,MENU,SCORE,TEST};
     CHOSEMENU CHOSEMENU = MENU;
 STAR:
 
@@ -297,16 +313,18 @@ STAR:
     enum amongspeedoodle { Normal, Spring, Propeller, Rocket};
     amongspeedoodle speeddoodle = Normal;
 
+
+
     enum propller {propller_1, propller_2, propller_3, propller_4 };
     propller framepropller = propller_1;
     bool propller_on = false;
     bool propller_out = false;
+    bool have_propller = false;
 
 
 
 
-
-    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp};
+    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp,Wh};
     Chosenblock chosenbloack[40] ;
     bool Greensp[40];
     for (int i = 0; i < 40; i++)
@@ -321,6 +339,14 @@ STAR:
     for (int i = 0; i < 40; i++)
     {
         brownout[i] = false;
+    }
+
+    enum framwhite { Wh1, Wh2, Wh3 ,Wh4,Wh5,Wh6,Wh7,Wh8,Wh9};
+    framwhite whitefram[40];
+    bool whiteout[40];
+    for (int i = 0; i < 40; i++)
+    {
+        whiteout[i] = false;
     }
 
 
@@ -461,7 +487,7 @@ STAR:
         int scoreold = 0;
        
 
-        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme   };
+        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme,Wh_dumme};
         ChosenblockDUMME chosenbloackDumme[40];
         for (int i = 0; i < 40; i++)
         {
@@ -489,15 +515,16 @@ STAR:
             srand(time(0));
             if (CHOSEMENU == PLAY)
             {
+
                 if (Keyboard::isKeyPressed(Keyboard::Right))
                 {
-                    x += 3;
+                    x += 4;
                     dir = RIGHT;
 
                 }
                 if (Keyboard::isKeyPressed(Keyboard::Left))
                 {
-                    x -= 3;
+                    x -= 4;
                     dir = LEFT;
 
                 }
@@ -693,6 +720,12 @@ STAR:
                                 case Empty:
                                     break;
                                 case Devil_Bat:
+                                    Devil.y = Devil.y + dumme_dy;
+                                    if (Devil.y > 650)
+                                    {
+                                        Devilalive = false;
+                                    }
+                                    break;
                                     break;
                                 case Devil_Blue:
                                     Devil.y = Devil.y + dumme_dy;
@@ -744,7 +777,7 @@ STAR:
                     x = 380;
                 }
               
-
+                /*///////////////random block dumme*/
                 if (countblock == 32)
                 {
                    
@@ -755,8 +788,6 @@ STAR:
                         chosenbloackDumme[i] = blank_dumme;
                     }
 
-                    
-                    
                     bool rowpass[8];
                     bool consand[32];
                     for (int i = 0; i < 8; i++)
@@ -772,7 +803,7 @@ STAR:
 
                     int row = 3;
                     int low = 0;
-                    //chose constan block//
+                    //chose constan block////////
                     for (int i = 0; i < 8; i++)
                     {
                         int keeprandomrang;
@@ -782,19 +813,25 @@ STAR:
                         switch (LEVEL)
                         {
                         case 1:
-                            if (block_B(30))
+                            if (block_B(10))
                             {
 
                                 chosenbloackDumme[keeprandomrang] = B_dumme;
                                 rowpass[i] = true;
 
                             }
-                            else if (block_Gsp(20))
+                            else if (block_Gsp(5))
                             {
                                 chosenbloackDumme[keeprandomrang] = Gsp_dumme;
                             }
-                            else  if (block_Gpp(2))
+                            else if(block_White(500))
                             {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                                cout << "white" << endl;
+                            }
+                            else  if (block_Gpp(1)  && !have_propller)
+                            {
+                                have_propller = true;
                                 chosenbloackDumme[keeprandomrang] = Gpp_dumme;
                             }
                             else if(block_G(100))
@@ -829,18 +866,25 @@ STAR:
                                     switch (LEVEL)
                                     {
                                     case 1:
-                                        if (haveblock(30))
+                                        if (haveblock(40))
                                         {
-                                            if (block_Br(40))
+                                            if (block_Br(20))
                                             {
                                                 chosenbloackDumme[j] = Br_dumme;
+                                              
                                             }
-                                            else if (block_Gsp(30))
+                                            else if (block_Gsp(5))
                                             {
                                                 chosenbloackDumme[j] = Gsp_dumme;
                                             }
-                                            if (block_Gpp(1))
+                                            else if (block_White(500))
                                             {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                                cout << "white" << endl;
+                                            }
+                                            else if (block_Gpp(1)  && !have_propller )
+                                            {
+                                                have_propller = true;
                                                 chosenbloackDumme[j] = Gpp_dumme;
                                             }
                                             else if (block_G(100))
@@ -873,7 +917,7 @@ STAR:
                     case 1:
                         if (!Devilalive)
                         {
-                            if (have_Devil(20))
+                            if (have_Devil(30))
                             {
                                 if( Devil_haveBat(10))
                                 {
@@ -887,7 +931,7 @@ STAR:
                                     Devil.x = 0;
                                     Devil.y = 650 - 67;
                                 }
-                                else if (Devil_haveBlue(20))
+                                else if (Devil_haveBlue(10))
                                 {
                                     Devil_die_by_foot = false;
                                     direction_BLue = true;
@@ -938,8 +982,7 @@ STAR:
                      {
                         y = h;
                         if (dooler_alive)
-                        {
-                        
+                        {      
                             platchosen[i].y = platchosen[i].y - dy;
                         }
                        
@@ -970,7 +1013,10 @@ STAR:
                                     chosenbloack[i] = Br;
                                     break;
                                 case Gpp_dumme:
-                                    chosenbloack[i] = Gpp;
+                                        chosenbloack[i] = Gpp;
+                                    break;
+                                case Wh_dumme:
+                                    chosenbloack[i] = Wh;
                                     break;
                                 case  blank_dumme:
                                     chosenbloack[i] = blank;
@@ -1125,59 +1171,73 @@ STAR:
                             dy = jump;
                         }
                         break;
+                    case Wh:
+                        if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                        {
+                            whiteout[i] = true;
+                            whitefram[i] = Wh1;
+                            dy = jump;
+                        }
+                        if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                        {
+
+                            whiteout[i] = true;
+                            whitefram[i] = Wh1;
+                            dy = jump;
+                        }
+                        if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                        {
+                            whiteout[i] = true;
+                            whitefram[i] = Wh1;
+                            dy = jump;
+                        }
+                        break;
                     case Gpp:
-                        if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14)  && (dir == LEFT))
+                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y ) && (dir == LEFT))
                         {
-                            if ((x + 33 >= platchosen[i].x ) && (x <= platchosen[i].x+20))
-                            {
 
-                                speeddoodle = Rocket;
-                                scoreold = score;
-                                propller_on = true;
-                                chosenbloack[i] = G;
-                                platchosen[i].y += 15;
-                            }
-                            else
-                            {
-                                dy = jump;
-                            }
-
+                            speeddoodle = Rocket;
+                            scoreold = score;
+                            propller_on = true;
+                            chosenbloack[i] = G;
+                            platchosen[i].y += 15;
                         }
-                        if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == RIGHT))
+                        else if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == LEFT) && dy > 0)
                         {
-                            if ((x + 24 >= platchosen[i].x ) && (x <= platchosen[i].x + 40))
-                            {
-
-                                
-                                speeddoodle = Rocket;
-                                scoreold = score;
-                                propller_on = true;
-                                chosenbloack[i] = G;
-                                platchosen[i].y += 15;
-                            }
-                            else
-                            {
-                                dy = jump;
-                            }
-
+                            dy = jump;
                         }
-                        if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14)  && (dir == ATK))
+               
+                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == RIGHT))
                         {
-                            if ((x + 33 >= platchosen[i].x ) && (x <= platchosen[i].x + 40))
-                            {
- 
-                                dir = RIGHT;
-                                speeddoodle = Rocket;
-                                scoreold = score;
-                                propller_on = true;
-                                chosenbloack[i] = G;
-                                platchosen[i].y += 15;
-                            }
-                            else
-                            {
-                                dy = jump;
-                            }
+
+
+                            speeddoodle = Rocket;
+                            scoreold = score;
+                            propller_on = true;
+                            chosenbloack[i] = G;
+                            platchosen[i].y += 15;
                         }
+                        else if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == RIGHT) && dy > 0)
+                        {
+                            dy = jump;
+                        }
+
+                        if ((x + 18 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 73 >= platchosen[i].y) && (y  <= platchosen[i].y+12) && (dir == ATK))
+                        {
+
+                            dir = RIGHT;
+                            speeddoodle = Rocket;
+                            scoreold = score;
+                            propller_on = true;
+                            chosenbloack[i] = G;
+                            platchosen[i].y += 15;
+                        }
+                        else if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14) && (dir == ATK)&& dy > 0)  
+                        {
+                            dy = jump;
+                        }
+
+                       
                         break;
 
                     default:
@@ -1185,6 +1245,7 @@ STAR:
                     }
                 }
 
+                /*Devil and dooler colision*/
                 if (Devilalive && !Devil_die_by_foot && dooler_alive)
                 {
                     switch (CHOSENDEVIL)
@@ -1202,18 +1263,18 @@ STAR:
                                         Devil_die_by_foot = true;
                                         dy = jump;
                                     }
+                                    else if (propller_on )
+                                    {
+                                        
+                                        Devilalive = false;
+                                    }  
                                     else
                                     {
                                         dooler_alive = false;
-                                        sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                                        app.draw(sGameOver);
-                                        cout << "DIE1" << endl;
-                                    }                     
-                                }
-                            
-                            if (dir == RIGHT)
-                            {
 
+                                    }
+
+                                }
                                 if ((x + 50 >= Devil.x) && (x <= Devil.x + 37) && (y + 50 >= Devil.y) && (y <= Devil.y + 50) && (dir == RIGHT))
                                 {
                                     if (y+(60-30) < Devil.y && dy > 0)
@@ -1222,16 +1283,18 @@ STAR:
                                         score += 100;
                                         dy = jump;
                                     }
+                                    else if (propller_on)
+                                    {
+
+                                        Devilalive = false;
+                                    }
                                     else
                                     {
                                         dooler_alive = false;
-                                        sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                                        app.draw(sGameOver);
-                                        cout << "DIE2" << endl;
+                                      
+           
                                     }
                                 }
-                            }
-
                                 if ((x + 50 >= Devil.x) && (x <= Devil.x + 37) && (y + 50 >= Devil.y) && (y <= Devil.y + 50) && (dir == LEFT))
                                 {
                                     if (y +(60-30)< Devil.y && dy > 0)
@@ -1240,13 +1303,16 @@ STAR:
                                         score += 100;
                                         dy = jump;
                                     }
+                                     else if (propller_on )
+                                    {
+                                        
+                                        Devilalive = false;
+                                    }  
                                     else
                                     {
 
                                         dooler_alive = false;
-                                        sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                                        app.draw(sGameOver);
-                                        cout << "DIE3" << endl;
+                                       
                                     }
                                 }
                             
@@ -1303,11 +1369,13 @@ STAR:
 
                 sBack_grid.setPosition(Background.x, Background.y );
                 app.draw(sBack_grid);
+
                 // app.draw(sBackground);
 
 
 
 
+                /*draw plat*/
 
                 for (int i = 0; i < blockg; i++)
                 {
@@ -1398,7 +1466,7 @@ STAR:
                                 if (platdelbrown[i].y > 650)
                                 {
                                     brownout[i] = false;
-                                    platdelbrown[i].x = -100;
+                               //     platdelbrown[i].x = -100;
                                 }
                                 sPlatBrown6.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown6);
@@ -1418,6 +1486,78 @@ STAR:
                         sPlatGy.setPosition(platchosen[i].x, platchosen[i].y);
                         app.draw(sPlatGy);
                         break;
+                    case Wh:
+                        if (whiteout[i])
+                        {
+                            int sleep = 10;
+                            switch (whitefram[i])
+                            {
+                            case Wh1:
+                                sPlatwhite1.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite1);
+                                whitefram[i] = Wh2;
+                                Sleep(sleep);
+
+                                break;
+                            case Wh2:
+                                sPlatwhite1.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite1);
+                                whitefram[i] = Wh3;
+                                Sleep(sleep);
+                                break;
+                            case Wh3:
+                                sPlatwhite1.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite1);
+                                whitefram[i] = Wh4;
+                                Sleep(sleep);
+                                break;
+                            case Wh4:
+                                sPlatwhite2.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite2);
+                                whitefram[i] = Wh5;
+                                Sleep(sleep);
+                                break;
+                            case Wh5:
+                                sPlatwhite2.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite2);
+                                whitefram[i] = Wh6;
+                                Sleep(sleep);
+                                break;
+                            case Wh6:
+                                sPlatwhite2.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite2);
+                                whitefram[i] = Wh7;
+                                Sleep(sleep);
+                                break;
+                            case Wh7:
+                                sPlatwhite3.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite3);
+                                whitefram[i] = Wh8;
+                                Sleep(sleep);
+                                break;
+                            case Wh8:
+                                sPlatwhite3.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite3);
+                                whitefram[i] = Wh9;
+                                Sleep(sleep);
+                                break;
+                            case Wh9:
+                                sPlatwhite3.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatwhite3);
+                                whiteout[i] = false;
+                                chosenbloack[i] = blank;
+                                Sleep(sleep);
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            sPlatwhite1.setPosition(platchosen[i].x, platchosen[i].y);
+                            app.draw(sPlatwhite1);
+                        }
+                        break;
                    
                     default:
                         break;
@@ -1426,7 +1566,7 @@ STAR:
                 }
 
 
-                /*Devil and doodler coliosion*/
+                /*draw Devil*/
                 if (Devilalive)
                 {
                     switch (CHOSENDEVIL)
@@ -1643,13 +1783,7 @@ STAR:
 
              
 
-
-
-
-
-
-
-
+                /*bullet*/
 
                 if (allb > 0)
                 {
@@ -1704,6 +1838,7 @@ STAR:
                 }
 
 
+                /*score topbar*/
                 sTopbar.setPosition(0, 0);
                 app.draw(sTopbar);
                 int scorefordigit = score;
@@ -1834,7 +1969,7 @@ STAR:
                 }
 
 
-
+                /*die dooler by fall*/
                 int tall_y;
                 if (dir == LEFT)
                 {
@@ -1853,13 +1988,9 @@ STAR:
                    
 
                     dooler_alive = false;
-                  //  sGameOver.setPosition((400 / 2) - 130, (650 / 2) - 130);
-                 //   app.draw(sGameOver);
+                 
                     cout << "dawdawd" << endl;
-                    // Sleep(10000); 
-                    // system("cls"); //system("clear");
-                     //  app.close();
-                  //  goto STAR;
+                   
                 }
 
 
@@ -1867,7 +1998,7 @@ STAR:
 
 
 
-
+                /*fall doe and finsh - background*/
                 if (Background.y < -630)
                 {
               //      cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
@@ -2030,6 +2161,7 @@ STAR:
                 }
                 else
                 {
+                /*fall but notfinsh - background*/
 
                             bool bloack_out_all = true;
                             for (int i = 0; i < blockg; i++)
@@ -2169,7 +2301,7 @@ STAR:
                 
                 
 
-
+                /*draw doodler*/
                 if (dir == LEFT)
                 {
                     sPersLeftt.setPosition(x, y);
@@ -2187,7 +2319,7 @@ STAR:
                 }
        
 
-
+                /*draw propller*/
                 if (propller_on)
                 {
                     switch (framepropller)
@@ -2250,6 +2382,7 @@ STAR:
                     {
                         propller_on = false;
                         propller_out = false;
+                        have_propller = false;
                     }
                     propllerdel.y += 8;
                     sPropeller_1.setPosition(propllerdel.x, propllerdel.y);
@@ -2264,7 +2397,15 @@ STAR:
             if (CHOSEMENU == MENU)
             {
                   
-                   
+                if (Keyboard::isKeyPressed(Keyboard::T))
+                {
+                    system("CLS");
+                    CHOSEMENU = TEST;
+                 
+
+                }
+
+
                     platchosen[0].x = 30;
                     platchosen[0].y = 520;
                     dir = RIGHT;
@@ -2550,6 +2691,102 @@ STAR:
                 }
 
                 
+                break;
+            }
+
+            if (CHOSEMENU == TEST)
+            {
+
+
+                cout << " x : " << x ;
+                cout << " y : " << y << endl;
+
+
+
+
+                if (Keyboard::isKeyPressed(Keyboard::Right))
+                {
+                    x += 2;
+                }
+                if (Keyboard::isKeyPressed(Keyboard::Left))
+                {
+                    x -= 2;
+                }
+                if (Keyboard::isKeyPressed(Keyboard::Up))
+                {
+                    y -= 2;
+                }
+                if (Keyboard::isKeyPressed(Keyboard::Down))
+                {
+                    y += 2;
+                }
+                if (Keyboard::isKeyPressed(Keyboard::M))
+                {
+                    system("CLS");
+                    CHOSEMENU = MENU;
+                    one_read_write = true;
+
+                }
+                if (Keyboard::isKeyPressed(Keyboard::L))
+                {
+                    dir = LEFT;
+
+                }
+                if (Keyboard::isKeyPressed(Keyboard::R))
+                {
+                    dir = RIGHT;
+
+                }
+                if (Keyboard::isKeyPressed(Keyboard::A))
+                {
+                    dir = ATK;
+
+                }
+
+                sBack_grid.setPosition(Background.x, Background.y);
+                app.draw(sBack_grid);
+
+
+
+                stestxy.setPosition(x,y);
+                app.draw(stestxy);
+
+
+
+                sPlatwhite1.setPosition(100, 100);
+                app.draw(sPlatwhite1);
+
+
+                sPlatwhite1.setPosition(100, 120);
+                app.draw(sPlatwhite1);
+
+
+                sPlatwhite2.setPosition(100, 140);
+                app.draw(sPlatwhite2);
+             
+
+                /*
+                sPlatG.setPosition(100, 160);
+                app.draw(sPlatG);*/
+                
+                 if (dir == LEFT)
+                {
+                    sPersLeftt.setPosition(x, y);
+                    app.draw(sPersLeftt);
+                }
+                if (dir == RIGHT)
+                {
+                    sPersRight.setPosition(x, y);
+                    app.draw(sPersRight);
+                }
+                if (dir == ATK)
+                {
+                    sPersATK.setPosition(x, y);
+                    app.draw(sPersATK);
+                }
+
+
+
                 break;
             }
         }
