@@ -126,6 +126,30 @@ bool block_White(int percent)
     }
     return  randompercenn(percent);
 }
+bool block_Orange(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
+bool block_Y(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
 bool have_Propller (int percent)
 {
     if (percent == 100)
@@ -207,9 +231,9 @@ int main()
     RenderWindow app(VideoMode(400, 650), "Doodle Game!");
     app.setFramerateLimit(60);
 
-    Texture t1, t2, t3, t4, t5, t6, t7, t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,
-        t22,t23,t24,t25,t26,t27, t28, t29, t30, t31, t32, t33, t34, t35, t36,t37,t38,t39,t40,t41,t42,
-        t43,t44,t45,t46,t47,t48,t49,t50,t51,t52,t53,t54,t55;
+    Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
+        t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
+        t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -266,6 +290,18 @@ int main()
     t53.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformW0.png");
     t54.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformW2.png");
     t55.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformW3.png");
+    t56.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr1.png");
+    t57.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr2.png");
+    t58.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr3.png");
+    t59.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr4.png");
+    t60.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr5.png");
+    t61.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr6.png");
+    t62.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr7.png");
+    t63.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformOr8.png");
+    t64.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformY.png");
+    t65.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformBD1.png");
+    t66.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformBD2.png");
+    t67.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformBD3.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -274,7 +310,8 @@ int main()
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
         sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),sDE_1_0(t44),
         sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
-        sMenu_scores(t51),stestxy(t52),sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55);
+        sMenu_scores(t51),stestxy(t52),sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55), sPlatOr1(t56), sPlatOr2(t57), 
+        sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63),sPlatY(t64),sPlatDB1(t65), sPlatDB2(t66), sPlatDB3(t67);
 
 
     enum CHOSEMENU {PLAY,MENU,SCORE,TEST};
@@ -324,7 +361,7 @@ STAR:
 
 
 
-    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp,Wh};
+    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp,Wh,Or,Y,DB};
     Chosenblock chosenbloack[40] ;
     bool Greensp[40];
     for (int i = 0; i < 40; i++)
@@ -332,6 +369,30 @@ STAR:
         chosenbloack[i] = blank;
         Greensp[i] = false;
     }
+
+
+
+    enum framYellow { Y1, Y2,Y3,Y4 };
+    framYellow Yellowfram[40];
+    bool Yellow_move[40];
+    int loopdelayyellow[40];
+    bool dirx[40];
+    int  randx[40];
+    for (int i = 0; i < 40; i++)
+    {
+        loopdelayyellow[i] = 0;
+        Yellowfram[i] = Y1;
+        Yellow_move[i] = false;
+    }
+
+
+    enum framDrakBlue { DB1, DB2, DB3 };
+    framDrakBlue DrakBluefram[40];
+    int loopdelayDrakBlue[40];
+
+
+
+
 
     enum frambrown { Br1, Br2, Br3, Br4,Br5,Br6 };
     frambrown brownfram[40];
@@ -349,6 +410,18 @@ STAR:
         whiteout[i] = false;
     }
 
+
+    enum framOrange { Or1, Or2, Or3, Or4, Or5, Or6, Or7, Or8 };
+    framOrange orangefram[40];
+    bool orangeout[40];
+    bool fristorange[40];
+    int loopdelayorange[40] ;
+    for (int i = 0; i < 40; i++)
+    {
+        loopdelayorange[i] = 0;
+        orangeout[i] = false;
+        fristorange[i] = true;
+    }
 
 
     enum CHOSENDevil { Empty,Devil_Bat, Devil_Blue};
@@ -487,7 +560,7 @@ STAR:
         int scoreold = 0;
        
 
-        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme,Wh_dumme};
+        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme,Wh_dumme, Or_dumme,Y_dumme,DB_dumme };
         ChosenblockDUMME chosenbloackDumme[40];
         for (int i = 0; i < 40; i++)
         {
@@ -501,6 +574,24 @@ STAR:
         bool one_read_write = true;
         int score_read_write[5];
         int star_y[] = { 305+650,352+650 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+        DrakBluefram[1] = DB1;
+        loopdelayDrakBlue[1] = 0;
+
+
+
     while (app.isOpen())
     {
        // srand(time(0));
@@ -804,6 +895,18 @@ STAR:
                     int row = 3;
                     int low = 0;
                     //chose constan block////////
+
+                    bool patternY = false, patternOr = false;
+                     if (block_Y(5))
+                     {
+                         patternY = true;
+                     } 
+                     else if (block_Orange(5))
+                     {
+                         patternOr= true;
+                     }
+
+
                     for (int i = 0; i < 8; i++)
                     {
                         int keeprandomrang;
@@ -813,7 +916,16 @@ STAR:
                         switch (LEVEL)
                         {
                         case 1:
-                            if (block_B(10))
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (block_B(10))
                             {
 
                                 chosenbloackDumme[keeprandomrang] = B_dumme;
@@ -824,10 +936,9 @@ STAR:
                             {
                                 chosenbloackDumme[keeprandomrang] = Gsp_dumme;
                             }
-                            else if(block_White(500))
+                            else if(block_White(5))
                             {
                                 chosenbloackDumme[keeprandomrang] = Wh_dumme;
-                                cout << "white" << endl;
                             }
                             else  if (block_Gpp(1)  && !have_propller)
                             {
@@ -860,7 +971,6 @@ STAR:
                          
                             for (int j = low_2; j <= row_2; j++)
                             {
-                             
                                 if (!consand[j])
                                 {
                                     switch (LEVEL)
@@ -868,7 +978,15 @@ STAR:
                                     case 1:
                                         if (haveblock(40))
                                         {
-                                            if (block_Br(20))
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+                                                     
+                                            }
+                                            else if (block_Br(20))
                                             {
                                                 chosenbloackDumme[j] = Br_dumme;
                                               
@@ -877,10 +995,9 @@ STAR:
                                             {
                                                 chosenbloackDumme[j] = Gsp_dumme;
                                             }
-                                            else if (block_White(500))
+                                            else if (block_White(5))
                                             {
                                                 chosenbloackDumme[j] = Wh_dumme;
-                                                cout << "white" << endl;
                                             }
                                             else if (block_Gpp(1)  && !have_propller )
                                             {
@@ -994,7 +1111,7 @@ STAR:
                                 prexnew = 0;
 
                             }
-                            platchosen[i].y = 0;
+                            platchosen[i].y = -20;
                             platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 60));
                            
 
@@ -1018,6 +1135,12 @@ STAR:
                                 case Wh_dumme:
                                     chosenbloack[i] = Wh;
                                     break;
+                                case Or_dumme:
+                                    chosenbloack[i] = Or;
+                                    break;
+                                case Y_dumme:
+                                    chosenbloack[i] = Y;
+                                    break;
                                 case  blank_dumme:
                                     chosenbloack[i] = blank;
                                     break;
@@ -1037,7 +1160,7 @@ STAR:
                 }
 
                 // jump plat
-                int jump = -8;
+                int jump = -9;
                 int jumpsp = -16;
                 for (int i = 0; i < blockg; i++)
                 {
@@ -1046,13 +1169,13 @@ STAR:
                     case G:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-                            dy = jump; 
+                            dy = jump;
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
-                           
-                            dy = jump; 
+
+                            dy = jump;
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -1066,13 +1189,13 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-                              
+
                             }
                             else
                             {
                                 dy = jump;
                             }
-                         
+
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
@@ -1080,13 +1203,13 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-                               
+
                             }
                             else
                             {
                                 dy = jump;
                             }
-                         
+
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -1094,7 +1217,7 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-                               
+
                             }
                             else
                             {
@@ -1105,14 +1228,14 @@ STAR:
                     case B:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-                           
-                            dy = jump; 
+
+                            dy = jump;
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
 
-                            dy = jump; 
+                            dy = jump;
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -1127,7 +1250,7 @@ STAR:
 
                                 platdelbrown[i].x = platchosen[i].x;
                                 platdelbrown[i].y = platchosen[i].y;
-                                platchosen[i].x = 500; 
+                                platchosen[i].x = 500;
 
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
@@ -1140,7 +1263,7 @@ STAR:
 
                                 platdelbrown[i].x = platchosen[i].x;
                                 platdelbrown[i].y = platchosen[i].y;
-                                platchosen[i].x = 500;  
+                                platchosen[i].x = 500;
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
                             }
@@ -1148,7 +1271,7 @@ STAR:
                             {
                                 platdelbrown[i].x = platchosen[i].x;
                                 platdelbrown[i].y = platchosen[i].y;
-                                platchosen[i].x = 500;  
+                                platchosen[i].x = 500;
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
                             }
@@ -1158,7 +1281,7 @@ STAR:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
 
-                            dy = jump; 
+                            dy = jump;
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
@@ -1191,6 +1314,155 @@ STAR:
                             whitefram[i] = Wh1;
                             dy = jump;
                         }
+                        break;
+                    case Or:
+                        if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                        {
+                            if (fristorange[i])
+                            {
+                                orangeout[i] = true;
+                                orangefram[i] = Or1;
+                                fristorange[i] = false;
+
+                            }
+                            dy = jump;
+
+                        }
+                        if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                        {
+
+                            if (fristorange[i])
+                            {
+                                orangeout[i] = true;
+                                orangefram[i] = Or1;
+                                fristorange[i] = false;
+
+                            }
+                            dy = jump;
+                        }
+                        if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                        {
+                            if (fristorange[i])
+                            {
+                                orangeout[i] = true;
+                                orangefram[i] = Or1;
+                                fristorange[i] = false;
+
+                            }
+                            dy = jump;
+                        }
+                        break;
+                    case Y:
+                        if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                        {
+
+                            Yellow_move[i] = true;
+                            dy = jump;
+                      //      cout << "x : " << platchosen[i].x <<   " y : " << platchosen[i].y << endl;
+                            
+                         
+                           // cout << "rand_x : " << rand_x << " rand_y : " << rand_y << " randx[i] : " << randx[i] << endl;
+                            
+                            for (int g = 0; g < blockg; g++)
+                            {
+
+                                switch (chosenbloack[g])
+                                {
+                                case Y:
+                                    Yellow_move[g] = true;
+                                    int randdom;
+                                    int rand_x = platchosen[g].x + 0;
+                                    int rand_y = (400 - 60) - platchosen[g].x;
+                                    if (rand_x >= rand_y)
+                                    {
+                                        randdom = rand_x;
+                                        dirx[g] = false;
+                                    }
+                                    else
+                                    {
+                                        randdom = rand_y;
+                                        dirx[g] = true;
+                                    }
+                                    randx[g] = randomrang(randdom / 4, randdom);
+                                    break;
+                                }
+                            }
+
+                        }
+                        if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                        {
+
+                            Yellow_move[i] = true;
+                            dy = jump;
+               //             cout << "x : " << platchosen[i].x << " y : " << platchosen[i].y << endl;
+
+                          
+                    //        cout << "rand_x : " << rand_x << " rand_y : " << rand_y << " randx[i] : " << randx[i] << endl;
+                            
+                            for (int g = 0; g < blockg; g++)
+                            {
+
+                                switch (chosenbloack[g])
+                                {
+                                case Y:
+                                    Yellow_move[g] = true;
+                                    int randdom;
+                                    int rand_x = platchosen[g].x + 0;
+                                    int rand_y = (400 - 60) - platchosen[g].x;
+                                    if (rand_x >= rand_y)
+                                    {
+                                        randdom = rand_x;
+                                        dirx[g] = false;
+                                    }
+                                    else
+                                    {
+                                        randdom = rand_y;
+                                        dirx[g] = true;
+                                    }
+                                    randx[g] = randomrang(randdom / 4, randdom);
+                                    break;
+                                }
+                            }
+                        
+                        }
+                        if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                        {
+                            Yellow_move[i] = true;
+                            dy = jump;
+                 //           cout << "x : " << platchosen[i].x << " y : " << platchosen[i].y << endl;
+
+                    //        cout << "rand_x : " << rand_x << " rand_y : " << rand_y << " randx[i] : " << randx[i] << endl;
+                            
+                            for (int g = 0; g < blockg; g++)
+                            {
+
+                                switch (chosenbloack[g])
+                                {
+                                case Y:
+                                    Yellow_move[g] = true;
+                                    int randdom;
+                                    int rand_x = platchosen[g].x + 0;
+                                    int rand_y = (400 - 60) - platchosen[g].x;
+                                    if (rand_x >= rand_y)
+                                    {
+                                        randdom = rand_x;
+                                        dirx[g] = false;
+                                    }
+                                    else
+                                    {
+                                        randdom = rand_y;
+                                        dirx[g] = true;
+                                    }
+                                    randx[g] = randomrang(randdom / 4, randdom);
+                                    break;
+                                }
+                            }
+
+
+                        }
+
+                     
+
                         break;
                     case Gpp:
                         if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y ) && (dir == LEFT))
@@ -1244,6 +1516,7 @@ STAR:
                         break;
                     }
                 }
+
 
                 /*Devil and dooler colision*/
                 if (Devilalive && !Devil_die_by_foot && dooler_alive)
@@ -1558,7 +1831,268 @@ STAR:
                             app.draw(sPlatwhite1);
                         }
                         break;
-                   
+
+                    case Or:
+                        if (orangeout[i])
+                        {
+                            int sleep = 0;
+                            int delaytime = 12;
+                            switch (orangefram[i])
+                            {
+                            case Or1:
+                                sPlatOr1.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr1);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 8)
+                                {
+                                    orangefram[i] = Or2;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or1;
+                                }
+
+                                break;
+                            case Or2:
+                                sPlatOr2.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr2);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 8)
+                                {
+                                    orangefram[i] = Or3;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or2;
+                                }
+                                break;
+                            case Or3:
+                                sPlatOr3.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr3);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 8)
+                                {
+                                    orangefram[i] = Or4;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or3;
+                                }
+                                break;
+                            case Or4:
+                                sPlatOr4.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr4);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 8)
+                                {
+                                    orangefram[i] = Or5;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or4;
+                                }
+                                break;
+                            case Or5:
+                                sPlatOr5.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr5);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 48)
+                                {
+                                    orangefram[i] = Or6;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or5;
+                                }
+                                break;
+                            case Or6:
+                                sPlatOr6.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr6);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 6)
+                                {
+                                    orangefram[i] = Or7;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or6;
+                                }
+                                break;
+                            case Or7:
+                                sPlatOr7.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr7);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 6)
+                                {
+                                    orangefram[i] = Or8;
+                                    loopdelayorange[i] = 0;
+                                }
+                                else
+                                {
+                                    orangefram[i] = Or7;
+                                }
+                                break;
+                            case Or8:
+                                sPlatOr8.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatOr8);
+                                Sleep(sleep);
+                                loopdelayorange[i]++;
+                                if (loopdelayorange[i] >= 6)
+                                {
+                                    orangeout[i] = false;
+                                    chosenbloack[i] = blank;
+                                    loopdelayorange[i] = 0;
+                                    fristorange[i] = true;
+                                }
+                                else
+                                {
+
+                                }
+                                break;
+                            
+                            default:
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            sPlatOr1.setPosition(platchosen[i].x, platchosen[i].y);
+                            app.draw(sPlatOr1);
+                        }
+                        break;
+                    case Y:
+                     
+                        if (!Yellow_move[i])
+                        {
+                            int delaytime = 6;
+                            int movex = 10;
+                            switch (Yellowfram[i])
+                            {
+                            case Y1:        
+                                loopdelayyellow[i]++;
+                                if (loopdelayyellow[i] >= delaytime)
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                    platchosen[i].x += movex;
+                                    Yellowfram[i] = Y2;
+                                    loopdelayyellow[i]=0;
+                                }
+                                else
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                }
+                                break;
+                            case Y2:
+                                loopdelayyellow[i]++;
+                                if (loopdelayyellow[i] >= delaytime)
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                    platchosen[i].x -= movex;
+                                    Yellowfram[i] = Y3;
+                                    loopdelayyellow[i] = 0;
+                                }
+                                else
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                }
+                                break;
+                            case Y3:
+                                loopdelayyellow[i]++;
+                                if (loopdelayyellow[i] >= delaytime)
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                    platchosen[i].x -= movex;
+                                    Yellowfram[i] = Y4;
+                                    loopdelayyellow[i] = 0;
+                                }
+                                else
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                }
+                                break;
+                            case Y4:
+                                loopdelayyellow[i]++;
+                                if (loopdelayyellow[i] >= delaytime)
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                    platchosen[i].x += movex;
+                                    Yellowfram[i] = Y1;
+                                    loopdelayyellow[i] = 0;
+                                }
+                                else
+                                {
+                                    sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                    app.draw(sPlatY);
+                                }
+                                break;
+                            default:
+                                break;
+                            }
+                           
+                        }
+                        else
+                        {
+                    //        bool dirx[40];
+                     //       int  randx[10];
+
+         
+                        //    Yellow_move[i] = true;
+                            int move = 10;
+                           
+
+                            if (dirx[i])
+                            {
+                                platchosen[i].x += move;
+                                randx[i] -= move;
+                                sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatY);
+                                if (0 >= randx[i])
+                                {
+                                   
+                                    Yellow_move[i] = false;
+                                   
+                                }
+                            }
+                            else
+                            {
+                                platchosen[i].x -= move;
+                                randx[i] -= move;
+                                sPlatY.setPosition(platchosen[i].x, platchosen[i].y);
+                                app.draw(sPlatY);
+                                if (0 >= randx[i])
+                                {
+                  
+                                    Yellow_move[i] = false;
+                                    
+                                }
+                            }
+                        }
+                         break;
+
+
+
+
+
                     default:
                         break;
                     }
@@ -2751,24 +3285,55 @@ STAR:
                 stestxy.setPosition(x,y);
                 app.draw(stestxy);
 
+              
 
-
-                sPlatwhite1.setPosition(100, 100);
-                app.draw(sPlatwhite1);
-
-
-                sPlatwhite1.setPosition(100, 120);
-                app.draw(sPlatwhite1);
-
-
-                sPlatwhite2.setPosition(100, 140);
-                app.draw(sPlatwhite2);
+               // sPlatDB1(t65), sPlatDB2(t66), sPlatDB3(t67)
              
 
-                /*
-                sPlatG.setPosition(100, 160);
-                app.draw(sPlatG);*/
                 
+                switch (DrakBluefram[1])
+                {
+                case DB1:
+                    sPlatDB1.setPosition(100, 160);
+                    app.draw(sPlatDB1);
+                    loopdelayDrakBlue[1] ++;
+                    if (loopdelayDrakBlue[1] >= 20)
+                    {
+                        loopdelayDrakBlue[1] = 0;
+                         DrakBluefram[1] = DB2;
+                    }
+                    break;
+                case DB2:
+                    sPlatG.setPosition(100,160);
+                    app.draw(sPlatG);
+                    /*
+                    sPlatDB2.setPosition(100, 160);
+                    app.draw(sPlatDB2);*/
+                    loopdelayDrakBlue[1] ++;
+                    if (loopdelayDrakBlue[1] >= 20)
+                    {
+                        loopdelayDrakBlue[1] = 0;
+                        DrakBluefram[1] = DB1;
+                    }
+                    break;
+                case DB3:
+                    break;
+                default:
+                    break;
+                }
+                
+                /*
+                sPlatDB1.setPosition(100, 160);
+                app.draw(sPlatDB1);
+
+
+                sPlatDB3.setPosition(100, 240);
+                app.draw(sPlatDB3);
+
+                sPlatG.setPosition(x,y);
+                app.draw(sPlatG);
+                */
+                /*
                  if (dir == LEFT)
                 {
                     sPersLeftt.setPosition(x, y);
@@ -2784,7 +3349,7 @@ STAR:
                     sPersATK.setPosition(x, y);
                     app.draw(sPersATK);
                 }
-
+                */
 
 
                 break;
