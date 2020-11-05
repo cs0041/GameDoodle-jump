@@ -233,7 +233,8 @@ int main()
 
     Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
         t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
-        t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67;
+        t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67
+        , t68, t69, t70, t71;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -302,6 +303,10 @@ int main()
     t65.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformBD1.png");
     t66.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformBD2.png");
     t67.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformBD3.png");
+    t68.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowDown.png");
+    t69.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowLeft.png");
+    t70.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowRight.png");
+    t71.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowUp.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -311,7 +316,8 @@ int main()
         sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),sDE_1_0(t44),
         sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
         sMenu_scores(t51),stestxy(t52),sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55), sPlatOr1(t56), sPlatOr2(t57), 
-        sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63),sPlatY(t64),sPlatDB1(t65), sPlatDB2(t66), sPlatDB3(t67);
+        sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63),sPlatY(t64),sPlatDB1(t65), sPlatDB2(t66), sPlatDB3(t67),
+        sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71);
 
 
     enum CHOSEMENU {PLAY,MENU,SCORE,TEST};
@@ -589,9 +595,10 @@ STAR:
 
         DrakBluefram[1] = DB1;
         loopdelayDrakBlue[1] = 0;
-
-
-
+        int DarkBlue_x = 100, DarkBlue_y = 160;
+        int  Dx=100, Dy=160;
+        bool fristmouseDB = true;
+        int Darx = 0  , Dary = 0;
     while (app.isOpen())
     {
        // srand(time(0));
@@ -3232,27 +3239,29 @@ STAR:
             {
 
 
-                cout << " x : " << x ;
-                cout << " y : " << y << endl;
+               /* cout << " x : " << x ;
+                cout << " y : " << y << endl;*/
+
+
 
 
 
 
                 if (Keyboard::isKeyPressed(Keyboard::Right))
                 {
-                    x += 2;
+                    x += 1;
                 }
                 if (Keyboard::isKeyPressed(Keyboard::Left))
                 {
-                    x -= 2;
+                    x -= 1;
                 }
                 if (Keyboard::isKeyPressed(Keyboard::Up))
                 {
-                    y -= 2;
+                    y -= 1;
                 }
                 if (Keyboard::isKeyPressed(Keyboard::Down))
                 {
-                    y += 2;
+                    y += 1;
                 }
                 if (Keyboard::isKeyPressed(Keyboard::M))
                 {
@@ -3287,40 +3296,121 @@ STAR:
 
               
 
-               // sPlatDB1(t65), sPlatDB2(t66), sPlatDB3(t67)
+      
              
 
+           
+
+
+               
+
+                cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
+                cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
+
+
+               
+
+
+                sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+
+
                 
-                switch (DrakBluefram[1])
+
+                    if (( sPlatDB1.getGlobalBounds().contains(Mouse) &&  sf::Mouse::isButtonPressed(sf::Mouse::Left) ) || (sf::Mouse::isButtonPressed(sf::Mouse::Left)  && !fristmouseDB))
+                    {
+                          cout << "iffffffffffffff" << endl;
+                        if (fristmouseDB)
+                        {
+                            Darx = sf::Mouse::getPosition(app).x;
+                            Dary = sf::Mouse::getPosition(app).y;
+                            Dx = DarkBlue_x;
+                            Dy = DarkBlue_y ;
+                            fristmouseDB = false;
+                        }
+                        
+                        
+                        DarkBlue_x = Dx + (sf::Mouse::getPosition(app).x - Darx);
+                        DarkBlue_y = Dy + (sf::Mouse::getPosition(app).y - Dary);
+                        sPlatDB2.setPosition(DarkBlue_x-22, DarkBlue_y-27);
+                        app.draw(sPlatDB2);
+
+
+                    }
+                    
+                   
+                
+                else
                 {
-                case DB1:
-                    sPlatDB1.setPosition(100, 160);
-                    app.draw(sPlatDB1);
-                    loopdelayDrakBlue[1] ++;
-                    if (loopdelayDrakBlue[1] >= 20)
+                        if (sPlatDB1.getGlobalBounds().contains(Mouse) &&  !fristmouseDB)
+                        {
+                            cout << "Released" << endl;
+                                fristmouseDB = true;
+                             // Darx = 0;
+                             //   Dary = 0;
+                        }
+
+                    switch (DrakBluefram[1])
                     {
-                        loopdelayDrakBlue[1] = 0;
-                         DrakBluefram[1] = DB2;
+                    case DB1:
+                        sPlatDB1.setPosition(DarkBlue_x, DarkBlue_y);
+                        app.draw(sPlatDB1);
+                        sArrowUp.setPosition(DarkBlue_x + 26, DarkBlue_y - 10);
+                        app.draw(sArrowUp);
+
+                        sArrowDown.setPosition(DarkBlue_x + 28, DarkBlue_y + 15);
+                        app.draw(sArrowDown);
+
+                        sArrowLeft.setPosition(DarkBlue_x - 14, DarkBlue_y + 4);
+                        app.draw(sArrowLeft);
+
+                        sArrowRight.setPosition(DarkBlue_x + 60, DarkBlue_y + 1);
+                        app.draw(sArrowRight);
+                        loopdelayDrakBlue[1] ++;
+                        if (loopdelayDrakBlue[1] >= 8)
+                        {
+                            loopdelayDrakBlue[1] = 0;
+                            DrakBluefram[1] = DB2;
+                        }
+                        break;
+                    case DB2:
+                        sPlatDB1.setPosition(DarkBlue_x, DarkBlue_y);
+                        app.draw(sPlatDB1);
+                        sArrowUp.setPosition(DarkBlue_x + 26, DarkBlue_y - 15);
+                        app.draw(sArrowUp);
+
+                        sArrowDown.setPosition(DarkBlue_x + 28, DarkBlue_y + 20);
+                        app.draw(sArrowDown);
+
+                        sArrowLeft.setPosition(DarkBlue_x - 19, DarkBlue_y + 4);
+                        app.draw(sArrowLeft);
+
+                        sArrowRight.setPosition(DarkBlue_x + 65, DarkBlue_y + 1);
+                        app.draw(sArrowRight);
+                        loopdelayDrakBlue[1] ++;
+                        if (loopdelayDrakBlue[1] >= 8)
+                        {
+                            loopdelayDrakBlue[1] = 0;
+                            DrakBluefram[1] = DB1;
+                        }
+                        break;
+                    case DB3:
+                        break;
+                    default:
+                        break;
                     }
-                    break;
-                case DB2:
-                    sPlatG.setPosition(100,160);
-                    app.draw(sPlatG);
-                    /*
-                    sPlatDB2.setPosition(100, 160);
-                    app.draw(sPlatDB2);*/
-                    loopdelayDrakBlue[1] ++;
-                    if (loopdelayDrakBlue[1] >= 20)
-                    {
-                        loopdelayDrakBlue[1] = 0;
-                        DrakBluefram[1] = DB1;
-                    }
-                    break;
-                case DB3:
-                    break;
-                default:
-                    break;
                 }
+
+
+                  
+               
+
+         /*       sPlatDB1.setPosition(100, 160);
+                app.draw(sPlatDB1);
+
+                sPlatDB2.setPosition(x, y);
+                app.draw(sPlatDB2);*/
+
+
                 
                 /*
                 sPlatDB1.setPosition(100, 160);
