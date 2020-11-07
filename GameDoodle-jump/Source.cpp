@@ -211,7 +211,18 @@ bool Devil_haveBlue(int percent)
     }
     return  randompercenn(percent);
 }
-
+bool Devil_havefrog(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
 
 
 int main()
@@ -246,7 +257,7 @@ int main()
     Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
         t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
         t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67
-        , t68, t69, t70, t71;
+        , t68, t69, t70, t71,t72;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -292,6 +303,7 @@ int main()
     t42.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/scores1.png");
     t43.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/GPP.png");
     t44.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_1_0.png");
+    t67.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_1_1.png");
     t45.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_2_1.png");
     t46.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/De_2_0.png");
     t47.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/buttonplayagin1.png");
@@ -318,17 +330,18 @@ int main()
     t69.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowLeft.png");
     t70.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowRight.png");
     t71.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/ArrowUp.png");
+    t72.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platforDevil.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
         sPlatDevil_1(t18), sPlatDevil_2(t19), sPlatDevil_3(t20), sPlatDevil_2_2(t19),sBack_grid(t21),
         sPropeller_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25),sTopbar(t26)
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
-        sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),sDE_1_0(t44),
+        sUFO_1(t37),sUFO_2(t38),sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42),sGPP(t43),
         sDE_2_1(t45),sDE_2_0(t46),sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
         sMenu_scores(t51),stestxy(t52),sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55), sPlatOr1(t56), sPlatOr2(t57), 
         sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63),sPlatY(t64),sPlatDB1(t65), sPlatDB2(t66), 
-        sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71);
+        sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71), sDE_1_0(t44), sDE_1_1(t67) , sPlat_Devil(t72);
 
 
     enum CHOSEMENU {PLAY,MENU,SCORE,TEST};
@@ -342,7 +355,7 @@ STAR:
    // app.setFramerateLimit(60);
 
 
-    point bullet[1000],platchosen[40],platdelbrown[40],propllerdel
+    point bullet[1000],platchosen[64],platdelbrown[64],propllerdel
         ,Devil,Background, position_digit_forbackground;
 
     position_digit_forbackground.x = 275;
@@ -378,10 +391,10 @@ STAR:
 
 
 
-    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp,Wh,Or,Y,DB};
-    Chosenblock chosenbloack[40] ;
-    bool Greensp[40];
-    for (int i = 0; i < 40; i++)
+    enum Chosenblock { G,Gsp,Gsp2,B,Gy,blank,Br,Gpp,Wh,Or,Y,DB,G_Devil};
+    Chosenblock chosenbloack[64] ;
+    bool Greensp[64];
+    for (int i = 0; i < 64; i++)
     {
         chosenbloack[i] = blank;
         Greensp[i] = false;
@@ -390,12 +403,12 @@ STAR:
 
 
     enum framYellow { Y1, Y2,Y3,Y4 };
-    framYellow Yellowfram[40];
-    bool Yellow_move[40];
-    int loopdelayyellow[40];
-    bool dirx[40];
-    int  randx[40];
-    for (int i = 0; i < 40; i++)
+    framYellow Yellowfram[64];
+    bool Yellow_move[64];
+    int loopdelayyellow[64];
+    bool dirx[64];
+    int  randx[64];
+    for (int i = 0; i < 64; i++)
     {
         loopdelayyellow[i] = 0;
         Yellowfram[i] = Y1;
@@ -404,12 +417,12 @@ STAR:
 
 
     enum framDrakBlue { DB1, DB2 };
-    framDrakBlue DrakBluefram[40];
-    int loopdelayDrakBlue[40];
-    point conDB[40], conmouseDB[40];
+    framDrakBlue DrakBluefram[64];
+    int loopdelayDrakBlue[64];
+    point conDB[64], conmouseDB[64];
     bool fristmouseDB = true;
     int  indexcanmoveDB = -1;
-    for (int i = 0; i < 40; i++)
+    for (int i = 0; i < 64; i++)
     {
         conDB[i].x = 0;
         conDB[i].y = 0;
@@ -425,28 +438,28 @@ STAR:
 
 
     enum frambrown { Br1, Br2, Br3, Br4,Br5,Br6 };
-    frambrown brownfram[40];
-    bool brownout[40];
-    for (int i = 0; i < 40; i++)
+    frambrown brownfram[64];
+    bool brownout[64];
+    for (int i = 0; i < 64; i++)
     {
         brownout[i] = false;
     }
 
     enum framwhite { Wh1, Wh2, Wh3 ,Wh4,Wh5,Wh6,Wh7,Wh8,Wh9};
-    framwhite whitefram[40];
-    bool whiteout[40];
-    for (int i = 0; i < 40; i++)
+    framwhite whitefram[64];
+    bool whiteout[64];
+    for (int i = 0; i < 64; i++)
     {
         whiteout[i] = false;
     }
 
 
     enum framOrange { Or1, Or2, Or3, Or4, Or5, Or6, Or7, Or8 };
-    framOrange orangefram[40];
-    bool orangeout[40];
-    bool fristorange[40];
-    int loopdelayorange[40] ;
-    for (int i = 0; i < 40; i++)
+    framOrange orangefram[64];
+    bool orangeout[64];
+    bool fristorange[64];
+    int loopdelayorange[64] ;
+    for (int i = 0; i < 64; i++)
     {
         loopdelayorange[i] = 0;
         orangeout[i] = false;
@@ -454,7 +467,7 @@ STAR:
     }
 
 
-    enum CHOSENDevil { Empty,Devil_Bat, Devil_Blue};
+    enum CHOSENDevil { Empty,Devil_Bat, Devil_Blue,Devil_frog};
     CHOSENDevil CHOSENDEVIL= Empty;
     bool Devil_die_by_foot = false;
 
@@ -520,28 +533,37 @@ STAR:
         break;
     }
 
-    bool directionplatB[40];
-    bool directionplatGy[40];
+    bool directionplatB[64];
+    bool directionplatGy[64];
     int score = 0;
     int allb = 0;
     int LEVEL = 1;
-    int prexnew = 0;
-    int xrownew = 0;
+
+
+
+
+
+
+
+    int blockg = 64;
+
+    if (true)
+    {
+        
+        
         int prex = 0;
-        int prey = 0;
+        int prey = -650;
         int xrow = 0;
         int yrow = -1;
         bool yk = false;
-        int blockg=32;
-        
-        for (int i = 0; i < blockg-4; i++)
+        for (int i = 0; i < blockg - 4; i++)
         {
             if (i % 4 == 0)
             {
                 if (yk)
                 {
-                    prey = 80 + (yrow * 80);
-                 //   prey = 182 + (yrow * 168);
+                    prey = -570 + (yrow * 80);
+                    //   prey = 182 + (yrow * 168);
                 }
                 yrow++;
                 yk = true;
@@ -552,47 +574,50 @@ STAR:
                 xrow = 0;
             }
             platchosen[i].x = randomrang(prex, 100 + ((xrow * 100) - 60));
-            platchosen[i].y = randomrang(prey, 80 + ((yrow * 80) - 20));
-           //platchosen[i].x = randomrang(prex, 140 + ((xrow * 126) - 55));
-            //platchosen[i].y = randomrang(prey, 182 + ((yrow * 168) - 16));
+            platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 20));
+
             chosenbloack[i] = G;
 
-         // prex = 140 + (xrow * 126);
+
             prex = 100 + (xrow * 100);
             xrow++;
-         //   cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
+               
+           // cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
         }
-        platchosen[31].x = 160;
-        platchosen[31].y = 650-(20);
-        chosenbloack[31] = G;
-        platchosen[30].x = 240;
-        platchosen[30].y = 650- (20 );
-        chosenbloack[30] = G;
-        platchosen[29].x = 100;
-        platchosen[29].y = 650 - 40;
-        chosenbloack[29] = G;
-        platchosen[28].x = 300;
-        platchosen[28].y = 650 - 40;
-        chosenbloack[28] = G;
+        platchosen[63].x = 160;
+        platchosen[63].y = 650 - (20);
+        chosenbloack[63] = G;
+        platchosen[62].x = 240;
+        platchosen[62].y = 650 - (20);
+        chosenbloack[62] = G;
+        platchosen[61].x = 100;
+        platchosen[61].y = 650 - 40;
+        chosenbloack[61] = G;
+        platchosen[60].x = 300;
+        platchosen[60].y = 650 - 40;
+        chosenbloack[60] = G;
         /*
          for (int i = 0; i < 40; i++)
                     {
                         chosenbloack[i] = blank;
                     }
-        
+
          */
+    }
+   
+        
 
 
-        int countblock = 32;
-        int arryblock[40];
-
+        int countblock = 0;
+        int arryblock[64];
+        bool bloackset_1 = true;
 
         int scoreold = 0;
        
 
-        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme,Wh_dumme, Or_dumme,Y_dumme,DB_dumme };
-        ChosenblockDUMME chosenbloackDumme[40];
-        for (int i = 0; i < 40; i++)
+        enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme,Wh_dumme, Or_dumme,Y_dumme,DB_dumme ,G_Devil_dumme};
+        ChosenblockDUMME chosenbloackDumme[64];
+        for (int i = 0; i < 64; i++)
         {
             chosenbloackDumme[i] = blank_dumme;
         }
@@ -661,24 +686,7 @@ STAR:
                 }
 
              
-                if (score - scoreold >= 200 && propller_on)
-                {
-                    speeddoodle = Normal;
-                    propller_on = false;
-                    propller_out = true;
-                    if (dir == LEFT)
-                    {
-                        propllerdel.x = x + 19;
-                        propllerdel.y = y - 9;
-
-                    }
-                    else if (dir == RIGHT)
-                    {
-                        propllerdel.x = x - 2;
-                        propllerdel.y = y - 9;
-
-                    }
-                }
+                
                 if (dooler_alive)
                 {
                     switch (speeddoodle)
@@ -686,6 +694,7 @@ STAR:
                     case Normal:
                         dy += 0.2;
                         y += dy;
+
                         break;
                     case Spring:
                         dy + 0.2;
@@ -694,6 +703,24 @@ STAR:
                     case Propeller:
                         dy = -8;
                         y += dy;
+                        if (score - scoreold >= 20000 && propller_on)
+                        {
+                            speeddoodle = Normal;
+                            propller_on = false;
+                            propller_out = true;
+                            if (dir == LEFT)
+                            {
+                                propllerdel.x = x + 19;
+                                propllerdel.y = y - 9;
+
+                            }
+                            else if (dir == RIGHT)
+                            {
+                                propllerdel.x = x - 2;
+                                propllerdel.y = y - 9;
+
+                            }
+                        }
                         break;
                     case Rocket:
                         dy = -10;
@@ -833,6 +860,7 @@ STAR:
                                     if (Devil.y > 650)
                                     {
                                         Devilalive = false;
+                                        CHOSENDEVIL = Empty;
                                     }
                                     break;
                                     break;
@@ -841,6 +869,15 @@ STAR:
                                     if (Devil.y > 650)
                                     {
                                         Devilalive = false;
+                                        CHOSENDEVIL = Empty;
+                                    }
+                                    break;
+                                case Devil_frog:
+                                    Devil.y = Devil.y + dumme_dy;
+                                    if (Devil.y > 650)
+                                    {
+                                        Devilalive = false;
+                                        CHOSENDEVIL = Empty;
                                     }
                                     break;
                                 default:
@@ -887,29 +924,58 @@ STAR:
                 }
               
                 /*///////////////random block dumme*/
-                if (countblock == 32)
+                if (countblock >= 64-32)
                 {
-                    
-                    for (int i = 0; i < 40; i++)
+                    cout << "3222222" << endl;
+                    int maxnumberblock, minnumberblock, maxrowpass, minrowpass, row_2, low_2,  row, low ;
+                    if (bloackset_1)
+                    {
+                        maxnumberblock = 64;
+                        minnumberblock = 32;
+                        maxrowpass =16;
+                        minrowpass = 8;
+                        bloackset_1 = false;
+                        row_2 = 35;
+                        low_2 = 32;
+
+                        row = 35;
+                        low = 32;
+
+                       
+                    }
+                    else
+                    {
+
+                        maxnumberblock = 32;
+                        minnumberblock = 0;
+                        maxrowpass = 8;
+                        minrowpass = 0;
+                        bloackset_1 = true;
+                        row_2 = 3;
+                        low_2 = 0;
+                        row = 3;
+                        low = 0;
+                    }
+
+
+                    for (int i = minnumberblock; i < maxnumberblock; i++)
                     {
                         chosenbloackDumme[i] = blank_dumme;
                     }
 
-                    bool rowpass[8];
-                    bool consand[32];
-                    for (int i = 0; i < 8; i++)
+                    bool rowpass[16];
+                    bool consand[64];
+                    for (int i = minrowpass; i < maxrowpass; i++)
                     {
 
                         rowpass[i] = false;
                     }
-                    for (int i = 0; i < blockg; i++)
+                    for (int i = minnumberblock; i < maxnumberblock; i++)
                     {
                         consand[i] = false;
 
                     }
 
-                    int row = 3;
-                    int low = 0;
                     //chose constan block////////
 
 
@@ -917,7 +983,7 @@ STAR:
 
                     /* PATTERN BLOCK SPECIAL*/
                     bool patternY = false, patternOr = false, patternDB = false;
-                     if (block_Y(5))
+                     if (block_Y(3))
                      {
                          patternY = true;
                      } 
@@ -925,13 +991,13 @@ STAR:
                      {
                          patternOr= true;
                      }
-                     else if (block_DB(5))
+                     else if (block_DB(2))
                      {
                          patternDB = true;
                      }
 
 
-                    for (int i = 0; i < 8; i++)
+                    for (int i = minrowpass; i < maxrowpass; i++)
                     {
                         int keeprandomrang;
                         keeprandomrang = randomrang(low, row);
@@ -940,25 +1006,48 @@ STAR:
                         switch (LEVEL)
                         {
                         case 1:
+
+                           
+                           
                             if (patternY)
                             {
                                 rowpass[i] = true;
+                             
+              
                                 chosenbloackDumme[keeprandomrang] = Y_dumme;
                             }
                             else if (patternOr)
                             {
+                                
                                 chosenbloackDumme[keeprandomrang] = Or_dumme;
                             }
                             else if (patternDB)
                             {
+                                
                                 if (i % 2 == 0)
                                 {
                                     chosenbloackDumme[keeprandomrang] = DB_dumme;
                                 }     
                                 rowpass[i] = true;
                             }
+                            
+                            else if (have_Devil(30) && CHOSENDEVIL == Empty)
+                            {
+                                    if (Devil_havefrog(20))
+                                    {
+                                        cout << "frogggggggg" << endl;
+                                        rowpass[i] = true;
+
+
+                                        CHOSENDEVIL = Devil_frog;
+                                        chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                    }
+                            }
                             else if (block_B(10))
                             {
+                                
 
                                 chosenbloackDumme[keeprandomrang] = B_dumme;
                                 rowpass[i] = true;
@@ -966,23 +1055,31 @@ STAR:
                             }
                             else if (block_Gsp(5))
                             {
+                              
                                 chosenbloackDumme[keeprandomrang] = Gsp_dumme;
                             }
                             else if(block_White(5))
                             {
+                                
                                 chosenbloackDumme[keeprandomrang] = Wh_dumme;
                             }
-                            else  if (block_Gpp(1)  && !have_propller)
+                            else  if (block_Gpp(2)  && !have_propller)
                             {
+                             
                                 have_propller = true;
                                 chosenbloackDumme[keeprandomrang] = Gpp_dumme;
                             }
                             else if(block_G(100))
                             {
+                               
                                 
                                 chosenbloackDumme[keeprandomrang] = G_dumme;
                             }
                            
+
+
+                           
+
                             break;
 
                         default:
@@ -993,9 +1090,8 @@ STAR:
                     }
 
                     //chose normal block//
-                    int row_2 = 3;
-                    int low_2 = 0;
-                    for (int i = 0; i < 8; i++)
+                    
+                    for (int i = minrowpass; i < maxrowpass; i++)
                     {
                        
                         if (!rowpass[i])
@@ -1014,21 +1110,25 @@ STAR:
                                             {
                                                 if (haveblock(20))
                                                 {
+                                                 
                                                     chosenbloackDumme[j] = Or_dumme;
                                                 }
                                                      
                                             }
                                             else if (block_Br(20))
                                             {
+                                              
                                                 chosenbloackDumme[j] = Br_dumme;
                                               
                                             }
                                             else if (block_Gsp(5))
                                             {
+                                               
                                                 chosenbloackDumme[j] = Gsp_dumme;
                                             }
                                             else if (block_White(5))
                                             {
+                                               
                                                 chosenbloackDumme[j] = Wh_dumme;
                                             }
                                             else if (block_Gpp(1)  && !have_propller )
@@ -1038,11 +1138,13 @@ STAR:
                                             }
                                             else if (block_G(100))
                                             {
+                  
                                                 chosenbloackDumme[j] = G_dumme;
                                             }
                                         }
                                         else
                                         {
+
                                             chosenbloackDumme[j] = blank_dumme;
                                         }
                                         break;
@@ -1060,11 +1162,17 @@ STAR:
                         row_2 += 4;
                         low_2 += 4;
 
+
+
+
+
                     }
+
+
                     switch (LEVEL)
                     {
                     case 1:
-                        if (!Devilalive)
+                        if (!Devilalive && CHOSENDEVIL == Empty)
                         {
                             if (have_Devil(30))
                             {
@@ -1090,7 +1198,7 @@ STAR:
                                     DeVil_Bluet_fram = Blue_1;  
                                     Devil.x = randomrang(150,300);
                                     Devil.y = 0;
-                                }
+                                } 
 
                             }
                         }
@@ -1098,12 +1206,133 @@ STAR:
                         break;
                     }
                     
+
+
+
+                    int prex = 0;
+                    int prey = -650;
+                    int xrow = 0;
+                    int yrow = -1;
+                    bool yk = false;
+
+                    for (int i = minnumberblock; i < maxnumberblock; i++)
+                    {
+                        if (i % 4 == 0)
+                        {
+                            if (yk)
+                            {
+                                prey = -570 + (yrow * 80);
+                             
+                            }
+                            yrow++;
+                            yk = true;
+                        }
+                        if (i % 4 == 0)
+                        {
+                            prex = 0;
+                            xrow = 0;
+                        }
+
+                        if (chosenbloackDumme[i] == G_Devil_dumme)
+                        {
+                            switch (CHOSENDEVIL)
+                            {
+                            case Devil_frog:
+                                Devil_die_by_foot = false;
+                                heartDevil = 3;
+                                Devilalive = true;
+                                cout << "LOOP SET XY" << endl;
+                                platchosen[i].x = randomrang(0, 400-110);
+                                platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 50));
+
+
+                              
+                                Devil.x = platchosen[i].x;
+                                Devil.y = platchosen[i].y-35;
+                                break;
+
+                            }
+
+                        }
+                        else
+                        {
+                            platchosen[i].x = randomrang(prex, 100 + ((xrow * 100) - 60));
+                            platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 20));
+
+                            /*
+                            if (i >= maxnumberblock - 4)
+                            {
+                               platchosen[i].x = randomrang(prex, 100 + ((xrow * 100) - 60));
+                                platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 20));
+
+                            }
+                            else
+                            {
+                                platchosen[i].x = randomrang(prex, 100 + ((xrow * 100) - 60));
+                                platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 20));
+
+                            }*/
+                            
+                           
+
+                        }
+                    //    cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
+                        switch (chosenbloackDumme[i])
+                        {
+                        case  G_dumme:
+                            chosenbloack[i] = G;
+                            break;
+                        case  Gsp_dumme:
+                            chosenbloack[i] = Gsp;
+                            break;
+                        case  B_dumme:
+                            chosenbloack[i] = B; 
+                            break;
+                        case  Br_dumme:
+                            chosenbloack[i] = Br; 
+                            break;
+                        case Gpp_dumme:
+                            chosenbloack[i] = Gpp; 
+                            break;
+                        case Wh_dumme:
+                            chosenbloack[i] = Wh; 
+                            break;
+                        case Or_dumme:
+                            chosenbloack[i] = Or; 
+                            break;
+                        case Y_dumme:
+                            chosenbloack[i] = Y; 
+                            break;
+                        case DB_dumme:
+                            chosenbloack[i] = DB; 
+                            break;
+                        case G_Devil_dumme:
+                            cout << "dddd" << endl;
+                            chosenbloack[i] = G_Devil;
+                            break;
+                        case  blank_dumme:
+                            chosenbloack[i] = blank; 
+                            break;
+                        default:
+                            break;
+                        }
+                      
+
+                       
+                        prex = 100 + (xrow * 100);
+                        xrow++;
+                    }
+
+
+
+                    
+
                     countblock = 0;
                 }
 
                
                 // map up
-                 
+                
                 if (y < h)
                 {
                     score += 1;      
@@ -1115,11 +1344,20 @@ STAR:
                             break;
                         case Devil_Bat:
                             break;
-                        case Devil_Blue:
+                        case Devil_Blue: 
                             Devil.y = Devil.y - dy;
                             if (Devil.y > 650)
                             {
                                 Devilalive = false;
+                                CHOSENDEVIL = Empty;
+                            }
+                            break;
+                        case Devil_frog:
+                            Devil.y = Devil.y - dy;
+                            if (Devil.y > 650)
+                            {
+                                Devilalive = false;
+                                CHOSENDEVIL = Empty;
                             }
                             break;
                         default:
@@ -1127,77 +1365,32 @@ STAR:
                         }
                         
                     }
+                   
                     for (int i = 0; i < blockg; i++)
-                     {
+                    {
                         y = h;
                         if (dooler_alive)
                         {      
                             platchosen[i].y = platchosen[i].y - dy;
+                          
                         }
                        
                         if (platchosen[i].y > 650)
                         {
-                            if (xrownew % 4 == 0)
-                            {
-                                xrownew = 0;
-                                prexnew = 0;
-
-                            }
-                            platchosen[i].y = -20;
-                            platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 60));
-                           
-
-                                switch (chosenbloackDumme[i])
-                                {
-                                case  G_dumme:
-                                    chosenbloack[i] = G;
-                                    break;
-                                case  Gsp_dumme:
-                                    chosenbloack[i] = Gsp;
-                                    break;
-                                case  B_dumme:
-                                    chosenbloack[i] = B;
-                                    break;
-                                case  Br_dumme:
-                                    chosenbloack[i] = Br;
-                                    break;
-                                case Gpp_dumme:
-                                        chosenbloack[i] = Gpp;
-                                    break;
-                                case Wh_dumme:
-                                    chosenbloack[i] = Wh;
-                                    break;
-                                case Or_dumme:
-                                    chosenbloack[i] = Or;
-                                    break;
-                                case Y_dumme:
-                                    chosenbloack[i] = Y;
-                                    break;
-                                case DB_dumme:
-                                    chosenbloack[i] = DB;
-                                    break;
-                                case  blank_dumme:
-                                    chosenbloack[i] = blank;
-                                    break;
-                                default:
-                                    break;
-                                }
-                           
-                            prexnew = 100 + (xrownew * 100);
-                            xrownew++;
-                            // cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
                             countblock++;
+                            platchosen[i].y = -2000;
                         }
-                    }
+                     }
 
 
 
                 }
 
                 // jump plat
-                int jump = -8;
+                int jump = -10;
                 int jumpsp = -16;
-                for (int i = 0; i < blockg; i++)
+               
+                for (int i = 0; i <blockg; i++)
                 {
                     switch (chosenbloack[i])
                     {
@@ -1509,11 +1702,30 @@ STAR:
                         }
                         break;
 
+
+                    case G_Devil:
+                        if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35 + 58) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
+                        {
+                            dy = jump;
+                        }
+                        if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47 + 58) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
+                        {
+
+
+                            dy = jump;
+                        }
+                        if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50 + 58) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
+                        {
+                            dy = jump;
+                        }
+                        break;
+
+
                     case Gpp:
                         if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y ) && (dir == LEFT))
                         {
 
-                            speeddoodle = Rocket;
+                            speeddoodle = Propeller;
                             scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
@@ -1528,7 +1740,7 @@ STAR:
                         {
 
 
-                            speeddoodle = Rocket;
+                            speeddoodle = Propeller;
                             scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
@@ -1543,7 +1755,7 @@ STAR:
                         {
 
                             dir = RIGHT;
-                            speeddoodle = Rocket;
+                            speeddoodle = Propeller;
                             scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
@@ -1585,6 +1797,7 @@ STAR:
                                     {
                                         
                                         Devilalive = false;
+                                        CHOSENDEVIL = Empty;
                                     }  
                                     else
                                     {
@@ -1605,6 +1818,7 @@ STAR:
                                     {
 
                                         Devilalive = false;
+                                        CHOSENDEVIL = Empty;
                                     }
                                     else
                                     {
@@ -1625,6 +1839,7 @@ STAR:
                                     {
                                         
                                         Devilalive = false;
+                                        CHOSENDEVIL = Empty;
                                     }  
                                     else
                                     {
@@ -1697,14 +1912,19 @@ STAR:
 
 
                 /*draw plat*/
-
                 for (int i = 0; i < blockg; i++)
                 {
                     switch (chosenbloack[i])
                     {
                     case G:
+                     
                         sPlatG.setPosition(platchosen[i].x, platchosen[i].y);
                         app.draw(sPlatG);
+                        break;
+                    case G_Devil:
+                   //     cout << "drraw G _  devil" << endl;
+                        sPlat_Devil.setPosition(platchosen[i].x, platchosen[i].y);
+                        app.draw(sPlat_Devil);
                         break;
                     case Gsp:
                         if (Greensp[i])
@@ -2022,7 +2242,6 @@ STAR:
                         }
                         break;
                     case Y:
-                     
                         if (!Yellow_move[i])
                         {
                             int delaytime = 6;
@@ -2440,10 +2659,12 @@ STAR:
                             default:
                                 break;
                             }
-                        }
-                             
-                    break;
-
+                        }  
+                        break;
+                    case Devil_frog:
+                        sDE_1_0.setPosition(Devil.x, Devil.y);
+                        app.draw(sDE_1_0);
+                        break;
                     default:
                     break;
                     }
@@ -2475,6 +2696,7 @@ STAR:
                                 if (heartDevil == 0)
                                 {
                                     Devilalive = false;
+                                    CHOSENDEVIL = Empty;
 
                                 }
                                 bullet[i].y = -50;
@@ -2489,6 +2711,7 @@ STAR:
                                     if (heartDevil == 0)
                                     {
                                         Devilalive = false;
+                                        CHOSENDEVIL = Empty;
 
                                     }
                                     bullet[i].y = -50;
