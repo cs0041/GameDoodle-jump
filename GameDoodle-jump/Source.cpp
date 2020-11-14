@@ -259,6 +259,18 @@ bool Devil_haveGreen(int percent)
     }
     return  randompercenn(percent);
 }
+bool Devil_have3EYE(int percent)
+{
+    if (percent == 100)
+    {
+        return true;
+    }
+    if (percent == 0)
+    {
+        return false;
+    }
+    return  randompercenn(percent);
+}
 
 int main()
 {
@@ -292,7 +304,7 @@ int main()
     Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
         t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
         t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67
-        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82;
+        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -376,6 +388,7 @@ int main()
     t80.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Green_2.png");
     t81.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Green_3.png");
     t82.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Green_4.png");
+    t83.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Devilbullet.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -387,7 +400,7 @@ int main()
         sMenu_scores(t51), stestxy(t52), sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55), sPlatOr1(t56), sPlatOr2(t57),
         sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63), sPlatY(t64), sPlatDB1(t65), sPlatDB2(t66),
         sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71), sDE_1_0(t44), sDE_1_1(t67), sPlat_Devil(t72),sDevilRed(t73), sDevilPing(t74),sDevil3E_1(t75), sDevil3E_2(t76), sDevil3E_3(t77), sDevil3E_A(t78),sDevilGreen_1(t79)
-        , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82);
+        , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82),sBulleyDevil(t83);
    ;
 
 
@@ -403,7 +416,7 @@ STAR:
 
 
     point bullet[1000], platchosen[40], platdelbrown[40], propllerdel
-        , Devil, Background, position_digit_forbackground;
+        , Devil, Background, position_digit_forbackground,BulletDevil[1000];
 
     position_digit_forbackground.x = 275;
     position_digit_forbackground.y = 305 + 650;
@@ -515,11 +528,13 @@ STAR:
     }
 
 
-    enum CHOSENDevil { Empty, Devil_Bat, Devil_Blue, Devil_frog, Devil_Red,Devil_Ping,Devil_Green };
+    enum CHOSENDevil { Empty, Devil_Bat, Devil_Blue, Devil_frog, Devil_Red,Devil_Ping,Devil_Green,Devil_3EYE};
     CHOSENDevil CHOSENDEVIL = Empty;
     bool Devil_die_by_foot = false;
 
 
+    int heartDevil;
+    bool Devilalive = false;
 
 
       
@@ -540,41 +555,30 @@ STAR:
     int loopdelayPing = 0;
 
 
+    enum fram3EYE { E1, AE2, E3,E4};
+    fram3EYE EYE3fram;
+    int loopdelay3EYE  = 0;
+    bool EYE3ATK ;
+
+    enum DirecDevil { LU, LD, RU, RD };
+    DirecDevil DeVilDirec;
+   
+
+
+
 
 
     enum framDevil_Blue { Blue_1, Blue_2 };
     framDevil_Blue DeVil_Bluet_fram = Blue_1;
     bool direction_BLue = true;
 
+
+
     enum framDevil { DeVil1_1, DeVil1_2, DeVil1_3, DeVil1_4, DeVil1_5, DeVil1_6, DeVil1_7, DeVil1_8, DeVil1_9, DeVil1_10, DeVil1, DeVil2, DeVil3, DeVil4 };
     framDevil DeVil_Bat_fram;
-    enum DirecDevil { LU, LD, RU, RD };
-    DirecDevil DeVilDirec;
-    int heartDevil;
     int framefristseeDevil = 0;
     int loopdelayfristseeDevil = 0;
-    bool Devilalive = false;
     DeVil_Bat_fram = DeVil1_1;
-
-    switch (randomrang(0, 4))
-    {
-    case 1:
-        DeVilDirec = LU;
-        break;
-    case 2:
-        DeVilDirec = LD;
-        break;
-    case 3:
-        DeVilDirec = RU;
-        break;
-    case 4:
-        DeVilDirec = RD;
-        break;
-    default:
-        DeVilDirec = LU;
-        break;
-    }
-
 
 
 
@@ -691,8 +695,9 @@ STAR:
 
 
 
-
-
+    int amountbullet = 0;
+    int loopdelayBulletDevil = 0;
+    bool DevilBatcanBullet = false;
 
     while (app.isOpen())
     {
@@ -909,60 +914,12 @@ STAR:
                             if (Devilalive)
                             {
                                 Devil.y = Devil.y + dumme_dy;
-                                if (Devil.y > 650)
+                                if (Devil.y > 650  || Devil.y < -100)
                                 {
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
                                 }
-                                /*
-                                switch (CHOSENDEVIL)
-                                {
-                                case Empty:
-                                    break;
-                                case Devil_Bat:
-                                    Devil.y = Devil.y + dumme_dy;
-                                    if (Devil.y > 650)
-                                    {
-                                        Devilalive = false;
-                                        CHOSENDEVIL = Empty;
-                                    }
-                                    break;
-                                case Devil_Blue:
-                                    Devil.y = Devil.y + dumme_dy;
-                                    if (Devil.y > 650)
-                                    {
-                                        Devilalive = false;
-                                        CHOSENDEVIL = Empty;
-                                    }
-                                    break;
-                                case Devil_frog:
-                                    Devil.y = Devil.y + dumme_dy;
-                                    if (Devil.y > 650)
-                                    {
-                                        Devilalive = false;
-                                        CHOSENDEVIL = Empty;
-                                    }
-                                    break;
-                                case Devil_Red:
-                                    Devil.y = Devil.y + dumme_dy;
-                                    if (Devil.y > 650)
-                                    {
-                                        Devilalive = false;
-                                        CHOSENDEVIL = Empty;
-                                    }
-                                    break;
-                                case Devil_Ping:
-                                    Devil.y = Devil.y + dumme_dy;
-                                    if (Devil.y > 650)
-                                    {
-                                        Devilalive = false;
-                                        CHOSENDEVIL = Empty;
-                                    }
-                                    break;
-                                default:
-                                    break;
-                                }
-                                */
+    
                             }
                         }
                         else
@@ -1209,8 +1166,27 @@ STAR:
                         {
                             if (have_Devil(100))
                             {
-                                if (Devil_haveBat(10))
+                                if (Devil_haveBat(80))
                                 {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
                                     Devilalive = true;
                                     heartDevil = 3;
                                     CHOSENDEVIL = Devil_Bat;
@@ -1232,36 +1208,72 @@ STAR:
                                     Devil.x = randomrang(150, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_haveRed(30))
+                                else if (Devil_haveRed(10))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
-                                    heartDevil = 3;
+                                    heartDevil = 2;
                                     CHOSENDEVIL = Devil_Red;
                                     Redfram = R1;
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_havePing(30))
+                                else if (Devil_havePing(10))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
-                                    heartDevil = 3;
+                                    heartDevil = 2;
                                     CHOSENDEVIL = Devil_Ping;
                                     Pingfram = P1;
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_haveGreen(30))
+                                else if (Devil_haveGreen(10))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
-                                    heartDevil = 5;
+                                    heartDevil = 4;
                                     CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram =   AG1;
                                     Greenfram = G1;
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
+                                else if (Devil_have3EYE(10))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+                                
 
                             }
                         }
@@ -1319,6 +1331,14 @@ STAR:
                             }
                             break;
                         case Devil_Green:
+                            Devil.y = Devil.y - dy;
+                            if (Devil.y > 650)
+                            {
+                                Devilalive = false;
+                                CHOSENDEVIL = Empty;
+                            }
+                            break;
+                        case Devil_3EYE:
                             Devil.y = Devil.y - dy;
                             if (Devil.y > 650)
                             {
@@ -2095,6 +2115,74 @@ STAR:
                         break;
 
 
+
+                    case Devil_3EYE:
+                        if ((x +31  >= Devil.x) && (x <= Devil.x + 59) && (y + 70 >= Devil.y) && (y <= Devil.y + 87) && (dir == ATK))
+                        {
+                            if (y + (75 - 50) < Devil.y && dy > 0)
+                            {
+                                score += 100;
+                                Devil_die_by_foot = true;
+                                dy = jump;
+                            }
+                            else if (propller_on)
+                            {
+
+                                Devilalive = false;
+                                CHOSENDEVIL = Empty;
+                            }
+                            else
+                            {
+                                dooler_alive = false;
+
+                            }
+
+                        }
+                        if ((x + 45 >= Devil.x) && (x <= Devil.x + 57) && (y + 55 >= Devil.y) && (y <= Devil.y + 86) && (dir == RIGHT))
+                        {
+                            if (y + (60 - 40) < Devil.y && dy > 0)
+                            {
+                                Devil_die_by_foot = true;
+                                score += 100;
+                                dy = jump;
+                            }
+                            else if (propller_on)
+                            {
+
+                                Devilalive = false;
+                                CHOSENDEVIL = Empty;
+                            }
+                            else
+                            {
+                                dooler_alive = false;
+
+
+                            }
+                        }
+                        if ((x + 45 >= Devil.x) && (x <= Devil.x + 57) && (y + 55 >= Devil.y) && (y <= Devil.y + 86) && (dir == LEFT))
+                        {
+                            if (y + (60 - 40) < Devil.y && dy > 0)
+                            {
+                                Devil_die_by_foot = true;
+                                score += 100;
+                                dy = jump;
+                            }
+                            else if (propller_on)
+                            {
+
+                                Devilalive = false;
+                                CHOSENDEVIL = Empty;
+                            }
+                            else
+                            {
+
+                                dooler_alive = false;
+
+                            }
+                        }
+                        break;
+
+
                     default:
                         break;
 
@@ -2701,7 +2789,6 @@ STAR:
 
                 }
 
-
                 /*draw Devil*/
                 if (Devilalive)
                 {
@@ -2716,6 +2803,7 @@ STAR:
                             sPlatDevil_1.setPosition(Devil.x, Devil.y);
                             app.draw(sPlatDevil_1);
                             DeVil_Bat_fram = DeVil1_2;
+   
                             break;
                         case DeVil1_2:
                             sPlatDevil_1.setPosition(-200, Devil.y);
@@ -2763,6 +2851,7 @@ STAR:
                             case LU:
                                 if (Devil.y < 105)
                                 {
+                                    DevilBatcanBullet = true;
                                     Devil.x -= 10;
                                     Devil.y -= 10;
                                 }
@@ -2775,6 +2864,7 @@ STAR:
                             case LD:
                                 if (Devil.y < 105)
                                 {
+                                    DevilBatcanBullet = true;
                                     Devil.x -= 10;
                                     Devil.y += 10;
                                 }
@@ -2787,6 +2877,7 @@ STAR:
                             case RU:
                                 if (Devil.y < 105)
                                 {
+                                    DevilBatcanBullet = true;
                                     Devil.x += 10;
                                     Devil.y -= 10;
                                 }
@@ -2799,6 +2890,7 @@ STAR:
                             case RD:
                                 if (Devil.y < 105)
                                 {
+                                    DevilBatcanBullet = true;
                                     Devil.x += 10;
                                     Devil.y += 10;
                                 }
@@ -2854,7 +2946,7 @@ STAR:
                             break;
                         }
                         break;
-                    case Devil_Blue:
+                    case Devil_Blue: 
                         if (!Devil_die_by_foot)
                         {
                             if (!direction_BLue)
@@ -3082,69 +3174,135 @@ STAR:
                             int movex = 10;
                             switch (Greenfram)
                             {
+                               
                             case G1:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
-                                {
-                                    sDevilGreen_1.setPosition(Devil.x, Devil.y);
-                                    app.draw(sDevilGreen_1);
+                                { 
                                     Devil.x += movex;
                                     Greenfram = G2;
                                     loopdelayGreen = 0;
                                 }
-                                else
+                                switch (GreenATKfram)
                                 {
+                                case AG1:
                                     sDevilGreen_1.setPosition(Devil.x, Devil.y);
                                     app.draw(sDevilGreen_1);
+                                    break;
+                                case AG2:
+                                    sDevilGreen_2.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_2);
+                                    break;
+                                case AG3:
+                                    sDevilGreen_3.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_3);
+                                    break;
+                                case AG4:
+                                    sDevilGreen_4.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_4);
+                                    break;
+                                default:
+                                    break;
                                 }
                                 break;
+
+
+
                             case G2:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
                                 {
-                                    sDevilGreen_1.setPosition(Devil.x, Devil.y);
-                                    app.draw(sDevilGreen_1);
+                                    
                                     Devil.x -= movex;
                                     Greenfram = G3;
                                     loopdelayGreen = 0;
                                 }
-                                else
+                                switch (GreenATKfram)
                                 {
+                                case AG1:
                                     sDevilGreen_1.setPosition(Devil.x, Devil.y);
                                     app.draw(sDevilGreen_1);
+                                    break;
+                                case AG2:
+                                    sDevilGreen_2.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_2);
+                                    break;
+                                case AG3:
+                                    sDevilGreen_3.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_3);
+                                    break;
+                                case AG4:
+                                    sDevilGreen_4.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_4);
+                                    break;
+                                default:
+                                    break;
                                 }
+
                                 break;
                             case G3:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
                                 {
-                                    sDevilGreen_1.setPosition(Devil.x, Devil.y);
-                                    app.draw(sDevilGreen_1);
+                                    
                                     Devil.x -= movex;
                                     Greenfram = G4;
                                     loopdelayGreen = 0;
                                 }
-                                else
+                                switch (GreenATKfram)
                                 {
+                                case AG1:
                                     sDevilGreen_1.setPosition(Devil.x, Devil.y);
                                     app.draw(sDevilGreen_1);
+                                    break;
+                                case AG2:
+                                    sDevilGreen_2.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_2);
+                                    break;
+                                case AG3:
+                                    sDevilGreen_3.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_3);
+                                    break;
+                                case AG4:
+                                    sDevilGreen_4.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_4);
+                                    break;
+                                default:
+                                    break;
                                 }
+
                                 break;
                             case G4:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
                                 {
-                                    sDevilGreen_1.setPosition(Devil.x, Devil.y);
-                                    app.draw(sDevilGreen_1);
+                                   
                                     Devil.x += movex;
                                     Greenfram = G1;
                                     loopdelayGreen = 0;
                                 }
-                                else
+                                switch (GreenATKfram)
                                 {
+                                case AG1:
                                     sDevilGreen_1.setPosition(Devil.x, Devil.y);
                                     app.draw(sDevilGreen_1);
+                                    break;
+                                case AG2:
+                                    sDevilGreen_2.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_2);
+                                    break;
+                                case AG3:
+                                    sDevilGreen_3.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_3);
+                                    break;
+                                case AG4:
+                                    sDevilGreen_4.setPosition(Devil.x, Devil.y);
+                                    app.draw(sDevilGreen_4);
+                                    break;
+                                default:
+                                    break;
                                 }
+
                                 break;
                             default:
                                 break;
@@ -3157,6 +3315,141 @@ STAR:
                         }
                         break;
 
+                      
+                      
+                         case Devil_3EYE:
+                             if (!Devil_die_by_foot)
+                             {
+                                             int Delaytime = 2;
+                                             switch (EYE3fram)
+                                             {
+                                             case E1:
+                                                 loopdelay3EYE++;
+                                                 sDevil3E_1.setPosition(Devil.x, Devil.y);
+                                                 app.draw(sDevil3E_1);
+                                                 if (EYE3ATK)
+                                                 {
+                                                     sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
+                                                     app.draw(sDevil3E_A);
+                                                 }
+                                                 if (loopdelay3EYE >= Delaytime)
+                                                 {
+                                                     EYE3ATK = false;
+                                                     loopdelay3EYE = 0;
+                                                     EYE3fram = E3;
+                                                 }
+                                                 break;
+                                             case E3:
+                                                 loopdelay3EYE++;
+                                                 sDevil3E_2.setPosition(Devil.x, Devil.y);
+                                                 app.draw(sDevil3E_2);
+                                                 if (EYE3ATK)
+                                                 {
+                                                     sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
+                                                     app.draw(sDevil3E_A);
+                                                 }
+                                                 if (loopdelay3EYE >= Delaytime)
+                                                 {
+                                                     EYE3ATK = false;
+                                                     loopdelay3EYE = 0;
+                                                     EYE3fram = E4;
+                                                 }
+                                                 break;
+
+                                             case E4:
+                                                 loopdelay3EYE++;
+                                                 sDevil3E_3.setPosition(Devil.x, Devil.y);
+                                                 app.draw(sDevil3E_3);
+                                                 if (EYE3ATK)
+                                                 {
+                                                     sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
+                                                     app.draw(sDevil3E_A);
+                                                 }
+                                                 if (loopdelay3EYE >= Delaytime)
+                                                 {
+                                                     EYE3ATK = false;
+                                                     loopdelay3EYE = 0;
+                                                     EYE3fram = E1;
+                                                     int movenormal = 8;
+
+                                                     switch (DeVilDirec)
+                                                     {
+                                                     case LU:
+
+                                                         Devil.x -= movenormal;
+                                                         Devil.y -= movenormal;
+
+
+                                                         break;
+                                                     case LD:
+
+                                                         Devil.x -= movenormal;
+                                                         Devil.y += movenormal;
+
+
+                                                         break;
+                                                     case RU:
+
+                                                         Devil.x += movenormal;
+                                                         Devil.y -= movenormal;
+
+                                                         break;
+                                                     case RD:
+
+                                                         Devil.x += movenormal;
+                                                         Devil.y += movenormal;
+
+                                                         break;
+                                                     default:
+                                                         break;
+                                                     }
+
+                                                     if (Devil.x <= 0 && DeVilDirec == LU)
+                                                     {
+                                                         DeVilDirec = RU;
+                                                     }
+                                                     else if (Devil.x <= 0 && DeVilDirec == LD)
+                                                     {
+                                                         DeVilDirec = RD;
+                                                     }
+                                                     else if (Devil.x >= 400 - 67 && DeVilDirec == RU)
+                                                     {
+                                                         DeVilDirec = LU;
+                                                     }
+                                                     else if (Devil.x >= 400 - 67 && DeVilDirec == RD)
+                                                     {
+                                                         DeVilDirec = LD;
+                                                     }
+                                                     else if (Devil.y <= 0 && DeVilDirec == LU)
+                                                     {
+                                                         DeVilDirec = LD;
+                                                     }
+                                                     else if (Devil.y <= 0 && DeVilDirec == RU)
+                                                     {
+                                                         DeVilDirec = RD;
+                                                     }
+                                                     else if (Devil.y >= 650 - 100 && DeVilDirec == LD)
+                                                     {
+                                                         DeVilDirec = LU;
+                                                     }
+                                                     else if (Devil.y >= 650 - 100 && DeVilDirec == RD)
+                                                     {
+                                                         DeVilDirec = RU;
+                                                     }
+                                                 }
+                                                 break;
+
+                                             default:
+                                                 break;
+                                             }
+                                 
+                              }
+                             else
+                             {
+                             sDevil3E_1.setPosition(Devil.x, Devil.y+=8);
+                             app.draw(sDevil3E_1);
+                             }
+                             break; 
 
                     default:
                         break;
@@ -3164,6 +3457,58 @@ STAR:
                 }
 
 
+
+
+                /*bulletbat*/
+                bool bulletDevil = false;
+                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet )
+                {
+                        
+                
+                    if (CHOSENDEVIL == Devil_Bat)
+                    {
+                        loopdelayBulletDevil++;
+                        if (loopdelayBulletDevil >= 40)
+                        {
+                            loopdelayBulletDevil = 0;
+                            BulletDevil[amountbullet].x = Devil.x + 50;
+                            BulletDevil[amountbullet].y = Devil.y-65;
+                            amountbullet++;
+                        }
+                        // sBulleyDevil(t83)
+                    }
+                    if (amountbullet > 0)
+                    {
+                        for (int i = 0; i < amountbullet; i++)
+                        {
+                            if (BulletDevil[i].y <= 670)
+                            {
+                                BulletDevil[i].y += 12;
+                            }
+                            else
+                            {
+                                BulletDevil[i].x = -20;
+
+                            }
+                            if (BulletDevil[i].y <= 670)
+                            {
+                                if (dy < 0)
+                                {
+                                    BulletDevil[i].y = BulletDevil[i].y - dy;
+                                }
+
+                                sBulleyDevil.setPosition(BulletDevil[i].x, BulletDevil[i].y);
+                                app.draw(sBulleyDevil);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    amountbullet = 0;
+                }
+
+                
 
 
 
@@ -3190,6 +3535,7 @@ STAR:
                                 {
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
+                                    DevilBatcanBullet = false;
 
                                 }
                                 bullet[i].y = -50;
@@ -3246,6 +3592,22 @@ STAR:
                             if ((bullet[i].x + 4 >= Devil.x) && (bullet[i].x <= Devil.x + 89) && (bullet[i].y <= Devil.y + 50) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
                                 heartDevil--;
+
+                                switch (GreenATKfram)
+                                {
+                                case AG1:
+                                    GreenATKfram = AG2;
+                                    break;
+                                case AG2:
+                                    GreenATKfram = AG3;
+                                    break;
+                                case AG3:
+                                    GreenATKfram = AG4;
+                                    break;
+                                default:
+                                    break;
+                                }
+
                                 if (heartDevil == 0)
                                 {
                                     Devilalive = false;
@@ -3256,6 +3618,25 @@ STAR:
                                 bullet[i].x = -50;
                             }
                             break;
+
+                        case Devil_3EYE:
+                            if ((bullet[i].x + 5 >= Devil.x) && (bullet[i].x <= Devil.x + 60) && (bullet[i].y <= Devil.y + 88) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
+                            {
+                                heartDevil--;
+
+                                EYE3ATK = true;
+
+                                if (heartDevil == 0)
+                                {
+                                    Devilalive = false;
+                                    CHOSENDEVIL = Empty;
+
+                                }
+                                bullet[i].y = -50;
+                                bullet[i].x = -50;
+                            }
+                            break;
+                      
                         default:
                             break;
                         }
@@ -3423,7 +3804,7 @@ STAR:
 
                 }
 
-
+          //      cout << "Devil.x : " << Devil.x << " Devil.y : "<< Devil.y << endl;
 
 
 
@@ -4186,8 +4567,6 @@ STAR:
 
 
 
-               
-
 
 
                // sDevil3E_1.setPosition(200, 160);
@@ -4224,8 +4603,16 @@ STAR:
                     cout << "Greenn" << endl;
                 }
 
-                */
 
+                Devil_3EYE:
+                   if ((x + 5 >= 300) && (x <= 300 + 60) && (y <= 300 + 88) && (y - 10 >= 300) && y >= 0)
+                {
+                    cout << "EYEEEEE" << endl;
+                }
+                */
+         
+
+             
 
             //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
             //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
@@ -4357,33 +4744,40 @@ STAR:
                                        
                                             if (dir == LEFT)
                                            {
-                                                
-                                                SBullet.setPosition(x, y);
-                                                app.draw(SBullet);
+                                               
+                                            //    SBullet.setPosition(x, y);
+                                              //  app.draw(SBullet);
 
 
 
-                                            /*   sPersLeftt.setPosition(x, y);
-                                               app.draw(sPersLeftt);*/
+                                              sPersLeftt.setPosition(x, y);
+                                               app.draw(sPersLeftt);
                                            }
                                            if (dir == RIGHT)
                                            {
-                                               SBullet.setPosition(x, y);
-                                               app.draw(SBullet);
+                                            
+                                             //  SBullet.setPosition(x, y);
+                                             //  app.draw(SBullet);
                                                
-                                               /*
+                                               
                                                sPersRight.setPosition(x, y);
-                                               app.draw(sPersRight);*/
+                                               app.draw(sPersRight);
                                            }
                                            if (dir == ATK)
                                            {
+                                           
+                                              // SBullet.setPosition(x, y);
+                                              // app.draw(SBullet);
 
-                                               SBullet.setPosition(x, y);
-                                               app.draw(SBullet);
-
-                                              /* sPersATK.setPosition(x, y);
-                                               app.draw(sPersATK);*/
+                                              sPersATK.setPosition(x, y);
+                                               app.draw(sPersATK);
                                            }
+
+                                           sDevil3E_3.setPosition(300, 300);
+                                            app.draw(sDevil3E_3);
+
+
+                                       
                                            
 
 
