@@ -1,10 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <time.h>
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
 #include <fstream>
+
 using namespace sf;
 using namespace std;
 
@@ -304,7 +306,7 @@ int main()
     Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
         t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
         t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67
-        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83;
+        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83,t84,t85,t86,t87,t88;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -389,6 +391,11 @@ int main()
     t81.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Green_3.png");
     t82.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Green_4.png");
     t83.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Devilbullet.png");
+    t84.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Resume.png");
+    t85.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/cancel1.png");
+    t86.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/cancel2.png");
+    t86.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/STOP1.png");
+    t87.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/STOP2.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
@@ -400,11 +407,48 @@ int main()
         sMenu_scores(t51), stestxy(t52), sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55), sPlatOr1(t56), sPlatOr2(t57),
         sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63), sPlatY(t64), sPlatDB1(t65), sPlatDB2(t66),
         sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71), sDE_1_0(t44), sDE_1_1(t67), sPlat_Devil(t72),sDevilRed(t73), sDevilPing(t74),sDevil3E_1(t75), sDevil3E_2(t76), sDevil3E_3(t77), sDevil3E_A(t78),sDevilGreen_1(t79)
-        , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82),sBulleyDevil(t83);
+        , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82),sBulleyDevil(t83),sSTOP(t84),sCancel_1(t85), sCancel_2(t86),sSTOP_1(t86),sSTOP_2(t87);
    ;
 
+   sf::SoundBuffer sound1,sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10 ;
 
-    enum CHOSEMENU { PLAY, MENU, SCORE, TEST };
+   
+   sound1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jump.wav");
+   sound2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/sp.wav");
+   sound3.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/propeller.wav");
+   sound4.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterAlive.wav");
+   sound5.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/fall.wav");
+   sound6.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/explodplatform.wav");
+   sound7.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/explodplatform2.wav");
+   sound8.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/brownout.wav");
+   sound9.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk1.wav");
+   sound10.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk2.wav");
+
+
+
+   sf::Sound Sjump,SAtk1,SAtk2,Sbrownout1,Sexplod1,Sexplod2,Sfall,SmosterAlive,Spropeller,Sspring;
+
+
+
+   Sjump.setBuffer(sound1);
+   Sspring.setBuffer(sound2);
+   Spropeller.setBuffer(sound3);
+   SmosterAlive.setBuffer(sound4);
+   Sfall.setBuffer(sound5);
+   Sexplod1.setBuffer(sound6);
+   Sexplod2.setBuffer(sound7);
+   Sbrownout1.setBuffer(sound8);
+   SAtk1.setBuffer(sound9);
+   SAtk2.setBuffer(sound10);
+  
+   
+  
+   
+   
+   
+   
+
+    enum CHOSEMENU { PLAY, MENU, SCORE, TEST};
     CHOSEMENU CHOSEMENU = MENU;
 STAR:
 
@@ -699,6 +743,13 @@ STAR:
     int loopdelayBulletDevil = 0;
     bool DevilBatcanBullet = false;
 
+
+
+    bool STOPGAME = false;
+    bool fallSoundOnetime = true;
+    bool DevilSoundOnetime = true;
+    bool PropellSoundOnetime = true;
+
     while (app.isOpen())
     {
         // srand(time(0));
@@ -736,6 +787,16 @@ STAR:
                         bullet[allb].y = y;
                         allb++;
                         dir = ATK;
+                        int randsound;
+                        randsound = randomrang(1, 2);
+                        if (randsound == 1)
+                        {
+                            SAtk1.play();
+                        }
+                        else if (randsound == 2)
+                        {
+                            SAtk2.play();
+                        }
                     }
                     if (delaybullet >= 16)
                     {
@@ -781,6 +842,14 @@ STAR:
                         y += dy;
                         break;
                     case Propeller:
+                      
+                        if (PropellSoundOnetime)
+                        {
+                            Spropeller.play();
+                            PropellSoundOnetime = false;
+                            cout << " da88888sdsa" << endl;
+                        }
+                      
                         dy = -8;
                         y += dy;
                         break;
@@ -797,6 +866,14 @@ STAR:
                 }
                 else
                 {
+                    if (fallSoundOnetime)
+                    {
+                        
+                        Sfall.play();
+                        fallSoundOnetime = false;
+                    }
+                   
+                   
                     if (one_read_write)
                     {
                         ifstream readfile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Config/scores.txt");
@@ -994,7 +1071,7 @@ STAR:
                     {
                         patternY = true;
                     }
-                    else if (block_Orange(5))
+                    else if (block_Orange(50))
                     {
                         patternOr = true;
                     }
@@ -1064,7 +1141,7 @@ STAR:
                             {
                                 chosenbloackDumme[keeprandomrang] = Wh_dumme;
                             }
-                            else  if (block_Gpp(1) && !have_propller)
+                            else  if (block_Gpp(1+50) && !have_propller)
                             {
                                 have_propller = true;
                                 chosenbloackDumme[keeprandomrang] = Gpp_dumme;
@@ -1166,7 +1243,7 @@ STAR:
                         {
                             if (have_Devil(100))
                             {
-                                if (Devil_haveBat(80))
+                                if (Devil_haveBat(10))
                                 {
                                     switch (randomrang(0, 4))
                                     {
@@ -1465,16 +1542,22 @@ STAR:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
                             dy = jump;
+                            Sjump.play();
+                          
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
 
                             dy = jump;
+                            Sjump.play();
+                           
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
                             dy = jump;
+                            Sjump.play();
+                          
                         }
                         break;
                     case Gsp:
@@ -1484,7 +1567,7 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-
+                                Sspring.play();
                             }
                             else
                             {
@@ -1498,7 +1581,7 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-
+                                Sspring.play();
                             }
                             else
                             {
@@ -1512,7 +1595,7 @@ STAR:
                             {
                                 dy = jumpsp;
                                 Greensp[i] = true;
-
+                                Sspring.play();
                             }
                             else
                             {
@@ -1550,6 +1633,8 @@ STAR:
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
 
+                                Sbrownout1.play();
+                              
 
                             }
                             if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
@@ -1561,6 +1646,7 @@ STAR:
                                 platchosen[i].x = 500;
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
+                                Sbrownout1.play();
                             }
                             if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                             {
@@ -1569,6 +1655,7 @@ STAR:
                                 platchosen[i].x = 500;
                                 brownout[i] = true;
                                 brownfram[i] = Br1;
+                                Sbrownout1.play();
                             }
                         }
                         break;
@@ -1792,7 +1879,7 @@ STAR:
                         if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == LEFT))
                         {
 
-                            speeddoodle = Rocket;
+                            speeddoodle = Propeller;
                             scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
@@ -1807,7 +1894,7 @@ STAR:
                         {
 
 
-                            speeddoodle = Rocket;
+                            speeddoodle = Propeller;
                             scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
@@ -1822,7 +1909,7 @@ STAR:
                         {
 
                             dir = RIGHT;
-                            speeddoodle = Rocket;
+                            speeddoodle = Propeller;
                             scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
@@ -2553,6 +2640,18 @@ STAR:
                                 loopdelayorange[i]++;
                                 if (loopdelayorange[i] >= 6)
                                 {
+                                   
+                                  
+                                    int randsound;
+                                    randsound = randomrang(1, 2);
+                                    if (randsound == 1)
+                                    {
+                                        Sexplod1.play();
+                                    }
+                                    else if (randsound == 2)
+                                    {
+                                        Sexplod2.play();
+                                    }
                                     orangeout[i] = false;
                                     chosenbloack[i] = blank;
                                     loopdelayorange[i] = 0;
@@ -2792,6 +2891,13 @@ STAR:
                 /*draw Devil*/
                 if (Devilalive)
                 {
+               
+                    if (DevilSoundOnetime)
+                    {
+                        SmosterAlive.play();
+                        SmosterAlive.setLoop(true);
+                        DevilSoundOnetime = false;
+                    }  
                     switch (CHOSENDEVIL)
                     {
                     case Empty:
@@ -3461,6 +3567,7 @@ STAR:
 
                 /*bulletbat*/
                 bool bulletDevil = false;
+                bool AllbulletDevilout = true;
                 if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet )
                 {
                         
@@ -3471,58 +3578,89 @@ STAR:
                         if (loopdelayBulletDevil >= 40)
                         {
                             loopdelayBulletDevil = 0;
-                            BulletDevil[amountbullet].x = Devil.x + 50;
-                            BulletDevil[amountbullet].y = Devil.y-65;
+                            BulletDevil[amountbullet].x = Devil.x + 60;
+                            BulletDevil[amountbullet].y = Devil.y+65;
                             amountbullet++;
                         }
                         // sBulleyDevil(t83)
                     }
-                    if (amountbullet > 0)
+                   
+                }
+                if (amountbullet > 0)
+                {
+                    for (int i = 0; i < amountbullet; i++)
                     {
-                        for (int i = 0; i < amountbullet; i++)
+                        if (BulletDevil[i].y <= 670)
                         {
-                            if (BulletDevil[i].y <= 670)
-                            {
-                                BulletDevil[i].y += 12;
-                            }
-                            else
-                            {
-                                BulletDevil[i].x = -20;
+                            AllbulletDevilout = false;
+                            BulletDevil[i].y += 12;
+                        }
+                        else
+                        {
+                            BulletDevil[i].y = 700;
 
-                            }
-                            if (BulletDevil[i].y <= 670)
+                        }
+                        if (BulletDevil[i].y <= 670)
+                        {
+                            if (dy < 0)
                             {
-                                if (dy < 0)
-                                {
-                                    BulletDevil[i].y = BulletDevil[i].y - dy;
-                                }
-
-                                sBulleyDevil.setPosition(BulletDevil[i].x, BulletDevil[i].y);
-                                app.draw(sBulleyDevil);
+                                BulletDevil[i].y = BulletDevil[i].y - dy;
                             }
+
+                            sBulleyDevil.setPosition(BulletDevil[i].x, BulletDevil[i].y);
+                            app.draw(sBulleyDevil);
+                        }
+                        if ((BulletDevil[i].x + 7 >= x) && (BulletDevil[i].x <= x + 57) && (BulletDevil[i].y <= y + 58) && (BulletDevil[i].y - 8 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == LEFT)
+                        {
+                            dooler_alive = false;
+                        }
+                        if ((BulletDevil[i].x + 7 >= x) && (BulletDevil[i].x <= x + 57) && (BulletDevil[i].y <= y + 58) && (BulletDevil[i].y - 8 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == RIGHT)
+                        {
+                            dooler_alive = false;
+                        }
+                        if ((BulletDevil[i].x + 8 >= x) && (BulletDevil[i].x <= x + 36) && (BulletDevil[i].y <= y + 72) && (BulletDevil[i].y - 9 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == ATK)
+                        {
+                           dooler_alive = false;
                         }
                     }
                 }
-                else
+                if (AllbulletDevilout)
                 {
                     amountbullet = 0;
                 }
 
-                
+
+
 
 
 
 
                 /*bullet*/
-
+                bool Allbulletout = true;
                 if (allb > 0)
                 {
                     for (int i = 0; i < allb; i++)
                     {
                         if (bullet[i].y >= 0)
                         {
+                            Allbulletout = false;
                             bullet[i].y -= 12;
                         }
+
+                        for (int j = 0; j < amountbullet; j++)
+                        {
+                         
+
+                            if ((BulletDevil[j].x + 8 >= bullet[i].x) && (BulletDevil[j].x <= bullet[i].x + 8) && (BulletDevil[j].y <= bullet[i].y + 10) && (BulletDevil[j].y >= bullet[i].y-11) && BulletDevil[j].y >= 0)
+                            {
+                                bullet[i].y = -50;
+                                bullet[i].x = -50;
+                                BulletDevil[j].y = 700;
+                             ;
+                                
+                            }
+                        }
+
                         switch (CHOSENDEVIL)
                         {
                         case Empty:
@@ -3647,7 +3785,10 @@ STAR:
                         }
                     }
                 }
-
+                if (dir != ATK && Allbulletout)
+                {
+                    allb = 0;
+                }
 
                 /*score topbar*/
                 sTopbar.setPosition(0, 0);
@@ -4505,6 +4646,7 @@ STAR:
                 break;
             }
 
+
             if (CHOSEMENU == TEST)
             {
 
@@ -4722,6 +4864,8 @@ STAR:
 
 
 
+                            
+
                                     /*       sPlatDB1.setPosition(100, 160);
                                            app.draw(sPlatDB1);
 
@@ -4742,6 +4886,17 @@ STAR:
                                            app.draw(sPlatG);
                                            */
                                        
+                                        sBulleyDevil.setPosition(x, y);
+                                        app.draw(sBulleyDevil);
+
+                                        SBullet.setPosition(200, 300);
+                                          app.draw(SBullet);
+
+                                          if ((x + 8 >= 200) && (x <= 200 +8) && (y <=300 +10) && (y >= 300-11) && y >= 0)
+                                          {
+                                              cout << "EYEEEEE" << endl;
+                                          }
+                                        int xx = 100, yy = 500;
                                             if (dir == LEFT)
                                            {
                                                
@@ -4750,7 +4905,7 @@ STAR:
 
 
 
-                                              sPersLeftt.setPosition(x, y);
+                                              sPersLeftt.setPosition(xx, yy);
                                                app.draw(sPersLeftt);
                                            }
                                            if (dir == RIGHT)
@@ -4760,7 +4915,7 @@ STAR:
                                              //  app.draw(SBullet);
                                                
                                                
-                                               sPersRight.setPosition(x, y);
+                                               sPersRight.setPosition(xx, yy);
                                                app.draw(sPersRight);
                                            }
                                            if (dir == ATK)
@@ -4769,7 +4924,7 @@ STAR:
                                               // SBullet.setPosition(x, y);
                                               // app.draw(SBullet);
 
-                                              sPersATK.setPosition(x, y);
+                                              sPersATK.setPosition(xx, yy);
                                                app.draw(sPersATK);
                                            }
 
