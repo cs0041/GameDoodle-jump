@@ -332,7 +332,8 @@ int main()
     Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
         t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
         t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67
-        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83,t84,t85,t86,t87,t88,t89,t90,t91,t92,t93,t94,t95,t96;
+        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83,t84,t85,t86,t87,t88,t89,t90,t91,t92,t93,t94,t95,t96,  
+        t97,t98,t99,t100,t101,t102,t103,t104,t105,t106;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -430,11 +431,22 @@ int main()
     t94.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/shield1.png");
     t95.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/shield2.png");
     t96.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/shield3.png");
+    t97.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket1.png");
+    t98.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket2.png");
+    t99.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket3.png");
+    t100.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket4.png");
+    t101.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket5.png");
+    t102.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket6.png");
+    t103.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket7.png");
+    t104.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket8.png");
+    t105.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket9.png");
+    t106.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket10.png");
+
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
         sPlatDevil_1(t18), sPlatDevil_2(t19), sPlatDevil_3(t20), sPlatDevil_2_2(t19), sBack_grid(t21),
-        sPropeller_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25), sTopbar(t26)
+        sPropeller_1(t22),sPropeller1_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25), sTopbar(t26)
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
         sUFO_1(t37), sUFO_2(t38), sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42), sGPP(t43),
         sDE_2_1(t45), sDE_2_0(t46), sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
@@ -442,7 +454,7 @@ int main()
         sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63), sPlatY(t64), sPlatDB1(t65), sPlatDB2(t66),
         sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71), sDE_1_0(t44), sDE_1_1(t67), sPlat_Devil(t72),sDevilRed(t73), sDevilPing(t74),sDevil3E_1(t75), sDevil3E_2(t76), sDevil3E_3(t77), sDevil3E_A(t78),sDevilGreen_1(t79)
         , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82),sBulleyDevil(t83),sSTOP(t84),sCancel_1(t85), sCancel_2(t86),sSTOP_1(t86),sSTOP_2(t87),sStars1(t89), sStars2(t90), sStars3(t91), sShield(t92),  sRocket(t93) ,sShield1(t94)
-        , sShield2(t95), sShield3(t96);
+        , sShield2(t95), sShield3(t96), sRocket1(t97), sRocket2(t98), sRocket3(t99), sRocket4(t100), sRocket5(t101), sRocket6(t102), sRocket7(t103), sRocket8(t104), sRocket9(t105), sRocket10(t106),sRocket11(t106);
    ;
 
    sf::SoundBuffer sound1,sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10 ;
@@ -835,11 +847,12 @@ STAR:
     }
    
 
+
+
+   */
+   
+
     sf::Clock clock;
-
-
-    */
-
 
     while (app.isOpen())
     {
@@ -870,7 +883,7 @@ STAR:
 
                 }
 
-                else if (((Keyboard::isKeyPressed(Keyboard::Up))) && !propller_on && dooler_alive)
+                else if (((Keyboard::isKeyPressed(Keyboard::Up))) && !propller_on && !Rocket_on && dooler_alive)
                 {
                     if (bullet_can_on)
                     {
@@ -903,8 +916,8 @@ STAR:
                     delaybullet++;
                 }
 
-
-                if (score - scoreold >= 200 && propller_on)
+                
+                if (score - scoreold >= 300 && propller_on)
                 {
                     speeddoodle = Normal;
                     propller_on = false;
@@ -923,6 +936,34 @@ STAR:
                     }
                   
                     PropellSoundOnetime = true;
+                }
+                if (score - scoreold >= 700 && Rocket_on)
+                {
+                    speeddoodle = Normal;
+                    Rocket_on = false;
+                    Rocket_out = true;
+                    if (dir == LEFT)
+                    {
+                        sRocket10.setTextureRect(sf::IntRect(0, 0, 21, 58));
+                        Rocketdel.x = x + 56;
+                        Rocketdel.y = y - 4;
+                    }
+                    else if (dir == RIGHT)
+                    {
+                        sRocket10.setTextureRect(sf::IntRect(21, 0, -21, 58));
+                        Rocketdel.x = x - 19;
+                        Rocketdel.y = y - 4;
+                    }
+
+                    //PropellSoundOnetime = true;
+                }
+               
+                if (clock.getElapsedTime().asSeconds() >= 10 && Shield_on )
+                {
+                    cout << "Shield out " << endl;
+                    Shield_on = false;
+                    Shield_out = false;
+                    have_Shield = false;
                 }
                 if (dooler_alive)
                 {
@@ -949,7 +990,7 @@ STAR:
                         y += dy;
                         break;
                     case Rocket:
-                        dy = -10;
+                        dy = -32;
                         y += dy;
                         break;
                     default:
@@ -1241,17 +1282,17 @@ STAR:
                             {
                                 chosenbloackDumme[keeprandomrang] = Wh_dumme;
                             }
-                            else  if (block_Gpp(1) && !have_propller)
+                            else  if (block_Gpp(3) && !have_propller && !have_Shield && !have_Rocket)
                             {
                                 have_propller = true;
                                 chosenbloackDumme[keeprandomrang] = Gpp_dumme;
                             }
-                            else  if (block_Shield(50) && !have_Shield)
+                            else  if (block_Shield(0) && !have_propller && !have_Shield && !have_Rocket)
                             {
                                 have_Shield = true;
                                 chosenbloackDumme[keeprandomrang] = GS_dumme;
                             }
-                            else  if (block_Rocket(0) && !have_Rocket)
+                            else  if (block_Rocket(100) && !have_propller && !have_Shield && !have_Rocket)
                             {
                                 have_Rocket = true;
                                 chosenbloackDumme[keeprandomrang] = GRk_dumme;
@@ -1315,17 +1356,17 @@ STAR:
                                             {
                                                 chosenbloackDumme[j] = Wh_dumme;
                                             }
-                                            else if (block_Gpp(1) && !have_propller)
+                                            else if (block_Gpp(3) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_propller = true;
                                                 chosenbloackDumme[j] = Gpp_dumme;
                                             }
-                                            else if (block_Shield(50) && !have_Shield)
+                                            else if (block_Shield(0) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_Shield = true;
                                                 chosenbloackDumme[j] = GS_dumme;
                                             }
-                                            else if (block_Rocket(0) && !have_Rocket)
+                                            else if (block_Rocket(100) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_Rocket = true;
                                                 chosenbloackDumme[j] = GRk_dumme;
@@ -1362,7 +1403,7 @@ STAR:
                     case 1:
                         if (!Devilalive && CHOSENDEVIL == Empty)
                         {
-                            if (have_Devil(100))
+                            if (have_Devil(100) && !Rocket_on && !Rocket_out)
                             {
                                 if (Devil_haveBat(10))
                                 {
@@ -1569,7 +1610,12 @@ STAR:
                                 prexnew = 0;
 
                             }
-
+                            if (chosenbloack[i] == GS || chosenbloack[i] == Gpp || chosenbloack[i] == GRk)
+                            {
+                                have_propller = false; 
+                                have_Shield = false;
+                                have_Rocket = false;
+                            }
                             if (chosenbloackDumme[i] == G_Devil_dumme)
                             {
                                 switch (CHOSENDEVIL)
@@ -1588,6 +1634,11 @@ STAR:
 
                                 }
 
+                            }
+                            else if (chosenbloackDumme[i] == GRk_dumme)
+                            {
+                                platchosen[i].y = 0;
+                                platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 108));
                             }
                             else
                             {
@@ -2052,31 +2103,30 @@ STAR:
                         {
                             dy = jump;
                         }
-
-
                         break;
 
-
                     case GS:
-                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == LEFT))
+                        if ((x + 46 >= platchosen[i].x) && (x <= platchosen[i].x + 25) && (y  >= platchosen[i].y - 100) && (y  <= platchosen[i].y -5 ) && (dir == LEFT))
                         {
 
                            
                             chosenbloack[i] = G;
                             Shield_on = true;
-
+                            clock.restart();
+                            
                         }
                         else if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == LEFT) && dy > 0)
                         {
                             dy = jump;
                         }
 
-                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == RIGHT))
+                        if ((x + 25 >= platchosen[i].x) && (x <= platchosen[i].x + 46) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == RIGHT) )
                         {
 
 
                             chosenbloack[i] = G;
                             Shield_on = true;
+                            clock.restart();
 
                         }
                         else if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == RIGHT) && dy > 0)
@@ -2084,10 +2134,11 @@ STAR:
                             dy = jump;
                         }
 
-                        if ((x + 18 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 73 >= platchosen[i].y) && (y <= platchosen[i].y + 12) && (dir == ATK))
+                        if ( (x + 25 >= platchosen[i].x) && (x <= platchosen[i].x + 46) && (y >= platchosen[i].y - 113) && (y <= platchosen[i].y - 5) &&  (dir == ATK) )
                         {
                             chosenbloack[i] = G;
                             Shield_on = true;
+                            clock.restart();
 
                         }
                         else if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14) && (dir == ATK) && dy > 0)
@@ -2096,24 +2147,23 @@ STAR:
                         }
                         break;
 
-
-
                     case GRk:
-                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == LEFT))
+                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 20) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == LEFT))
                         {
 
                             speeddoodle = Rocket;
                             scoreold = score;
                             Rocket_on = true;
                             chosenbloack[i] = G;
-                         
+                            frameRocket = Rocket_1;
+           
                         }
                         else if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == LEFT) && dy > 0)
                         {
                             dy = jump;
                         }
 
-                        if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == RIGHT))
+                        if ((x + 20 >= platchosen[i].x) && (x <= platchosen[i].x + 40) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == RIGHT) )
                         {
 
 
@@ -2121,14 +2171,15 @@ STAR:
                             scoreold = score;
                             Rocket_on = true;
                             chosenbloack[i] = G;
-                   
+                            frameRocket = Rocket_1;
+                        
                         }
                         else if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == RIGHT) && dy > 0)
                         {
                             dy = jump;
                         }
 
-                        if ((x + 18 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 73 >= platchosen[i].y) && (y <= platchosen[i].y + 12) && (dir == ATK))
+                        if ( (x + 20 >= platchosen[i].x) && (x <= platchosen[i].x + 40) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) &&   (dir == ATK) )
                         {
 
                             dir = RIGHT;
@@ -2136,7 +2187,8 @@ STAR:
                             scoreold = score;
                             Rocket_on = true;
                             chosenbloack[i] = G;
-                   
+                            frameRocket = Rocket_1;
+                        
                         }
                         else if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14) && (dir == ATK) && dy > 0)
                         {
@@ -2168,7 +2220,7 @@ STAR:
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2176,7 +2228,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+                                
 
                             }
 
@@ -2189,7 +2245,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2197,7 +2253,10 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
 
 
                             }
@@ -2210,7 +2269,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2219,7 +2278,11 @@ STAR:
                             else
                             {
 
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
                         }
@@ -2234,7 +2297,7 @@ STAR:
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2242,7 +2305,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
 
@@ -2255,7 +2322,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2263,7 +2330,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
 
                             }
@@ -2276,7 +2347,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2285,7 +2356,11 @@ STAR:
                             else
                             {
 
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
                         }
@@ -2300,7 +2375,7 @@ STAR:
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2308,7 +2383,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
 
@@ -2321,7 +2400,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2329,7 +2408,10 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
 
 
                             }
@@ -2342,7 +2424,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2351,7 +2433,11 @@ STAR:
                             else
                             {
 
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
                         }
@@ -2365,7 +2451,7 @@ STAR:
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2373,7 +2459,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
 
@@ -2386,7 +2476,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2394,7 +2484,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
 
                             }
@@ -2407,7 +2501,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2416,7 +2510,10 @@ STAR:
                             else
                             {
 
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
 
                             }
                         }
@@ -2433,7 +2530,7 @@ STAR:
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2441,7 +2538,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
 
@@ -2454,7 +2555,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2462,7 +2563,11 @@ STAR:
                             }
                             else
                             {
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
 
                             }
@@ -2475,7 +2580,7 @@ STAR:
                                 score += 100;
                                 dy = jump;
                             }
-                            else if (propller_on)
+                            else if (propller_on || Rocket_on)
                             {
 
                                 Devilalive = false;
@@ -2484,7 +2589,11 @@ STAR:
                             else
                             {
 
-                                dooler_alive = false;
+                                if (!Shield_on)
+                                {
+                                    dooler_alive = false;
+                                }
+
 
                             }
                         }
@@ -3807,13 +3916,13 @@ STAR:
                 }
 
                 
-
-
+          
 
                 /*bulletbat*/
                 bool bulletDevil = false;
                 bool AllbulletDevilout = true;
-                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet )
+                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet && !propller_on && !propller_out  && !Rocket_on && !Rocket_out )
+                   
                 {
                         
                 
@@ -3857,17 +3966,27 @@ STAR:
                         }
                         if ((BulletDevil[i].x + 7 >= x) && (BulletDevil[i].x <= x + 57) && (BulletDevil[i].y <= y + 58) && (BulletDevil[i].y - 8 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == LEFT)
                         {
-                            dooler_alive = false;
+                            if (!Shield_on && !Rocket_on && !propller_on)
+                            {
+                                dooler_alive = false;
+                            }
+                           
                             BulletDevil[i].y = 700;
                         }
                         if ((BulletDevil[i].x + 7 >= x) && (BulletDevil[i].x <= x + 57) && (BulletDevil[i].y <= y + 58) && (BulletDevil[i].y - 8 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == RIGHT)
                         {
-                            dooler_alive = false;
+                            if (!Shield_on && !Rocket_on && !propller_on)
+                            {
+                                dooler_alive = false;
+                            }
                             BulletDevil[i].y = 700;
                         }
                         if ((BulletDevil[i].x + 8 >= x) && (BulletDevil[i].x <= x + 36) && (BulletDevil[i].y <= y + 72) && (BulletDevil[i].y - 9 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == ATK)
                         {
-                           dooler_alive = false;
+                            if (!Shield_on && !Rocket_on && !propller_on)
+                            {
+                                dooler_alive = false;
+                            }
                            BulletDevil[i].y = 700;
                         }
                     }
@@ -4665,31 +4784,23 @@ STAR:
                         have_propller = false;
                     }
                     propllerdel.y += 8;
-                    sPropeller_1.setPosition(propllerdel.x, propllerdel.y);
-                    app.draw(sPropeller_1);
+                    sPropeller1_1.rotate(3);
+                    sPropeller1_1.setPosition(propllerdel.x, propllerdel.y);
+                    app.draw(sPropeller1_1);
                 }
 
 
 
-                /*
-                enum Shield { Shield_1, Shield_2, Shield_3 };
-                Shield frameShield = Shield_1;
-                bool Shield_on = false;
-                bool Shield_out = false;
-                bool have_Shield = false;
-
-
-                enum RRocket { Rocketr_1, Rocketr_2, Rocketr_3, Rocketr_4, Rocketr_5, Rocketr_6, Rocketr_7, Rocketr_8, Rocketr_9, Rocketr_10 };
-                RRocket frameRocket = Rocketr_1;
-                bool Rocket_on = false;
-                bool Rocket_out = false;
-                bool have_Rocket = false;*/
-
+   
   
                 /*draw Shield*/
                 if (Shield_on)
                 {
-                    int delaytime = 4;
+                    int delaytime = 6;
+                    if (clock.getElapsedTime().asSeconds() >= 8 && Shield_on)
+                    {
+                        delaytime = 0;
+                    }
                     switch (frameShield)
                     {
                     case Shield_1:
@@ -4763,26 +4874,219 @@ STAR:
 
 
 
-                /*draw propller*/
+                /*draw Rocket*/
 
-                /*
+                
                 if (Rocket_on)
                 {
+                    int delaytime = 4;
                     switch (frameRocket)
                     {
                     case Rocket_1:
+                        loopdelayRocket++;
                         if (dir == LEFT)
                         {
-                            ___.setPosition(x + 19, y - 9);
+                            sRocket1.setTextureRect(sf::IntRect(0, 0, 22, 67));
+                            sRocket1.setPosition(x + 56, y - 4);
                         }
                         else if (dir == RIGHT)
                         {
-                            ___.setPosition(x - 2, y - 9);
+                            sRocket1.setTextureRect(sf::IntRect(22, 0, -22, 67));
+                            sRocket1.setPosition(x - 19, y - 4);
                         }
-                        app.draw(___);
-                        frameRocket = Rocket_2;
+                        app.draw(sRocket1);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_2;
+                        }
                         break;
-
+                    case Rocket_2:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket2.setTextureRect(sf::IntRect(0, 0,27, 78));
+                            sRocket2.setPosition(x + 56, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket2.setTextureRect(sf::IntRect(27, 0, -27, 78));
+                            sRocket2.setPosition(x - 24, y - 4);
+                        }
+                        app.draw(sRocket2);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_3;
+                        }
+                        break;
+                    case Rocket_3:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket3.setTextureRect(sf::IntRect(0, 0, 27, 85));
+                            sRocket3.setPosition(x + 56, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket3.setTextureRect(sf::IntRect(27, 0, -27, 85));
+                            sRocket3.setPosition(x - 24, y - 4);
+                        }
+                        app.draw(sRocket3);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_4;
+                        }
+                        break;
+                    case Rocket_4:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket4.setTextureRect(sf::IntRect(0, 0, 36, 98));
+                            sRocket4.setPosition(x + 50, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket4.setTextureRect(sf::IntRect(36, 0, -36, 98));
+                            sRocket4.setPosition(x - 24, y - 4);
+                        }
+                        app.draw(sRocket4);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_5;
+                        }
+                        break;
+                    case Rocket_5:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket5.setTextureRect(sf::IntRect(0, 0, 42, 97));
+                            sRocket5.setPosition(x + 46, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket5.setTextureRect(sf::IntRect(42, 0, -42, 97));
+                            sRocket5.setPosition(x - 28, y - 4);
+                        }
+                        app.draw(sRocket5);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_6;
+                        }
+                        break;
+                    case Rocket_6:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket6.setTextureRect(sf::IntRect(0, 0, 44,99));
+                            sRocket6.setPosition(x + 46, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket6.setTextureRect(sf::IntRect(44, 0, -44, 99));
+                            sRocket6.setPosition(x - 30, y - 4);
+                        }
+                        app.draw(sRocket6);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            if (score - scoreold >= 550 && Rocket_on)
+                            {
+                                frameRocket = Rocket_7;
+                            }
+                            else
+                            {
+                                frameRocket = Rocket_4;
+                            }
+                        }
+                        break;
+                    case Rocket_7:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket7.setTextureRect(sf::IntRect(0, 0, 25, 88));
+                            sRocket7.setPosition(x + 56, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket7.setTextureRect(sf::IntRect(25, 0, -25, 88));
+                            sRocket7.setPosition(x - 22, y - 4);
+                        }
+                        app.draw(sRocket7);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_8;
+                        }
+                        break;
+                    case Rocket_8:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket8.setTextureRect(sf::IntRect(0, 0, 23, 78));
+                            sRocket8.setPosition(x + 56, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket8.setTextureRect(sf::IntRect(23, 0, -23, 78));
+                            sRocket8.setPosition(x - 20, y - 4);
+                        }
+                        app.draw(sRocket8);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 9;
+                            frameRocket = Rocket_9;
+                        }
+                        break;
+                    case Rocket_9:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket9.setTextureRect(sf::IntRect(0, 0, 22, 70));
+                            sRocket9.setPosition(x + 56, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket9.setTextureRect(sf::IntRect(22, 0, -22,70));
+                            sRocket9.setPosition(x - 19, y - 4);
+                        }
+                        app.draw(sRocket9);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            frameRocket = Rocket_10;
+                        }
+                        break;
+                    case Rocket_10:
+                        loopdelayRocket++;
+                        if (dir == LEFT)
+                        {
+                            sRocket10.setTextureRect(sf::IntRect(0, 0, 21, 58));
+                            sRocket10.setPosition(x + 56, y - 4);
+                        }
+                        else if (dir == RIGHT)
+                        {
+                            sRocket10.setTextureRect(sf::IntRect(21, 0, -21, 58));
+                            sRocket10.setPosition(x - 19, y - 4);
+                        }
+                        app.draw(sRocket10);
+                        if (loopdelayRocket >= delaytime)
+                        {
+                            loopdelayRocket = 0;
+                            if (score - scoreold >= 650 && Rocket_on)
+                            {
+                                frameRocket = Rocket_8;
+                            }
+                            else
+                            {
+                                frameRocket = Rocket_7;
+                            }
+                           
+                        }
+                        break;
                     
                     default:
                         break;
@@ -4790,20 +5094,21 @@ STAR:
                 }
                 else if (Rocket_out && !Rocket_on)
                 {
-                    if (propllerdel.y > 650)
+                    if (Rocketdel.y > 650)
                     {
-                        propller_on = false;
-                        propller_out = false;
-                        have_propller = false;
+                        Rocket_on = false;
+                        Rocket_out = false;
+                        have_Rocket = false;
                     }
-                    propllerdel.y += 8;
-                    sPropeller_1.setPosition(propllerdel.x, propllerdel.y);
-                    app.draw(sPropeller_1);
+                    Rocketdel.y += 8;
+                    cout << "Rotate " << endl;
+                    sRocket11.rotate(3);
+                    sRocket11.setPosition(Rocketdel.x, Rocketdel.y);
+                    app.draw(sRocket11);
                 }
-                */
-
-
-
+                
+               
+           
 
 
 
@@ -5372,37 +5677,87 @@ STAR:
  //sShield(t92), sRocket(t93), sShield1(t94);
 
 
-                                sShield1.setPosition(x,y);
-                                app.draw(sShield1);
     
-                                sPlatG.setPosition(100, 450);
+int xx=100, yy=400;
+
+/*
+                                sPlatG.setPosition(100, 400);
                                 app.draw(sPlatG);
 
-                                            if (dir == LEFT)
-                                           {
-                                               
-                                            //    SBullet.setPosition(x, y);
-                                              //  app.draw(SBullet);
 
-                                                sPersLeftt.setPosition(100, 450);
+                                 sRocket.setPosition(xx + 15, yy - 43);
+                                app.draw(sRocket);
+
+
+                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 100) && (y <= yy - 5) && dir == RIGHT)
+                                {
+                                    cout << "RRR" << endl;
+                                }
+
+                                if ((x + 40 >= xx) && (x <= xx + 20) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
+                                {
+                                    cout << "LL" << endl;
+                                }
+
+                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
+                                {
+                                    cout << "ATK" << endl;
+                                }
+
+
+
+
+
+                                //sShield.setPosition(xx+11, yy-42);
+                                //app.draw(sShield);
+
+                                
+                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 100) && (y <= yy - 5) && dir ==RIGHT)
+                                {
+                                    cout << "RRR" << endl;
+                                }
+
+                                if ((x + 46 >= xx) && (x <= xx + 25) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
+                                {
+                                    cout << "LL" << endl;
+                                }
+
+                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
+                                {
+                                    cout << "ATK" << endl;
+                                }*/
+
+
+
+
+                                            if (dir == LEFT)
+                                            {
+
+                                                //    SBullet.setPosition(x, y);
+                                                  //  app.draw(SBullet);
+                                                sRocket10.setTextureRect(sf::IntRect(0, 0, 21, 58));
+                                                sRocket10.setPosition(x   + 56, y-4 );
+                                                app.draw(sRocket10);
+                                               
+                                                cout << " LLL " << endl;
+                                                sPersLeftt.setPosition(x, y);
                                                 app.draw(sPersLeftt);
 
+                                            }
+                                            if (dir == RIGHT)
+                                            {
+
+                                                //  SBullet.setPosition(x, y);
+                                                //  app.draw(SBullet);
+                                                cout << " RRR " << endl;
+                                                sRocket10.setTextureRect(sf::IntRect(21, 0, -21,58));
+                                                sRocket10.setPosition(x -19, y-4 );
+                                                app.draw(sRocket10);
 
 
-                                             //   sPersLeftt.setPosition(100, 450);
-                                               // app.draw(sPersLeftt);
-                                             
-                                           }
-                                           if (dir == RIGHT)
-                                           {
-                                            
-                                             //  SBullet.setPosition(x, y);
-                                             //  app.draw(SBullet);
-                                             
-                                            
-                                               sPersRight.setPosition(100, 450);
-                                               app.draw(sPersRight);
-                                           }
+                                                sPersRight.setPosition(x, y);
+                                                app.draw(sPersRight);
+                                            }
                                            if (dir == ATK)
                                            {
                                            
@@ -5411,7 +5766,7 @@ STAR:
 
                                              
 
-                                             sPersATK.setPosition(100, 450);
+                                             sPersATK.setPosition(xx, yy);
                                               app.draw(sPersATK);
                                            }
 
