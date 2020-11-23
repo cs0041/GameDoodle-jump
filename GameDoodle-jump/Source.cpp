@@ -457,7 +457,7 @@ int main()
         , sShield2(t95), sShield3(t96), sRocket1(t97), sRocket2(t98), sRocket3(t99), sRocket4(t100), sRocket5(t101), sRocket6(t102), sRocket7(t103), sRocket8(t104), sRocket9(t105), sRocket10(t106),sRocket11(t106);
    ;
 
-   sf::SoundBuffer sound1,sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10 ;
+   sf::SoundBuffer sound1,sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10,sound11, sound12, sound13, sound14, sound15, sound16;
 
    
    sound1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jump.wav");
@@ -470,10 +470,17 @@ int main()
    sound8.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/brownout.wav");
    sound9.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk1.wav");
    sound10.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk2.wav");
+   sound11.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jumpwhile.wav");
+   sound12.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jumponmonster.wav");
+   sound13.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jetpack.wav");
+   sound14.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterDiebybullet.wav");
+   sound15.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK1.wav");
+   sound16.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK2.wav");
 
 
 
-   sf::Sound Sjump,SAtk1,SAtk2,Sbrownout1,Sexplod1,Sexplod2,Sfall,SmosterAlive,Spropeller,Sspring;
+   sf::Sound Sjump,SAtk1,SAtk2,Sbrownout1,Sexplod1,Sexplod2,Sfall,SmosterAlive,Spropeller,Sspring,
+       Sjumpwhile,Sjumponmonster,SRocket,SmonsterDiebybullet,SNinjaATK1,SNinjaATK2;
 
 
 
@@ -487,6 +494,12 @@ int main()
    Sbrownout1.setBuffer(sound8);
    SAtk1.setBuffer(sound9);
    SAtk2.setBuffer(sound10);
+   Sjumpwhile.setBuffer(sound11);
+   Sjumponmonster.setBuffer(sound12);
+   SRocket.setBuffer(sound13);
+   SmonsterDiebybullet.setBuffer(sound14);
+   SNinjaATK1.setBuffer(sound15);
+   SNinjaATK2.setBuffer(sound16);
   
    
   
@@ -810,7 +823,7 @@ STAR:
     bool fallSoundOnetime = true;
     bool DevilSoundOnetime = true;
     bool PropellSoundOnetime = true;
-
+    bool RocketSoundOnetime = true;
 
     enum stars { Ss1, Ss2, Ss3};
     stars framestars;
@@ -856,7 +869,7 @@ STAR:
 
     while (app.isOpen())
     {
-
+       
         // srand(time(0));
         Event e;
         while (app.pollEvent(e))
@@ -917,7 +930,7 @@ STAR:
                 }
 
                 
-                if (score - scoreold >= 300 && propller_on)
+                if (score - scoreold >= 250 && propller_on)
                 {
                     speeddoodle = Normal;
                     propller_on = false;
@@ -934,10 +947,10 @@ STAR:
                         propllerdel.y = y - 9;
 
                     }
-                  
+                    Spropeller.stop();
                     PropellSoundOnetime = true;
                 }
-                if (score - scoreold >= 700 && Rocket_on)
+                if (score - scoreold >= 500 && Rocket_on)
                 {
                     speeddoodle = Normal;
                     Rocket_on = false;
@@ -954,13 +967,15 @@ STAR:
                         Rocketdel.x = x - 19;
                         Rocketdel.y = y - 4;
                     }
-
-                    //PropellSoundOnetime = true;
+                    RocketSoundOnetime = true;
+                    SRocket.stop();
+                  
                 }
+               
                
                 if (clock.getElapsedTime().asSeconds() >= 10 && Shield_on )
                 {
-                    cout << "Shield out " << endl;
+                   
                     Shield_on = false;
                     Shield_out = false;
                     have_Shield = false;
@@ -978,19 +993,27 @@ STAR:
                         y += dy;
                         break;
                     case Propeller:
-                      
+                     
                         if (PropellSoundOnetime)
                         {
+                            
                             Spropeller.play();
                             PropellSoundOnetime = false;
-                            cout << " da88888sdsa" << endl;
                         }
                       
                         dy = -8;
                         y += dy;
                         break;
                     case Rocket:
-                        dy = -32;
+                        if (RocketSoundOnetime)
+                        {
+
+                            SRocket.play();
+                            SRocket.setLoop(true);
+                            RocketSoundOnetime = false;
+
+                        }
+                        dy = -24;
                         y += dy;
                         break;
                     default:
@@ -1441,7 +1464,7 @@ STAR:
                                     Devil_die_by_foot = false;
                                     direction_BLue = true;
                                     Devilalive = true;
-                                    heartDevil = 3;
+                                    heartDevil = 1;
                                     CHOSENDEVIL = Devil_Blue;
                                     DeVil_Bluet_fram = Blue_1;
                                     Devil.x = randomrang(150, 300);
@@ -1451,7 +1474,7 @@ STAR:
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
-                                    heartDevil = 2;
+                                    heartDevil = 1;
                                     CHOSENDEVIL = Devil_Red;
                                     Redfram = R1;
                                     Devil.x = randomrang(100, 300);
@@ -1461,7 +1484,7 @@ STAR:
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
-                                    heartDevil = 2;
+                                    heartDevil = 1;
                                     CHOSENDEVIL = Devil_Ping;
                                     Pingfram = P1;
                                     Devil.x = randomrang(100, 300);
@@ -1754,6 +1777,7 @@ STAR:
                             else
                             {
                                 dy = jump;
+                                Sjump.play();
                             }
 
                         }
@@ -1768,6 +1792,7 @@ STAR:
                             else
                             {
                                 dy = jump;
+                                Sjump.play();
                             }
 
                         }
@@ -1782,23 +1807,25 @@ STAR:
                             else
                             {
                                 dy = jump;
+                                Sjump.play();
                             }
                         }
                         break;
                     case B:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-
+                            Sjump.play();
                             dy = jump;
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
 
-
+                            Sjump.play();
                             dy = jump;
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
+                            Sjump.play();
                             dy = jump;
                         }
                         break;
@@ -1861,19 +1888,24 @@ STAR:
                     case Wh:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
+                            cout << "WHIEL" << endl;
+                            Sjumpwhile.play();
                             whiteout[i] = true;
                             whitefram[i] = Wh1;
                             dy = jump;
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
-
+                            cout << "WHIEL" << endl;
+                            Sjumpwhile.play();
                             whiteout[i] = true;
                             whitefram[i] = Wh1;
                             dy = jump;
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
+                            cout << "WHIEL" << endl;
+                            Sjumpwhile.play();
                             whiteout[i] = true;
                             whitefram[i] = Wh1;
                             dy = jump;
@@ -1890,7 +1922,7 @@ STAR:
 
                             }
                             dy = jump;
-
+                            Sjump.play();
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
@@ -1903,6 +1935,7 @@ STAR:
 
                             }
                             dy = jump;
+                            Sjump.play();
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
@@ -1914,12 +1947,13 @@ STAR:
 
                             }
                             dy = jump;
+                            Sjump.play();
                         }
                         break;
                     case Y:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-
+                            Sjump.play();
                             Yellow_move[i] = true;
                             dy = jump;
 
@@ -1951,7 +1985,7 @@ STAR:
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
-
+                            Sjump.play();
                             Yellow_move[i] = true;
                             dy = jump;
 
@@ -1983,6 +2017,7 @@ STAR:
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
+                            Sjump.play();
                             Yellow_move[i] = true;
                             dy = jump;
 
@@ -2019,19 +2054,21 @@ STAR:
                     case DB:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
+                            Sjump.play();
                             chosenbloack[i] = G;
                             dy = jump;
 
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
-
+                            Sjump.play();
                             chosenbloack[i] = G;
                             dy = jump;
 
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
+                            Sjump.play();
                             chosenbloack[i] = G;
                             dy = jump;
 
@@ -2044,16 +2081,18 @@ STAR:
         
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35 + 58) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
+                            Sjump.play();
                             dy = jump;
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47 + 58) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
-
+                            Sjump.play();
 
                             dy = jump;
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50 + 58) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
+                            Sjump.play();
                             dy = jump;
                         }
                         break;
@@ -2201,7 +2240,8 @@ STAR:
                     }
                 }
 
-
+               
+                
                 /*Devil and dooler colision*/
                 if (Devilalive && !Devil_die_by_foot && dooler_alive)
                 {
@@ -2216,13 +2256,14 @@ STAR:
                         {
                             if (y + (75 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 score += 100;
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2241,13 +2282,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
                                 score += 100;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2265,13 +2307,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
                                 score += 100;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2293,13 +2336,14 @@ STAR:
                         {
                             if (y + (75 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 score += 100;
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2318,13 +2362,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
                                 score += 100;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2343,13 +2388,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
                                 score += 100;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2371,13 +2417,14 @@ STAR:
                         {
                             if (y + (75 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 score += 100;
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2396,13 +2443,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
                                 score += 100;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2420,13 +2468,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
                                 score += 100;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 100;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2447,13 +2496,14 @@ STAR:
                         {
                             if (y + (75 - 30) < Devil.y && dy > 0)
                             {
-                                score += 100;
+                                Sjumponmonster.play();
+                                score += 500;
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 500;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2472,13 +2522,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
-                                score += 100;
+                                score += 500;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 500;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2497,13 +2548,14 @@ STAR:
                         {
                             if (y + (60 - 30) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
-                                score += 100;
+                                score += 500;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 500;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2526,13 +2578,14 @@ STAR:
                         {
                             if (y + (75 - 50) < Devil.y && dy > 0)
                             {
-                                score += 100;
+                                Sjumponmonster.play();
+                                score += 300;
                                 Devil_die_by_foot = true;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 300;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2551,13 +2604,14 @@ STAR:
                         {
                             if (y + (60 - 40) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
-                                score += 100;
+                                score += 300;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 300;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -2576,13 +2630,14 @@ STAR:
                         {
                             if (y + (60 - 40) < Devil.y && dy > 0)
                             {
+                                Sjumponmonster.play();
                                 Devil_die_by_foot = true;
-                                score += 100;
+                                score += 300;
                                 dy = jump;
                             }
                             else if (propller_on || Rocket_on)
                             {
-
+                                score += 300;
                                 Devilalive = false;
                                 CHOSENDEVIL = Empty;
                             }
@@ -3921,16 +3976,26 @@ STAR:
                 /*bulletbat*/
                 bool bulletDevil = false;
                 bool AllbulletDevilout = true;
-                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet && !propller_on && !propller_out  && !Rocket_on && !Rocket_out )
-                   
+                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet && !propller_on && !propller_out  && !Rocket_on && !Rocket_out )    
                 {
                         
-                
                     if (CHOSENDEVIL == Devil_Bat)
                     {
                         loopdelayBulletDevil++;
                         if (loopdelayBulletDevil >= 40)
                         {
+                            int random_sound_Devil_bullet;
+                            random_sound_Devil_bullet = randomrang(1, 2);
+                            switch (random_sound_Devil_bullet)
+                            {
+                            case 1:
+                                SNinjaATK1.play();
+                                break;
+                            case 2:
+                                SNinjaATK2.play();
+                                break;
+                            }
+
                             loopdelayBulletDevil = 0;
                             BulletDevil[amountbullet].x = Devil.x + 60;
                             BulletDevil[amountbullet].y = Devil.y+65;
@@ -4035,9 +4100,11 @@ STAR:
                         case Devil_Bat:
                             if ((bullet[i].x + 10 >= Devil.x) && (bullet[i].x <= Devil.x + 112) && (bullet[i].y <= Devil.y + 67) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
+                                SmonsterDiebybullet.play();
                                 heartDevil--;
                                 if (heartDevil == 0)
                                 {
+                                    score += 700;
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
                                     DevilBatcanBullet = false;
@@ -4051,9 +4118,11 @@ STAR:
 
                             if ((bullet[i].x + 5 >= Devil.x) && (bullet[i].x <= Devil.x + 40) && (bullet[i].y <= Devil.y + 50) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
+                                SmonsterDiebybullet.play();
                                 heartDevil--;
                                 if (heartDevil == 0)
                                 {
+                                    score += 100;
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
 
@@ -4066,9 +4135,11 @@ STAR:
                            
                             if ((bullet[i].x + 6 >= Devil.x) && (bullet[i].x <= Devil.x + 55) && (bullet[i].y <= Devil.y + 40) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
+                                SmonsterDiebybullet.play();
                                 heartDevil--;
                                 if (heartDevil == 0)
                                 {
+                                    score += 100;
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
 
@@ -4081,9 +4152,11 @@ STAR:
 
                             if ((bullet[i].x + 5 >= Devil.x) && (bullet[i].x <= Devil.x + 64) && (bullet[i].y <= Devil.y + 56) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
+                                SmonsterDiebybullet.play();
                                 heartDevil--;
                                 if (heartDevil == 0)
                                 {
+                                    score += 100;
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
 
@@ -4096,6 +4169,7 @@ STAR:
 
                             if ((bullet[i].x + 4 >= Devil.x) && (bullet[i].x <= Devil.x + 89) && (bullet[i].y <= Devil.y + 50) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
+                                SmonsterDiebybullet.play();
                                 heartDevil--;
 
                                 switch (GreenATKfram)
@@ -4115,6 +4189,7 @@ STAR:
 
                                 if (heartDevil == 0)
                                 {
+                                    score += 500;
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
 
@@ -4127,12 +4202,14 @@ STAR:
                         case Devil_3EYE:
                             if ((bullet[i].x + 5 >= Devil.x) && (bullet[i].x <= Devil.x + 60) && (bullet[i].y <= Devil.y + 88) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
+                                SmonsterDiebybullet.play();
                                 heartDevil--;
 
                                 EYE3ATK = true;
 
                                 if (heartDevil == 0)
                                 {
+                                    score += 300;
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
 
@@ -4993,7 +5070,7 @@ STAR:
                         if (loopdelayRocket >= delaytime)
                         {
                             loopdelayRocket = 0;
-                            if (score - scoreold >= 550 && Rocket_on)
+                            if (score - scoreold >= 350 && Rocket_on)
                             {
                                 frameRocket = Rocket_7;
                             }
@@ -5076,7 +5153,7 @@ STAR:
                         if (loopdelayRocket >= delaytime)
                         {
                             loopdelayRocket = 0;
-                            if (score - scoreold >= 650 && Rocket_on)
+                            if (score - scoreold >= 450 && Rocket_on)
                             {
                                 frameRocket = Rocket_8;
                             }
@@ -5096,12 +5173,15 @@ STAR:
                 {
                     if (Rocketdel.y > 650)
                     {
-                        Rocket_on = false;
-                        Rocket_out = false;
-                        have_Rocket = false;
+                        if (Rocketdel.y > 1550)
+                        {
+                            cout << "Rocket out" << endl;
+                            Rocket_on = false;
+                            Rocket_out = false;
+                            have_Rocket = false;
+                        }
                     }
                     Rocketdel.y += 8;
-                    cout << "Rotate " << endl;
                     sRocket11.rotate(3);
                     sRocket11.setPosition(Rocketdel.x, Rocketdel.y);
                     app.draw(sRocket11);
