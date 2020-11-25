@@ -302,28 +302,9 @@ bool Devil_have3EYE(int percent)
 
 int main()
 {
-    /*
-    S1:
-    srand(time(0));
-    float tt = 0, ff = 0;
-    for (int i = 1; i <= 1000; i++)
-    {
-        if (randompercenn(99))
-        {
-            tt++;
-        }
-        else
-        {
-            ff++;
-        }
-    }
-  //  cout << "tt : " << tt << endl;
-  //  cout << "ff : " << ff << endl;
-    cout << tt/10 << " %"<< endl;
-    Sleep(500);
-    goto S1;
-
-    */
+    sf::Font font;
+    font.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/al-seana.ttf");
+    sf::Text text;
 
 
     RenderWindow app(VideoMode(400, 650), "Doodle Game!");
@@ -332,8 +313,8 @@ int main()
     Texture t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21,
         t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42,
         t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67
-        , t68, t69, t70, t71, t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83,t84,t85,t86,t87,t88,t89,t90,t91,t92,t93,t94,t95,t96,  
-        t97,t98,t99,t100,t101,t102,t103,t104,t105,t106;
+        , t68, t69, t70, t71, t72, t73, t74, t75, t76, t77, t78, t79, t80, t81, t82, t83, t84, t85, t86, t87, t88, t89, t90, t91, t92, t93, t94, t95, t96,
+        t97, t98, t99, t100, t101, t102, t103, t104, t105, t106,t107,t108,t109,t110;
 
     t1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENU.png");
     t2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/platformG.png");
@@ -441,75 +422,81 @@ int main()
     t104.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket8.png");
     t105.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket9.png");
     t106.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Rocket10.png");
-
+    t107.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/BgDrak.png");
+    t108.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/BgforDrakmap.png");
+    t109.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/MENUforDarkMap.png");
+    t110.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Moon.png");
     Sprite sMENU(t1), sPlatG(t2), sPersLeftt(t3), sPlatB(t4), sGameOver(t5), sPlatGy(t6)
         , sPersRight(t7), sPersATK(t8), SBullet(t9), sPlatGSp(t10), sPlatGSp2(t11), sPlatBrown1(t12),
         sPlatBrown2(t13), sPlatBrown3(t14), sPlatBrown4(t15), sPlatBrown5(t16), sPlatBrown6(t17),
         sPlatDevil_1(t18), sPlatDevil_2(t19), sPlatDevil_3(t20), sPlatDevil_2_2(t19), sBack_grid(t21),
-        sPropeller_1(t22),sPropeller1_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25), sTopbar(t26)
+        sPropeller_1(t22), sPropeller1_1(t22), sPropeller_2(t23), sPropeller_3(t24), sPropeller_4(t25), sTopbar(t26)
         , s0(t27), s1(t28), s2(t29), s3(t30), s4(t31), s5(t32), s6(t33), s7(t34), s8(t35), s9(t36),
         sUFO_1(t37), sUFO_2(t38), sPlay(t39), sPlay1(t40), sScores(t41), sScores1(t42), sGPP(t43),
         sDE_2_1(t45), sDE_2_0(t46), sbutton_playagin(t47), sbutton_menu(t48), sbutton_playagin2(t49), sbutton_menu2(t50),
         sMenu_scores(t51), stestxy(t52), sPlatwhite1(t53), sPlatwhite2(t54), sPlatwhite3(t55), sPlatOr1(t56), sPlatOr2(t57),
         sPlatOr3(t58), sPlatOr4(t59), sPlatOr5(t60), sPlatOr6(t61), sPlatOr7(t62), sPlatOr8(t63), sPlatY(t64), sPlatDB1(t65), sPlatDB2(t66),
-        sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71), sDE_1_0(t44), sDE_1_1(t67), sPlat_Devil(t72),sDevilRed(t73), sDevilPing(t74),sDevil3E_1(t75), sDevil3E_2(t76), sDevil3E_3(t77), sDevil3E_A(t78),sDevilGreen_1(t79)
-        , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82),sBulleyDevil(t83),sSTOP(t84),sCancel_1(t85), sCancel_2(t86),sSTOP_1(t86),sSTOP_2(t87),sStars1(t89), sStars2(t90), sStars3(t91), sShield(t92),  sRocket(t93) ,sShield1(t94)
-        , sShield2(t95), sShield3(t96), sRocket1(t97), sRocket2(t98), sRocket3(t99), sRocket4(t100), sRocket5(t101), sRocket6(t102), sRocket7(t103), sRocket8(t104), sRocket9(t105), sRocket10(t106),sRocket11(t106);
-   ;
-
-   sf::SoundBuffer sound1,sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10,sound11, sound12, sound13, sound14, sound15, sound16;
-
-   
-   sound1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jump.wav");
-   sound2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/sp.wav");
-   sound3.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/propeller.wav");
-   sound4.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterAlive.wav");
-   sound5.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/fall.wav");
-   sound6.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/explodplatform.wav");
-   sound7.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/explodplatform2.wav");
-   sound8.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/brownout.wav");
-   sound9.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk1.wav");
-   sound10.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk2.wav");
-   sound11.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jumpwhile.wav");
-   sound12.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jumponmonster.wav");
-   sound13.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jetpack.wav");
-   sound14.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterDiebybullet.wav");
-   sound15.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK1.wav");
-   sound16.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK2.wav");
-
-
-
-   sf::Sound Sjump,SAtk1,SAtk2,Sbrownout1,Sexplod1,Sexplod2,Sfall,SmosterAlive,Spropeller,Sspring,
-       Sjumpwhile,Sjumponmonster,SRocket,SmonsterDiebybullet,SNinjaATK1,SNinjaATK2;
-
-
-
-   Sjump.setBuffer(sound1);
-   Sspring.setBuffer(sound2);
-   Spropeller.setBuffer(sound3);
-   SmosterAlive.setBuffer(sound4);
-   Sfall.setBuffer(sound5);
-   Sexplod1.setBuffer(sound6);
-   Sexplod2.setBuffer(sound7);
-   Sbrownout1.setBuffer(sound8);
-   SAtk1.setBuffer(sound9);
-   SAtk2.setBuffer(sound10);
-   Sjumpwhile.setBuffer(sound11);
-   Sjumponmonster.setBuffer(sound12);
-   SRocket.setBuffer(sound13);
-   SmonsterDiebybullet.setBuffer(sound14);
-   SNinjaATK1.setBuffer(sound15);
-   SNinjaATK2.setBuffer(sound16);
-  
-   
-  
-   
-   
-   
+        sArrowDown(t68), sArrowLeft(t69), sArrowRight(t70), sArrowUp(t71), sDE_1_0(t44), sDE_1_1(t67), sPlat_Devil(t72), sDevilRed(t73), sDevilPing(t74), sDevil3E_1(t75), sDevil3E_2(t76), sDevil3E_3(t77), sDevil3E_A(t78), sDevilGreen_1(t79)
+        , sDevilGreen_2(t80), sDevilGreen_3(t81), sDevilGreen_4(t82), sBulleyDevil(t83), sSTOP(t84), sCancel_1(t85), sCancel_2(t86), sSTOP_1(t86), sSTOP_2(t87), sStars1(t89), sStars2(t90), sStars3(t91), sShield(t92), sRocket(t93), sShield1(t94)
+        , sShield2(t95), sShield3(t96), sRocket1(t97), sRocket2(t98), sRocket3(t99), sRocket4(t100), sRocket5(t101), sRocket6(t102), sRocket7(t103), sRocket8(t104), sRocket9(t105), sRocket10(t106), sRocket11(t106), sBgDarkmap(t107), sBgforDrakmap(t108)
+        , sMoon(t110);
    
 
-    enum CHOSEMENU { PLAY, MENU, SCORE, TEST};
+    sf::SoundBuffer sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16;
+   
+ 
+    sound1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jump.wav");
+    sound2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/sp.wav");
+    sound3.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/propeller.wav");
+    sound4.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterAlive.wav");
+    sound5.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/fall.wav");
+    sound6.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/explodplatform.wav");
+    sound7.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/explodplatform2.wav");
+    sound8.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/brownout.wav");
+    sound9.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk1.wav");
+    sound10.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/Atk2.wav");
+    sound11.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jumpwhile.wav");
+    sound12.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jumponmonster.wav");
+    sound13.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jetpack.wav");
+    sound14.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterDiebybullet.wav");
+    sound15.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK1.wav");
+    sound16.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK2.wav");
+
+
+
+    sf::Sound Sjump, SAtk1, SAtk2, Sbrownout1, Sexplod1, Sexplod2, Sfall, SmosterAlive, Spropeller, Sspring,
+        Sjumpwhile, Sjumponmonster, SRocket, SmonsterDiebybullet, SNinjaATK1, SNinjaATK2;
+
+
+
+    Sjump.setBuffer(sound1);
+    Sspring.setBuffer(sound2);
+    Spropeller.setBuffer(sound3);
+    SmosterAlive.setBuffer(sound4);
+    Sfall.setBuffer(sound5);
+    Sexplod1.setBuffer(sound6);
+    Sexplod2.setBuffer(sound7);
+    Sbrownout1.setBuffer(sound8);
+    SAtk1.setBuffer(sound9);
+    SAtk2.setBuffer(sound10);
+    Sjumpwhile.setBuffer(sound11);
+    Sjumponmonster.setBuffer(sound12);
+    SRocket.setBuffer(sound13);
+    SmonsterDiebybullet.setBuffer(sound14);
+    SNinjaATK1.setBuffer(sound15);
+    SNinjaATK2.setBuffer(sound16);
+
+
+
+
+
+
+
+
+    enum CHOSEMENU { PLAY, MENU, SCORE, TEST };
     CHOSEMENU CHOSEMENU = MENU;
+
+    bool Dark = false;
 STAR:
 
     srand(time(0));
@@ -520,7 +507,7 @@ STAR:
 
 
     point bullet[1000], platchosen[96], platdelbrown[96], propllerdel, Rocketdel
-        , Devil, Background, position_digit_forbackground,BulletDevil[1000];
+        , Devil, Background, position_digit_forbackground, BulletDevil[1000];
 
     position_digit_forbackground.x = 275;
     position_digit_forbackground.y = 305 + 650;
@@ -560,7 +547,7 @@ STAR:
     int loopdelayShield = 0;
 
 
-    enum RRocket { Rocket_1, Rocket_2, Rocket_3, Rocket_4, Rocket_5, Rocket_6,Rocket_7, Rocket_8, Rocket_9, Rocket_10 };
+    enum RRocket { Rocket_1, Rocket_2, Rocket_3, Rocket_4, Rocket_5, Rocket_6, Rocket_7, Rocket_8, Rocket_9, Rocket_10 };
     RRocket frameRocket = Rocket_1;
     bool Rocket_on = false;
     bool Rocket_out = false;
@@ -569,7 +556,7 @@ STAR:
 
 
 
-    enum Chosenblock { G, Gsp, Gsp2, B, Gy, blank, Br, Gpp, Wh, Or, Y, DB, G_Devil , GS,GRk };
+    enum Chosenblock { G, Gsp, Gsp2, B, Gy, blank, Br, Gpp, Wh, Or, Y, DB, G_Devil, GS, GRk };
     Chosenblock chosenbloack[96];
     bool Greensp[96];
     for (int i = 0; i < 96; i++)
@@ -646,7 +633,7 @@ STAR:
     }
 
 
-    enum CHOSENDevil { Empty, Devil_Bat, Devil_Blue, Devil_frog, Devil_Red,Devil_Ping,Devil_Green,Devil_3EYE};
+    enum CHOSENDevil { Empty, Devil_Bat, Devil_Blue, Devil_frog, Devil_Red, Devil_Ping, Devil_Green, Devil_3EYE };
     CHOSENDevil CHOSENDEVIL = Empty;
     bool Devil_die_by_foot = false;
 
@@ -655,7 +642,7 @@ STAR:
     bool Devilalive = false;
 
 
-      
+
     enum framGreen { G1, G2, G3, G4 };
     framGreen Greenfram;
     enum framGreenATK { AG1, AG2, AG3, AG4 };
@@ -663,24 +650,24 @@ STAR:
     int loopdelayGreen = 0;
 
 
-    enum framRed { R1, R2 , R3 ,R4 };
+    enum framRed { R1, R2, R3, R4 };
     framRed Redfram;
     int loopdelayRed = 0;
 
 
-    enum framPing { P1, P2, P3,P4 };
+    enum framPing { P1, P2, P3, P4 };
     framPing Pingfram;
     int loopdelayPing = 0;
 
 
-    enum fram3EYE { E1, AE2, E3,E4};
+    enum fram3EYE { E1, AE2, E3, E4 };
     fram3EYE EYE3fram;
-    int loopdelay3EYE  = 0;
-    bool EYE3ATK ;
+    int loopdelay3EYE = 0;
+    bool EYE3ATK;
 
     enum DirecDevil { LU, LD, RU, RD };
     DirecDevil DeVilDirec;
-   
+
 
 
 
@@ -790,13 +777,13 @@ STAR:
 
 
     int countblock = 32;
-   
+
 
 
     int scoreold = 0;
 
 
-    enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme, Wh_dumme, Or_dumme, Y_dumme, DB_dumme, G_Devil_dumme,GS_dumme , GRk_dumme };
+    enum ChosenblockDUMME { G_dumme, Gsp_dumme, Gpp_dumme, B_dumme, blank_dumme, Br_dumme, Wh_dumme, Or_dumme, Y_dumme, DB_dumme, G_Devil_dumme, GS_dumme, GRk_dumme };
     ChosenblockDUMME chosenbloackDumme[96];
     for (int i = 0; i < 96; i++)
     {
@@ -819,7 +806,7 @@ STAR:
 
 
 
- //   bool STOPGAME = false;
+    //   bool STOPGAME = false;
     bool fallSoundOnetime = true;
     bool DevilSoundOnetime = true;
     bool PropellSoundOnetime = true;
@@ -827,15 +814,15 @@ STAR:
 
 
 
-    enum stars { Ss1, Ss2, Ss3};
+    enum stars { Ss1, Ss2, Ss3 };
     stars framestars;
     framestars = Ss1;
     bool doolderdiebystats = true;
     int loopdelaystars = 0;
-  
-    
+
+
     /*
-   
+
 
     cout << "////////" << endl;
     system("pause");
@@ -853,19 +840,19 @@ STAR:
             break;
         }
     }
-   
+
     cout << "2" << endl;
     while (true)
     {
         sf::Time elapsed2 = clock.getElapsedTime();
         std::cout << elapsed2.asSeconds() << std::endl;
     }
-   
+
 
 
 
    */
-   
+
     point line;
     line.y = -650;
     line.x = 0;
@@ -873,11 +860,17 @@ STAR:
     enum blockset { set1, set2, set3 };
     blockset setblock = set1;
 
-    sf::Clock clock,SoundPrppller,SoundRocket;
+    sf::Clock clock, SoundPrppller, SoundRocket;
 
+    point BgforDrakmap;
+    bool SetBackBgforDrakmap = false;
+  
+ 
+  
+    int loopdelayMouse = 0;
     while (app.isOpen())
     {
-       
+
         // srand(time(0));
         Event e;
         while (app.pollEvent(e))
@@ -931,13 +924,13 @@ STAR:
                     }
                     fflush(stdin);
                 }
-                
+
                 if (!bullet_can_on)
                 {
                     delaybullet++;
                 }
 
-                
+
                 if (SoundPrppller.getElapsedTime().asSeconds() >= 3 && propller_on)
                 {
                     speeddoodle = Normal;
@@ -955,7 +948,7 @@ STAR:
                         propllerdel.y = y - 9;
 
                     }
-                   // Spropeller.stop();
+                    // Spropeller.stop();
                     PropellSoundOnetime = true;
                 }
                 if (SoundRocket.getElapsedTime().asSeconds() >= 3 && Rocket_on)
@@ -976,14 +969,12 @@ STAR:
                         Rocketdel.y = y - 4;
                     }
                     RocketSoundOnetime = true;
-                //    SRocket.stop();
-                  
+                    //    SRocket.stop();
+
                 }
-               
-                
-                if (clock.getElapsedTime().asSeconds() >= 10 && Shield_on )
+                if (clock.getElapsedTime().asSeconds() >= 10 && Shield_on)
                 {
-                   
+
                     Shield_on = false;
                     Shield_out = false;
                     have_Shield = false;
@@ -1005,25 +996,25 @@ STAR:
                         if (PropellSoundOnetime)
                         {
                             Spropeller.play();
-                         //   Spropeller.setLoop(true);
+                            //   Spropeller.setLoop(true);
                             PropellSoundOnetime = false;
                         }
-                      
+
                         dy = -12;
                         y += dy;
                         break;
                     case Rocket:
                         score += 2;
-                       
+
                         if (RocketSoundOnetime)
                         {
 
                             SRocket.play();
-                         //   SRocket.setLoop(true);
+                            //   SRocket.setLoop(true);
                             RocketSoundOnetime = false;
 
                         }
-                        dy = -24;
+                        dy = -36;
                         y += dy;
                         break;
                     default:
@@ -1035,19 +1026,19 @@ STAR:
                 }
                 else
                 {
-                    
+
                     if (dir == ATK)
                     {
                         dir = RIGHT;
                     }
                     if (fallSoundOnetime)
                     {
-                        
+
                         Sfall.play();
                         fallSoundOnetime = false;
                     }
-                   
-                   
+
+
                     if (one_read_write)
                     {
                         ifstream readfile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/Config/scores.txt");
@@ -1165,12 +1156,12 @@ STAR:
                             if (Devilalive)
                             {
                                 Devil.y = Devil.y + dumme_dy;
-                                if (Devil.y > 650  || Devil.y < -100)
+                                if (Devil.y > 650 || Devil.y < -100)
                                 {
                                     Devilalive = false;
                                     CHOSENDEVIL = Empty;
                                 }
-    
+
                             }
                         }
                         else
@@ -1197,8 +1188,7 @@ STAR:
 
 
                     }
-
-
+                  
                 }
 
                 if (x > 380)
@@ -1225,7 +1215,7 @@ STAR:
                         setblock = set2;
                         row_2 = 67;
                         low_2 = 64;
-                  //      cout << "set1" << endl;
+                        //      cout << "set1" << endl;
                         row = 67;
                         low = 64;
 
@@ -1239,7 +1229,7 @@ STAR:
                         setblock = set3;
                         row_2 = 35;
                         low_2 = 32;
-                     //   cout << "set2" << endl;
+                        //   cout << "set2" << endl;
                         row = 35;
                         low = 32;
                     }
@@ -1252,7 +1242,7 @@ STAR:
                         setblock = set1;
                         row_2 = 3;
                         low_2 = 0;
-                   //     cout << "set3" << endl;
+                        //     cout << "set3" << endl;
                         row = 3;
                         low = 0;
                     }
@@ -1278,7 +1268,7 @@ STAR:
 
                     }
 
-                   
+
                     //chose constan block////////
 
 
@@ -1327,7 +1317,7 @@ STAR:
                                 }
                                 rowpass[i] = true;
                             }
-                            
+
                             /*
                              else if (have_Devil(70) && CHOSENDEVIL == Empty)
                               {
@@ -1380,7 +1370,7 @@ STAR:
                                 chosenbloackDumme[keeprandomrang] = G_dumme;
                             }
 
-                         
+
 
 
 
@@ -1395,7 +1385,7 @@ STAR:
                     }
 
                     //chose normal block//
-                 
+
                     for (int i = minrowpass; i < maxrowpass; i++)
                     {
 
@@ -1462,7 +1452,7 @@ STAR:
                                         break;
                                     }
 
-                                    
+
 
                                 }
                             }
@@ -1549,7 +1539,7 @@ STAR:
                                     Devilalive = true;
                                     heartDevil = 4;
                                     CHOSENDEVIL = Devil_Green;
-                                    GreenATKfram =   AG1;
+                                    GreenATKfram = AG1;
                                     Greenfram = G1;
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
@@ -1588,7 +1578,7 @@ STAR:
                                     Devil.y = -70;
                                 }
 
-                                
+
 
                             }
                         }
@@ -1784,14 +1774,14 @@ STAR:
                         {
                             platchosen[i].y = platchosen[i].y - dy;
                         }
-                      
-                        if (platchosen[i].y > 650 )
+
+                        if (platchosen[i].y > 650)
                         {
                             platchosen[i].y = -2000;
                             platchosen[i].x = -100;
                             if (chosenbloack[i] == GS || chosenbloack[i] == Gpp || chosenbloack[i] == GRk)
                             {
-                                have_propller = false; 
+                                have_propller = false;
                                 have_Shield = false;
                                 have_Rocket = false;
                             }
@@ -1818,7 +1808,7 @@ STAR:
                         {
                             dy = jump;
                             Sjump.play();
-                          
+
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
@@ -1826,13 +1816,13 @@ STAR:
 
                             dy = jump;
                             Sjump.play();
-                           
+
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
                             dy = jump;
                             Sjump.play();
-                          
+
                         }
                         break;
                     case Gsp:
@@ -1913,7 +1903,7 @@ STAR:
                                 brownfram[i] = Br1;
 
                                 Sbrownout1.play();
-                              
+
 
                             }
                             if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
@@ -1958,7 +1948,7 @@ STAR:
                     case Wh:
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
-                          
+
                             Sjumpwhile.play();
                             whiteout[i] = true;
                             whitefram[i] = Wh1;
@@ -1966,7 +1956,7 @@ STAR:
                         }
                         if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == RIGHT))
                         {
-                           
+
                             Sjumpwhile.play();
                             whiteout[i] = true;
                             whitefram[i] = Wh1;
@@ -1974,7 +1964,7 @@ STAR:
                         }
                         if ((x + 34 >= platchosen[i].x) && (x <= platchosen[i].x + 50) && (y + 77 >= platchosen[i].y) && (y + 77 <= platchosen[i].y + 14) && (dy > 0) && (dir == ATK))
                         {
-                           
+
                             Sjumpwhile.play();
                             whiteout[i] = true;
                             whitefram[i] = Wh1;
@@ -2146,9 +2136,9 @@ STAR:
                         break;
 
 
-                    case G_Devil:  
-                        
-        
+                    case G_Devil:
+
+
                         if ((x + 50 >= platchosen[i].x) && (x <= platchosen[i].x + 35 + 58) && (y + 52 >= platchosen[i].y) && (y + 52 <= platchosen[i].y + 14) && (dy > 0) && (dir == LEFT))
                         {
                             Sjump.play();
@@ -2168,12 +2158,12 @@ STAR:
                         break;
 
 
-                    case Gpp:
+                    case Gpp: 
                         if ((x + 40 >= platchosen[i].x) && (x <= platchosen[i].x + 45) && (y + 57 >= platchosen[i].y) && (y + 12 <= platchosen[i].y) && (dir == LEFT))
                         {
 
                             speeddoodle = Propeller;
-                           // scoreold = score;
+                            // scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
                             platchosen[i].y += 15;
@@ -2189,7 +2179,7 @@ STAR:
 
 
                             speeddoodle = Propeller;
-                           // scoreold = score;
+                            // scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
                             platchosen[i].y += 15;
@@ -2205,13 +2195,13 @@ STAR:
 
                             dir = RIGHT;
                             speeddoodle = Propeller;
-                          //  scoreold = score;
+                            //  scoreold = score;
                             propller_on = true;
                             chosenbloack[i] = G;
                             platchosen[i].y += 15;
                             SoundPrppller.restart();
-             
-                           
+
+
                         }
                         else if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14) && (dir == ATK) && dy > 0)
                         {
@@ -2220,21 +2210,21 @@ STAR:
                         break;
 
                     case GS:
-                        if ((x + 46 >= platchosen[i].x) && (x <= platchosen[i].x + 25) && (y  >= platchosen[i].y - 100) && (y  <= platchosen[i].y -5 ) && (dir == LEFT))
+                        if ((x + 46 >= platchosen[i].x) && (x <= platchosen[i].x + 25) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == LEFT))
                         {
 
-                           
+
                             chosenbloack[i] = G;
                             Shield_on = true;
                             clock.restart();
-                            
+
                         }
                         else if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == LEFT) && dy > 0)
                         {
                             dy = jump;
                         }
 
-                        if ((x + 25 >= platchosen[i].x) && (x <= platchosen[i].x + 46) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == RIGHT) )
+                        if ((x + 25 >= platchosen[i].x) && (x <= platchosen[i].x + 46) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == RIGHT))
                         {
 
 
@@ -2248,7 +2238,7 @@ STAR:
                             dy = jump;
                         }
 
-                        if ( (x + 25 >= platchosen[i].x) && (x <= platchosen[i].x + 46) && (y >= platchosen[i].y - 113) && (y <= platchosen[i].y - 5) &&  (dir == ATK) )
+                        if ((x + 25 >= platchosen[i].x) && (x <= platchosen[i].x + 46) && (y >= platchosen[i].y - 113) && (y <= platchosen[i].y - 5) && (dir == ATK))
                         {
                             chosenbloack[i] = G;
                             Shield_on = true;
@@ -2266,18 +2256,18 @@ STAR:
                         {
                             SoundRocket.restart();
                             speeddoodle = Rocket;
-                          //  scoreold = score;
+                            //  scoreold = score;
                             Rocket_on = true;
                             chosenbloack[i] = G;
                             frameRocket = Rocket_1;
-           
+
                         }
                         else if ((x + 48 >= platchosen[i].x) && (x <= platchosen[i].x + 32) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == LEFT) && dy > 0)
                         {
                             dy = jump;
                         }
 
-                        if ((x + 20 >= platchosen[i].x) && (x <= platchosen[i].x + 40) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == RIGHT) )
+                        if ((x + 20 >= platchosen[i].x) && (x <= platchosen[i].x + 40) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == RIGHT))
                         {
 
                             SoundRocket.restart();
@@ -2286,23 +2276,23 @@ STAR:
                             Rocket_on = true;
                             chosenbloack[i] = G;
                             frameRocket = Rocket_1;
-                        
+
                         }
                         else if ((x + 31 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 42 >= platchosen[i].y) && (y + 42 <= platchosen[i].y + 14) && (dir == RIGHT) && dy > 0)
                         {
                             dy = jump;
                         }
 
-                        if ( (x + 20 >= platchosen[i].x) && (x <= platchosen[i].x + 40) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) &&   (dir == ATK) )
+                        if ((x + 20 >= platchosen[i].x) && (x <= platchosen[i].x + 40) && (y >= platchosen[i].y - 100) && (y <= platchosen[i].y - 5) && (dir == ATK))
                         {
                             SoundRocket.restart();
                             dir = RIGHT;
                             speeddoodle = Rocket;
-                          //  scoreold = score;
+                            //  scoreold = score;
                             Rocket_on = true;
                             chosenbloack[i] = G;
                             frameRocket = Rocket_1;
-                        
+
                         }
                         else if ((x + 28 >= platchosen[i].x) && (x <= platchosen[i].x + 47) && (y + 60 >= platchosen[i].y) && (y + 60 <= platchosen[i].y + 14) && (dir == ATK) && dy > 0)
                         {
@@ -2315,8 +2305,8 @@ STAR:
                     }
                 }
 
-               
-                
+
+
                 /*Devil and dooler colision*/
                 if (Devilalive && !Devil_die_by_foot && dooler_alive)
                 {
@@ -2348,7 +2338,7 @@ STAR:
                                 {
                                     dooler_alive = false;
                                 }
-                                
+
 
                             }
 
@@ -2405,7 +2395,7 @@ STAR:
                             }
                         }
                         break;
-                    
+
                     case Devil_Red:
                         if ((x + 70 >= Devil.x) && (x <= Devil.x + 84) && (y + 70 >= Devil.y) && (y <= Devil.y + 50) && (dir == ATK))
                         {
@@ -2567,7 +2557,7 @@ STAR:
                         }
                         break;
                     case Devil_Green:
-                        if ((x +70 >= Devil.x) && (x <= Devil.x + 84) && (y + 70 >= Devil.y) && (y <= Devil.y + 50) && (dir == ATK))
+                        if ((x + 70 >= Devil.x) && (x <= Devil.x + 84) && (y + 70 >= Devil.y) && (y <= Devil.y + 50) && (dir == ATK))
                         {
                             if (y + (75 - 40) < Devil.y && dy > 0)
                             {
@@ -2649,7 +2639,7 @@ STAR:
 
 
                     case Devil_3EYE:
-                        if ((x +31  >= Devil.x) && (x <= Devil.x + 59) && (y + 70 >= Devil.y) && (y <= Devil.y + 87) && (dir == ATK))
+                        if ((x + 31 >= Devil.x) && (x <= Devil.x + 59) && (y + 70 >= Devil.y) && (y <= Devil.y + 87) && (dir == ATK))
                         {
                             if (y + (75 - 40) < Devil.y && dy > 0)
                             {
@@ -2778,7 +2768,18 @@ STAR:
 
 
 
-
+                if (Dark)
+                {
+                    cout << "DDDD" << endl;
+                    sBack_grid.setTexture(t107);
+                }
+                else if (!Dark)
+                {
+                    cout << "LLLLL" << endl;
+                    sBack_grid.setTexture(t21);
+                }
+              
+            
 
                 sBack_grid.setPosition(Background.x, Background.y);
                 app.draw(sBack_grid);
@@ -2803,7 +2804,7 @@ STAR:
                         break;
                     case G_Devil:
                         //     cout << "drraw G _  devil" << endl;
-                       
+
 
 
                         sPlat_Devil.setPosition(platchosen[i].x, Devil.y + 30 /*platchosen[i].y*/);
@@ -2831,16 +2832,16 @@ STAR:
                         app.draw(sGPP);
                         break;
                     case GS:
-                        
+
                         sPlatG.setPosition(platchosen[i].x, platchosen[i].y);
                         app.draw(sPlatG);
-                        sShield.setPosition(platchosen[i].x+11, platchosen[i].y-42);
+                        sShield.setPosition(platchosen[i].x + 11, platchosen[i].y - 42);
                         app.draw(sShield);
                         break;
                     case GRk:
                         sPlatG.setPosition(platchosen[i].x, platchosen[i].y);
                         app.draw(sPlatG);
-                        sRocket.setPosition(platchosen[i].x+15, platchosen[i].y-43);
+                        sRocket.setPosition(platchosen[i].x + 15, platchosen[i].y - 43);
                         app.draw(sRocket);
                         break;
                     case B:
@@ -3116,8 +3117,8 @@ STAR:
                                 loopdelayorange[i]++;
                                 if (loopdelayorange[i] >= 6)
                                 {
-                                   
-                                  
+
+
                                     int randsound;
                                     randsound = randomrang(1, 2);
                                     if (randsound == 1)
@@ -3367,14 +3368,14 @@ STAR:
                 /*draw Devil*/
                 if (Devilalive)
                 {
-               
+
                     if (DevilSoundOnetime)
                     {
                         SmosterAlive.play();
                         SmosterAlive.setLoop(true);
                         DevilSoundOnetime = false;
-                    }  
-                    
+                    }
+
                     switch (CHOSENDEVIL)
                     {
                     case Empty:
@@ -3386,7 +3387,7 @@ STAR:
                             sPlatDevil_1.setPosition(Devil.x, Devil.y);
                             app.draw(sPlatDevil_1);
                             DeVil_Bat_fram = DeVil1_2;
-   
+
                             break;
                         case DeVil1_2:
                             sPlatDevil_1.setPosition(-200, Devil.y);
@@ -3529,7 +3530,7 @@ STAR:
                             break;
                         }
                         break;
-                    case Devil_Blue: 
+                    case Devil_Blue:
                         if (!Devil_die_by_foot)
                         {
                             if (!direction_BLue)
@@ -3599,7 +3600,7 @@ STAR:
                                 {
                                     sDevilRed.setPosition(Devil.x, Devil.y);
                                     app.draw(sDevilRed);
-                                    Devil.x  += movex;
+                                    Devil.x += movex;
                                     Redfram = R2;
                                     loopdelayRed = 0;
                                 }
@@ -3757,11 +3758,11 @@ STAR:
                             int movex = 10;
                             switch (Greenfram)
                             {
-                               
+
                             case G1:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
-                                { 
+                                {
                                     Devil.x += movex;
                                     Greenfram = G2;
                                     loopdelayGreen = 0;
@@ -3795,7 +3796,7 @@ STAR:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
                                 {
-                                    
+
                                     Devil.x -= movex;
                                     Greenfram = G3;
                                     loopdelayGreen = 0;
@@ -3827,7 +3828,7 @@ STAR:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
                                 {
-                                    
+
                                     Devil.x -= movex;
                                     Greenfram = G4;
                                     loopdelayGreen = 0;
@@ -3859,7 +3860,7 @@ STAR:
                                 loopdelayGreen++;
                                 if (loopdelayGreen >= delaytime)
                                 {
-                                   
+
                                     Devil.x += movex;
                                     Greenfram = G1;
                                     loopdelayGreen = 0;
@@ -3898,141 +3899,141 @@ STAR:
                         }
                         break;
 
-                      
-                      
-                         case Devil_3EYE:
-                             if (!Devil_die_by_foot)
-                             {
-                                             int Delaytime = 2;
-                                             switch (EYE3fram)
-                                             {
-                                             case E1:
-                                                 loopdelay3EYE++;
-                                                 sDevil3E_1.setPosition(Devil.x, Devil.y);
-                                                 app.draw(sDevil3E_1);
-                                                 if (EYE3ATK)
-                                                 {
-                                                     sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
-                                                     app.draw(sDevil3E_A);
-                                                 }
-                                                 if (loopdelay3EYE >= Delaytime)
-                                                 {
-                                                     EYE3ATK = false;
-                                                     loopdelay3EYE = 0;
-                                                     EYE3fram = E3;
-                                                 }
-                                                 break;
-                                             case E3:
-                                                 loopdelay3EYE++;
-                                                 sDevil3E_2.setPosition(Devil.x, Devil.y);
-                                                 app.draw(sDevil3E_2);
-                                                 if (EYE3ATK)
-                                                 {
-                                                     sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
-                                                     app.draw(sDevil3E_A);
-                                                 }
-                                                 if (loopdelay3EYE >= Delaytime)
-                                                 {
-                                                     EYE3ATK = false;
-                                                     loopdelay3EYE = 0;
-                                                     EYE3fram = E4;
-                                                 }
-                                                 break;
-
-                                             case E4:
-                                                 loopdelay3EYE++;
-                                                 sDevil3E_3.setPosition(Devil.x, Devil.y);
-                                                 app.draw(sDevil3E_3);
-                                                 if (EYE3ATK)
-                                                 {
-                                                     sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
-                                                     app.draw(sDevil3E_A);
-                                                 }
-                                                 if (loopdelay3EYE >= Delaytime)
-                                                 {
-                                                     EYE3ATK = false;
-                                                     loopdelay3EYE = 0;
-                                                     EYE3fram = E1;
-                                                     int movenormal = 8;
-
-                                                     switch (DeVilDirec)
-                                                     {
-                                                     case LU:
-
-                                                         Devil.x -= movenormal;
-                                                         Devil.y -= movenormal;
 
 
-                                                         break;
-                                                     case LD:
+                    case Devil_3EYE:
+                        if (!Devil_die_by_foot)
+                        {
+                            int Delaytime = 2;
+                            switch (EYE3fram)
+                            {
+                            case E1:
+                                loopdelay3EYE++;
+                                sDevil3E_1.setPosition(Devil.x, Devil.y);
+                                app.draw(sDevil3E_1);
+                                if (EYE3ATK)
+                                {
+                                    sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
+                                    app.draw(sDevil3E_A);
+                                }
+                                if (loopdelay3EYE >= Delaytime)
+                                {
+                                    EYE3ATK = false;
+                                    loopdelay3EYE = 0;
+                                    EYE3fram = E3;
+                                }
+                                break;
+                            case E3:
+                                loopdelay3EYE++;
+                                sDevil3E_2.setPosition(Devil.x, Devil.y);
+                                app.draw(sDevil3E_2);
+                                if (EYE3ATK)
+                                {
+                                    sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
+                                    app.draw(sDevil3E_A);
+                                }
+                                if (loopdelay3EYE >= Delaytime)
+                                {
+                                    EYE3ATK = false;
+                                    loopdelay3EYE = 0;
+                                    EYE3fram = E4;
+                                }
+                                break;
 
-                                                         Devil.x -= movenormal;
-                                                         Devil.y += movenormal;
+                            case E4:
+                                loopdelay3EYE++;
+                                sDevil3E_3.setPosition(Devil.x, Devil.y);
+                                app.draw(sDevil3E_3);
+                                if (EYE3ATK)
+                                {
+                                    sDevil3E_A.setPosition(Devil.x + 18, Devil.y + 1);
+                                    app.draw(sDevil3E_A);
+                                }
+                                if (loopdelay3EYE >= Delaytime)
+                                {
+                                    EYE3ATK = false;
+                                    loopdelay3EYE = 0;
+                                    EYE3fram = E1;
+                                    int movenormal = 8;
+
+                                    switch (DeVilDirec)
+                                    {
+                                    case LU:
+
+                                        Devil.x -= movenormal;
+                                        Devil.y -= movenormal;
 
 
-                                                         break;
-                                                     case RU:
+                                        break;
+                                    case LD:
 
-                                                         Devil.x += movenormal;
-                                                         Devil.y -= movenormal;
+                                        Devil.x -= movenormal;
+                                        Devil.y += movenormal;
 
-                                                         break;
-                                                     case RD:
 
-                                                         Devil.x += movenormal;
-                                                         Devil.y += movenormal;
+                                        break;
+                                    case RU:
 
-                                                         break;
-                                                     default:
-                                                         break;
-                                                     }
+                                        Devil.x += movenormal;
+                                        Devil.y -= movenormal;
 
-                                                     if (Devil.x <= 0 && DeVilDirec == LU)
-                                                     {
-                                                         DeVilDirec = RU;
-                                                     }
-                                                     else if (Devil.x <= 0 && DeVilDirec == LD)
-                                                     {
-                                                         DeVilDirec = RD;
-                                                     }
-                                                     else if (Devil.x >= 400 - 67 && DeVilDirec == RU)
-                                                     {
-                                                         DeVilDirec = LU;
-                                                     }
-                                                     else if (Devil.x >= 400 - 67 && DeVilDirec == RD)
-                                                     {
-                                                         DeVilDirec = LD;
-                                                     }
-                                                     else if (Devil.y <= 0 && DeVilDirec == LU)
-                                                     {
-                                                         DeVilDirec = LD;
-                                                     }
-                                                     else if (Devil.y <= 0 && DeVilDirec == RU)
-                                                     {
-                                                         DeVilDirec = RD;
-                                                     }
-                                                     else if (Devil.y >= 650 - 100 && DeVilDirec == LD)
-                                                     {
-                                                         DeVilDirec = LU;
-                                                     }
-                                                     else if (Devil.y >= 650 - 100 && DeVilDirec == RD)
-                                                     {
-                                                         DeVilDirec = RU;
-                                                     }
-                                                 }
-                                                 break;
+                                        break;
+                                    case RD:
 
-                                             default:
-                                                 break;
-                                             }
-                                 
-                              }
-                             else
-                             {
-                             sDevil3E_1.setPosition(Devil.x, Devil.y+=8);
-                             app.draw(sDevil3E_1);
-                             }
-                             break; 
+                                        Devil.x += movenormal;
+                                        Devil.y += movenormal;
+
+                                        break;
+                                    default:
+                                        break;
+                                    }
+
+                                    if (Devil.x <= 0 && DeVilDirec == LU)
+                                    {
+                                        DeVilDirec = RU;
+                                    }
+                                    else if (Devil.x <= 0 && DeVilDirec == LD)
+                                    {
+                                        DeVilDirec = RD;
+                                    }
+                                    else if (Devil.x >= 400 - 67 && DeVilDirec == RU)
+                                    {
+                                        DeVilDirec = LU;
+                                    }
+                                    else if (Devil.x >= 400 - 67 && DeVilDirec == RD)
+                                    {
+                                        DeVilDirec = LD;
+                                    }
+                                    else if (Devil.y <= 0 && DeVilDirec == LU)
+                                    {
+                                        DeVilDirec = LD;
+                                    }
+                                    else if (Devil.y <= 0 && DeVilDirec == RU)
+                                    {
+                                        DeVilDirec = RD;
+                                    }
+                                    else if (Devil.y >= 650 - 100 && DeVilDirec == LD)
+                                    {
+                                        DeVilDirec = LU;
+                                    }
+                                    else if (Devil.y >= 650 - 100 && DeVilDirec == RD)
+                                    {
+                                        DeVilDirec = RU;
+                                    }
+                                }
+                                break;
+
+                            default:
+                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            sDevil3E_1.setPosition(Devil.x, Devil.y += 8);
+                            app.draw(sDevil3E_1);
+                        }
+                        break;
 
                     default:
                         break;
@@ -4040,20 +4041,20 @@ STAR:
                 }
                 else
                 {
-                
-                SmosterAlive.stop();
-                DevilSoundOnetime = true;
+
+                    SmosterAlive.stop();
+                    DevilSoundOnetime = true;
                 }
 
-                
-          
+
+
 
                 /*bulletbat*/
                 bool bulletDevil = false;
                 bool AllbulletDevilout = true;
-                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet && !propller_on && !propller_out  && !Rocket_on && !Rocket_out )    
+                if (Devilalive && DeVil_Bat_fram != DeVil1_1 && DeVil_Bat_fram != DeVil1_2 && DeVil_Bat_fram != DeVil1_3 && DevilBatcanBullet && !propller_on && !propller_out && !Rocket_on && !Rocket_out)
                 {
-                        
+
                     if (CHOSENDEVIL == Devil_Bat)
                     {
                         loopdelayBulletDevil++;
@@ -4073,12 +4074,12 @@ STAR:
 
                             loopdelayBulletDevil = 0;
                             BulletDevil[amountbullet].x = Devil.x + 60;
-                            BulletDevil[amountbullet].y = Devil.y+65;
+                            BulletDevil[amountbullet].y = Devil.y + 65;
                             amountbullet++;
                         }
                         // sBulleyDevil(t83)
                     }
-                   
+
                 }
                 if (amountbullet > 0)
                 {
@@ -4110,7 +4111,7 @@ STAR:
                             {
                                 dooler_alive = false;
                             }
-                           
+
                             BulletDevil[i].y = 700;
                         }
                         if ((BulletDevil[i].x + 7 >= x) && (BulletDevil[i].x <= x + 57) && (BulletDevil[i].y <= y + 58) && (BulletDevil[i].y - 8 >= y) && BulletDevil[i].y >= 0 && Devilalive && dir == RIGHT)
@@ -4127,7 +4128,7 @@ STAR:
                             {
                                 dooler_alive = false;
                             }
-                           BulletDevil[i].y = 700;
+                            BulletDevil[i].y = 700;
                         }
                     }
                 }
@@ -4156,15 +4157,15 @@ STAR:
 
                         for (int j = 0; j < amountbullet; j++)
                         {
-                         
 
-                            if ((BulletDevil[j].x + 8 >= bullet[i].x) && (BulletDevil[j].x <= bullet[i].x + 8) && (BulletDevil[j].y <= bullet[i].y + 10) && (BulletDevil[j].y >= bullet[i].y-11) && BulletDevil[j].y >= 0)
+
+                            if ((BulletDevil[j].x + 8 >= bullet[i].x) && (BulletDevil[j].x <= bullet[i].x + 8) && (BulletDevil[j].y <= bullet[i].y + 10) && (BulletDevil[j].y >= bullet[i].y - 11) && BulletDevil[j].y >= 0)
                             {
                                 bullet[i].y = -50;
                                 bullet[i].x = -50;
                                 BulletDevil[j].y = 700;
-                             ;
-                                
+                                ;
+
                             }
                         }
 
@@ -4207,7 +4208,7 @@ STAR:
                             }
                             break;
                         case Devil_Red:
-                           
+
                             if ((bullet[i].x + 6 >= Devil.x) && (bullet[i].x <= Devil.x + 55) && (bullet[i].y <= Devil.y + 40) && (bullet[i].y - 10 >= Devil.y) && bullet[i].y >= 0 && Devilalive)
                             {
                                 SmonsterDiebybullet.play();
@@ -4293,7 +4294,7 @@ STAR:
                                 bullet[i].x = -50;
                             }
                             break;
-                      
+
                         default:
                             break;
                         }
@@ -4464,12 +4465,12 @@ STAR:
 
                 }
 
-          //      cout << "Devil.x : " << Devil.x << " Devil.y : "<< Devil.y << endl;
+                //      cout << "Devil.x : " << Devil.x << " Devil.y : "<< Devil.y << endl;
 
 
 
 
-                /*fall doe and finsh - background*/
+                      /*fall doe and finsh - background*/
                 if (Background.y < -630)
                 {
                     //      cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
@@ -4781,15 +4782,15 @@ STAR:
                         {
                         case Ss1:
                             loopdelaystars++;
-                            sStars1.setPosition(x+15, y-14);
+                            sStars1.setPosition(x + 15, y - 14);
                             app.draw(sStars1);
                             if (loopdelaystars >= delaytime)
                             {
                                 loopdelaystars = 0;
                                 framestars = Ss2;
-                               
+
                             }
-                                
+
                             break;
                         case Ss2:
                             loopdelaystars++;
@@ -4814,9 +4815,9 @@ STAR:
                         default:
                             break;
                         }
-                       
-                       
-                        
+
+
+
                     }
                 }
                 if (dir == RIGHT)
@@ -4943,8 +4944,8 @@ STAR:
 
 
 
-   
-  
+
+
                 /*draw Shield*/
                 if (Shield_on)
                 {
@@ -5022,13 +5023,13 @@ STAR:
                         break;
                     }
                 }
-                
+
 
 
 
                 /*draw Rocket*/
 
-                
+
                 if (Rocket_on)
                 {
                     int delaytime = 4;
@@ -5057,7 +5058,7 @@ STAR:
                         loopdelayRocket++;
                         if (dir == LEFT)
                         {
-                            sRocket2.setTextureRect(sf::IntRect(0, 0,27, 78));
+                            sRocket2.setTextureRect(sf::IntRect(0, 0, 27, 78));
                             sRocket2.setPosition(x + 56, y - 4);
                         }
                         else if (dir == RIGHT)
@@ -5133,7 +5134,7 @@ STAR:
                         loopdelayRocket++;
                         if (dir == LEFT)
                         {
-                            sRocket6.setTextureRect(sf::IntRect(0, 0, 44,99));
+                            sRocket6.setTextureRect(sf::IntRect(0, 0, 44, 99));
                             sRocket6.setPosition(x + 46, y - 4);
                         }
                         else if (dir == RIGHT)
@@ -5146,7 +5147,7 @@ STAR:
                         {
                             loopdelayRocket = 0;
                             if (SoundRocket.getElapsedTime().asSeconds() >= 2 && Rocket_on)
-                            //if (score - scoreold >= 350 && Rocket_on)
+                                //if (score - scoreold >= 350 && Rocket_on)
                             {
                                 frameRocket = Rocket_7;
                             }
@@ -5203,7 +5204,7 @@ STAR:
                         }
                         else if (dir == RIGHT)
                         {
-                            sRocket9.setTextureRect(sf::IntRect(22, 0, -22,70));
+                            sRocket9.setTextureRect(sf::IntRect(22, 0, -22, 70));
                             sRocket9.setPosition(x - 19, y - 4);
                         }
                         app.draw(sRocket9);
@@ -5230,7 +5231,7 @@ STAR:
                         {
                             loopdelayRocket = 0;
                             if (SoundRocket.getElapsedTime().asSeconds() >= 2.5 && Rocket_on)
-                       //     if (score - scoreold >= 450 && Rocket_on)
+                                //     if (score - scoreold >= 450 && Rocket_on)
                             {
                                 frameRocket = Rocket_8;
                             }
@@ -5238,10 +5239,10 @@ STAR:
                             {
                                 frameRocket = Rocket_7;
                             }
-                           
+
                         }
                         break;
-                    
+
                     default:
                         break;
                     }
@@ -5263,17 +5264,54 @@ STAR:
                     sRocket11.setPosition(Rocketdel.x, Rocketdel.y);
                     app.draw(sRocket11);
                 }
+
+
+
+                if (Dark)
+                {
+                    cout << "DDDD" << endl;
+                   
+                    if (y >= 600 && !dooler_alive)
+                    {
+                        SetBackBgforDrakmap = true;
+                        //  y = 650;
+                    }
+                    if (SetBackBgforDrakmap)
+                    {
+                        if (BgforDrakmap.x > 214)
+                        {
+                            BgforDrakmap.x -= 3;
+                        }
+                        else if (BgforDrakmap.x < 214)
+                        {
+                            BgforDrakmap.x += 3;
+                        }
+
+                        if (BgforDrakmap.y > 319)
+                        {
+                            BgforDrakmap.y -= 3;
+                        }
+                        else if (BgforDrakmap.y < 319)
+                        {
+                            BgforDrakmap.y += 3;
+                        }
+                    }
+                    else
+                    {
+                        BgforDrakmap.x = -(x - (867 * 0.5));
+                        BgforDrakmap.y = -(y - ((920 * 0.5) + 233));
+                    }
+
+                    sBgforDrakmap.setOrigin(sf::Vector2f(BgforDrakmap.x, BgforDrakmap.y));
+                    app.draw(sBgforDrakmap);
+                }
+
+
+
+
+               
                 
                
-           
-
-
-
-
-
-
-
-
 
 
                 break;
@@ -5282,6 +5320,7 @@ STAR:
 
             if (CHOSEMENU == MENU)
             {
+                sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
 
                 if (Keyboard::isKeyPressed(Keyboard::T))
                 {
@@ -5290,6 +5329,70 @@ STAR:
 
 
                 }
+
+                text.setFont(font);
+                text.setCharacterSize(50);
+                text.setPosition(300, 430);
+
+                int delaytime=10;
+                if (loopdelayMouse < delaytime)
+                {
+                    loopdelayMouse++;
+                }
+                if (text.getGlobalBounds().contains(Mouse))
+                {
+                    if (Dark)
+                    {
+                        text.setString("light");
+                        text.setFillColor(sf::Color::Yellow);
+
+                    }
+                    else if (!Dark)
+                    {
+                        text.setString("Dark");
+                        text.setFillColor(sf::Color::Red);
+
+                    }
+                   
+                    if (text.getGlobalBounds().contains(Mouse) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                    {
+                        if (loopdelayMouse >= delaytime)
+                        {
+                            loopdelayMouse = 0;
+                            if (!Dark)
+                            {
+                                sMENU.setTexture(t109);
+                                Dark = true;
+                            }
+                            else if (Dark)
+                            {
+                                sMENU.setTexture(t1);
+                                Dark = false;
+                            }
+                        }
+                      
+                       
+                    }
+                }
+                else
+                {
+                    if (Dark)
+                    {
+                        text.setFillColor(sf::Color::White);
+                        text.setString("light");
+                        sMENU.setTexture(t109);
+
+                    }
+                    else if (!Dark)
+                    {
+                        text.setFillColor(sf::Color::Black);
+                        text.setString("Dark");
+                        sMENU.setTexture(t1);
+
+                    }
+                }
+                app.draw(sMENU);
+
 
 
                 platchosen[0].x = 30;
@@ -5317,9 +5420,7 @@ STAR:
                 }
 
 
-                app.draw(sMENU);
-
-                sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+               
 
 
                 if (sPlay1.getGlobalBounds().contains(Mouse))
@@ -5357,7 +5458,7 @@ STAR:
                 }
 
 
-
+                app.draw(text);
 
 
 
@@ -5371,13 +5472,29 @@ STAR:
                 switch (UFOfrme)
                 {
                 case UFO_1:
-                    sUFO_1.setPosition(266, 29);
-                    app.draw(sUFO_1);
+                    if (Dark)
+                    {
+                        sMoon.setPosition(266, 29);
+                        app.draw(sMoon);
+                    }
+                    else if (!Dark)
+                    {
+                        sUFO_1.setPosition(266, 29);
+                        app.draw(sUFO_1);
+                    }
                     UFOfrme = UFO_2;
                     break;
                 case UFO_2:
-                    sUFO_2.setPosition(266, 29);
-                    app.draw(sUFO_2);
+                    if (Dark)
+                    {
+                        
+                    }
+                    else if (!Dark)
+                    {
+
+                         sUFO_2.setPosition(266, 29);
+                         app.draw(sUFO_2);
+                    }
                     UFOfrme = UFO_1;
                     break;
                 default:
@@ -5396,7 +5513,7 @@ STAR:
 
                 sDE_2_1.setPosition(200, 400);
                 app.draw(sDE_2_1);*/
-
+                
                 break;
             }
 
@@ -5585,12 +5702,8 @@ STAR:
             {
 
 
-                cout << " x : " << x ;
+                cout << " x : " << x;
                 cout << " y : " << y << endl;
-
-
-
-
 
 
                 if (Keyboard::isKeyPressed(Keyboard::Right))
@@ -5631,309 +5744,321 @@ STAR:
                     dir = ATK;
 
                 }
+                if (x > 380)
+                {
+                    x = -23;
+                }
+                else if (x < -23)
+                {
+                    x = 380;
+                }
 
-                sBack_grid.setPosition(Background.x, Background.y);
-                app.draw(sBack_grid);
 
+               
+                sBgDarkmap.setPosition(Background.x, Background.y);
+                app.draw(sBgDarkmap);
 
+               
 
                 stestxy.setPosition(x, y);
                 app.draw(stestxy);
-              
 
 
 
 
 
-               // sDevil3E_1.setPosition(200, 160);
-             //   app.draw(sDevil3E_1);
-/*
-                sDevilGreen_1.setPosition(100, 100);
-                app.draw(sDevilGreen_1);
 
-                    sDevilRed.setPosition(200, 100);
-                app.draw(sDevilRed);
+                // sDevil3E_1.setPosition(200, 160);
+              //   app.draw(sDevil3E_1);
+ /*
+                 sDevilGreen_1.setPosition(100, 100);
+                 app.draw(sDevilGreen_1);
 
-                sDevilPing.setPosition(300, 100);
-                app.draw(sDevilPing);*/
+                     sDevilRed.setPosition(200, 100);
+                 app.draw(sDevilRed);
 
-/*
-     //       Devil_Red:
+                 sDevilPing.setPosition(300, 100);
+                 app.draw(sDevilPing);*/
 
-                if ((x+ 6 >= 200) && (x <= 200 + 55) && (y <= 100 + 40) && (y - 10 >= 100) &&y >= 0 )
-                {
-                    cout << "redd" << endl;
-                }
+                 /*
+                      //       Devil_Red:
 
-          //  Devil_Ping:
+                                 if ((x+ 6 >= 200) && (x <= 200 + 55) && (y <= 100 + 40) && (y - 10 >= 100) &&y >= 0 )
+                                 {
+                                     cout << "redd" << endl;
+                                 }
 
-                if ((x + 5 >= 300) && (x <= 300 + 64) && (y<= 100 + 56) && (y - 10 >= 100) && y >= 0 )
-                {
-                    cout << "Pingg" << endl;
-                }
+                           //  Devil_Ping:
 
-           //  Devil_Green:
+                                 if ((x + 5 >= 300) && (x <= 300 + 64) && (y<= 100 + 56) && (y - 10 >= 100) && y >= 0 )
+                                 {
+                                     cout << "Pingg" << endl;
+                                 }
 
-                if ((x + 4 >= 100) && (x <=100 + 89) && (y <= 100 + 50) && (y - 10 >= 100) && y >= 0)
-                {
-                    cout << "Greenn" << endl;
-                }
+                            //  Devil_Green:
 
-
-                Devil_3EYE:
-                   if ((x + 5 >= 300) && (x <= 300 + 60) && (y <= 300 + 88) && (y - 10 >= 300) && y >= 0)
-                {
-                    cout << "EYEEEEE" << endl;
-                }
-                */
-         
-
-             
-
-            //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
-            //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
+                                 if ((x + 4 >= 100) && (x <=100 + 89) && (y <= 100 + 50) && (y - 10 >= 100) && y >= 0)
+                                 {
+                                     cout << "Greenn" << endl;
+                                 }
 
 
+                                 Devil_3EYE:
+                                    if ((x + 5 >= 300) && (x <= 300 + 60) && (y <= 300 + 88) && (y - 10 >= 300) && y >= 0)
+                                 {
+                                     cout << "EYEEEEE" << endl;
+                                 }
+                                 */
+
+
+
+
+                                 //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
+                                 //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
+
+
+
+                                     /*
+                                                     platchosen[1].x = 100;
+                                                     platchosen[1].y = 100;
+
+                                                     if (sf::Mouse::getPosition(app).x >= platchosen[1].x && sf::Mouse::getPosition(app).x <= platchosen[1].x+57 && sf::Mouse::getPosition(app).y >= platchosen[1].y && sf::Mouse::getPosition(app).y <= platchosen[1].y + 13)
+                                                     {
+                                                         cout << " find in " << endl;
+                                                     }
+
+                                                     sPlatDB1.setPosition(platchosen[1].x, platchosen[1].y);
+                                                     app.draw(sPlatDB1);*/
+
+                                                     /*
+                                                     sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+
+
+
+                                                         if (( sPlatDB1.getGlobalBounds().contains(Mouse) &&  sf::Mouse::isButtonPressed(sf::Mouse::Left) ) || (sf::Mouse::isButtonPressed(sf::Mouse::Left)  && !fristmouseDB[i]))
+                                                         {
+                                                               cout << "iffffffffffffff" << endl;
+                                                             if (fristmouseDB[i])
+                                                             {
+                                                                 conmouseDB[i].x = sf::Mouse::getPosition(app).x;
+                                                                 conmouseDB[i].y = sf::Mouse::getPosition(app).y;
+                                                                 conDB[i].x = platchosen[i].x;
+                                                                 conDB[i].y = platchosen[i].y ;
+                                                                 fristmouseDB[i] = false;
+                                                             }
+
+
+                                                             platchosen[i].x = conDB[i].x + (sf::Mouse::getPosition(app).x - conmouseDB[i].x);
+                                                             platchosen[i].y = conDB[i].y + (sf::Mouse::getPosition(app).y - conmouseDB[i].y);
+                                                             sPlatDB2.setPosition(platchosen[i].x -22, platchosen[i].y -27);
+                                                             app.draw(sPlatDB2);
+
+
+                                                         }
+
+
+
+                                                     else
+                                                     {
+                                                             if (sPlatDB1.getGlobalBounds().contains(Mouse) &&  !fristmouseDB[i])
+                                                             {
+                                                                 cout << "Released" << endl;
+                                                                     fristmouseDB[i] = true;
+                                                                  // Darx = 0;
+                                                                  //   Dary = 0;
+                                                             }
+
+                                                         switch (DrakBluefram[i])
+                                                         {
+                                                         case DB1:
+                                                             sPlatDB1.setPosition(platchosen[i].x, platchosen[i].y);
+                                                             app.draw(sPlatDB1);
+                                                             sArrowUp.setPosition(platchosen[i].x + 26, platchosen[i].y - 10);
+                                                             app.draw(sArrowUp);
+
+                                                             sArrowDown.setPosition(platchosen[i].x + 28, platchosen[i].y + 15);
+                                                             app.draw(sArrowDown);
+
+                                                             sArrowLeft.setPosition(platchosen[i].x - 14, platchosen[i].y + 4);
+                                                             app.draw(sArrowLeft);
+
+                                                             sArrowRight.setPosition(platchosen[i].x + 60, platchosen[i].y + 1);
+                                                             app.draw(sArrowRight);
+                                                             loopdelayDrakBlue[i] ++;
+                                                             if (loopdelayDrakBlue[i] >= 8)
+                                                             {
+                                                                 loopdelayDrakBlue[i] = 0;
+                                                                 DrakBluefram[i] = DB2;
+                                                             }
+                                                             break;
+                                                         case DB2:
+                                                             sPlatDB1.setPosition(platchosen[i].x, platchosen[i].y);
+                                                             app.draw(sPlatDB1);
+                                                             sArrowUp.setPosition(platchosen[i].x + 26, platchosen[i].y - 15);
+                                                             app.draw(sArrowUp);
+
+                                                             sArrowDown.setPosition( platchosen[i].x + 28, platchosen[i].y + 20);
+                                                             app.draw(sArrowDown);
+
+                                                             sArrowLeft.setPosition(platchosen[i].x - 19, platchosen[i].y + 4);
+                                                             app.draw(sArrowLeft);
+
+                                                             sArrowRight.setPosition(platchosen[i].x + 65, platchosen[i].y + 1);
+                                                             app.draw(sArrowRight);
+                                                             loopdelayDrakBlue[i] ++;
+                                                             if (loopdelayDrakBlue[i] >= 8)
+                                                             {
+                                                                 loopdelayDrakBlue[i] = 0;
+                                                                 DrakBluefram[i] = DB1;
+                                                             }
+                                                             break;
+                                                         default:
+                                                             break;
+                                                         }
+                                                     }
+                                                         */
+
+
+
+
+
+
+                                                         /*       sPlatDB1.setPosition(100, 160);
+                                                                app.draw(sPlatDB1);
+
+                                                                sPlatDB2.setPosition(x, y);
+                                                                app.draw(sPlatDB2);*/
+
+
+
+                                                                /*
+                                                                sPlatDB1.setPosition(100, 160);
+                                                                app.draw(sPlatDB1);
+
+
+                                                                sPlatDB3.setPosition(100, 240);
+                                                                app.draw(sPlatDB3);
+
+                                                                sPlatG.setPosition(x,y);
+                                                                app.draw(sPlatG);
+                                                                */
+                                                                /*
+                                                                 sBulleyDevil.setPosition(x, y);
+                                                                 app.draw(sBulleyDevil);
+
+                                                                 SBullet.setPosition(200, 300);
+                                                                   app.draw(SBullet);
+
+                                                                   if ((x + 8 >= 200) && (x <= 200 +8) && (y <=300 +10) && (y >= 300-11) && y >= 0)
+                                                                   {
+                                                                       cout << "EYEEEEE" << endl;
+                                                                   }*/
+
+                                                                   //sShield(t92), sRocket(t93), sShield1(t94);
+
+
+
+                int xx = 100, yy = 400;
 
                 /*
-                                platchosen[1].x = 100;
-                                platchosen[1].y = 100;
-
-                                if (sf::Mouse::getPosition(app).x >= platchosen[1].x && sf::Mouse::getPosition(app).x <= platchosen[1].x+57 && sf::Mouse::getPosition(app).y >= platchosen[1].y && sf::Mouse::getPosition(app).y <= platchosen[1].y + 13)
-                                {
-                                    cout << " find in " << endl;
-                                }
-
-                                sPlatDB1.setPosition(platchosen[1].x, platchosen[1].y);
-                                app.draw(sPlatDB1);*/
-
-                                /*
-                                sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
+                                                sPlatG.setPosition(100, 400);
+                                                app.draw(sPlatG);
 
 
+                                                 sRocket.setPosition(xx + 15, yy - 43);
+                                                app.draw(sRocket);
 
-                                    if (( sPlatDB1.getGlobalBounds().contains(Mouse) &&  sf::Mouse::isButtonPressed(sf::Mouse::Left) ) || (sf::Mouse::isButtonPressed(sf::Mouse::Left)  && !fristmouseDB[i]))
-                                    {
-                                          cout << "iffffffffffffff" << endl;
-                                        if (fristmouseDB[i])
-                                        {
-                                            conmouseDB[i].x = sf::Mouse::getPosition(app).x;
-                                            conmouseDB[i].y = sf::Mouse::getPosition(app).y;
-                                            conDB[i].x = platchosen[i].x;
-                                            conDB[i].y = platchosen[i].y ;
-                                            fristmouseDB[i] = false;
-                                        }
 
+                                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 100) && (y <= yy - 5) && dir == RIGHT)
+                                                {
+                                                    cout << "RRR" << endl;
+                                                }
 
-                                        platchosen[i].x = conDB[i].x + (sf::Mouse::getPosition(app).x - conmouseDB[i].x);
-                                        platchosen[i].y = conDB[i].y + (sf::Mouse::getPosition(app).y - conmouseDB[i].y);
-                                        sPlatDB2.setPosition(platchosen[i].x -22, platchosen[i].y -27);
-                                        app.draw(sPlatDB2);
+                                                if ((x + 40 >= xx) && (x <= xx + 20) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
+                                                {
+                                                    cout << "LL" << endl;
+                                                }
 
+                                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
+                                                {
+                                                    cout << "ATK" << endl;
+                                                }
 
-                                    }
 
 
 
-                                else
-                                {
-                                        if (sPlatDB1.getGlobalBounds().contains(Mouse) &&  !fristmouseDB[i])
-                                        {
-                                            cout << "Released" << endl;
-                                                fristmouseDB[i] = true;
-                                             // Darx = 0;
-                                             //   Dary = 0;
-                                        }
 
-                                    switch (DrakBluefram[i])
-                                    {
-                                    case DB1:
-                                        sPlatDB1.setPosition(platchosen[i].x, platchosen[i].y);
-                                        app.draw(sPlatDB1);
-                                        sArrowUp.setPosition(platchosen[i].x + 26, platchosen[i].y - 10);
-                                        app.draw(sArrowUp);
+                                                //sShield.setPosition(xx+11, yy-42);
+                                                //app.draw(sShield);
 
-                                        sArrowDown.setPosition(platchosen[i].x + 28, platchosen[i].y + 15);
-                                        app.draw(sArrowDown);
 
-                                        sArrowLeft.setPosition(platchosen[i].x - 14, platchosen[i].y + 4);
-                                        app.draw(sArrowLeft);
+                                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 100) && (y <= yy - 5) && dir ==RIGHT)
+                                                {
+                                                    cout << "RRR" << endl;
+                                                }
 
-                                        sArrowRight.setPosition(platchosen[i].x + 60, platchosen[i].y + 1);
-                                        app.draw(sArrowRight);
-                                        loopdelayDrakBlue[i] ++;
-                                        if (loopdelayDrakBlue[i] >= 8)
-                                        {
-                                            loopdelayDrakBlue[i] = 0;
-                                            DrakBluefram[i] = DB2;
-                                        }
-                                        break;
-                                    case DB2:
-                                        sPlatDB1.setPosition(platchosen[i].x, platchosen[i].y);
-                                        app.draw(sPlatDB1);
-                                        sArrowUp.setPosition(platchosen[i].x + 26, platchosen[i].y - 15);
-                                        app.draw(sArrowUp);
+                                                if ((x + 46 >= xx) && (x <= xx + 25) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
+                                                {
+                                                    cout << "LL" << endl;
+                                                }
 
-                                        sArrowDown.setPosition( platchosen[i].x + 28, platchosen[i].y + 20);
-                                        app.draw(sArrowDown);
+                                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
+                                                {
+                                                    cout << "ATK" << endl;
+                                                }*/
 
-                                        sArrowLeft.setPosition(platchosen[i].x - 19, platchosen[i].y + 4);
-                                        app.draw(sArrowLeft);
 
-                                        sArrowRight.setPosition(platchosen[i].x + 65, platchosen[i].y + 1);
-                                        app.draw(sArrowRight);
-                                        loopdelayDrakBlue[i] ++;
-                                        if (loopdelayDrakBlue[i] >= 8)
-                                        {
-                                            loopdelayDrakBlue[i] = 0;
-                                            DrakBluefram[i] = DB1;
-                                        }
-                                        break;
-                                    default:
-                                        break;
-                                    }
-                                }
-                                    */
 
 
+                if (dir == LEFT)
+                {
 
+                    //    SBullet.setPosition(x, y);
+                      //  app.draw(SBullet);
+                    sRocket10.setTextureRect(sf::IntRect(0, 0, 21, 58));
+                    sRocket10.setPosition(x + 56, y - 4);
+                    app.draw(sRocket10);
 
-                            
+                  //  cout << " LLL " << endl;
+                    sPersLeftt.setPosition(x, y);
+                    app.draw(sPersLeftt);
 
-                                    /*       sPlatDB1.setPosition(100, 160);
-                                           app.draw(sPlatDB1);
+                }
+                if (dir == RIGHT)
+                {
 
-                                           sPlatDB2.setPosition(x, y);
-                                           app.draw(sPlatDB2);*/
+                    //  SBullet.setPosition(x, y);
+                    //  app.draw(SBullet);
+                  //  cout << " RRR " << endl;
+                    sRocket10.setTextureRect(sf::IntRect(21, 0, -21, 58));
+                    sRocket10.setPosition(x - 19, y - 4);
+                    app.draw(sRocket10);
 
 
+                    sPersRight.setPosition(x, y);
+                    app.draw(sPersRight);
+                }
+                if (dir == ATK)
+                {
 
-                                           /*
-                                           sPlatDB1.setPosition(100, 160);
-                                           app.draw(sPlatDB1);
+                    // SBullet.setPosition(x, y);
+                    // app.draw(SBullet);
 
 
-                                           sPlatDB3.setPosition(100, 240);
-                                           app.draw(sPlatDB3);
 
-                                           sPlatG.setPosition(x,y);
-                                           app.draw(sPlatG);
-                                           */
-                                       /*
-                                        sBulleyDevil.setPosition(x, y);
-                                        app.draw(sBulleyDevil);
+                    sPersATK.setPosition(xx, yy);
+                    app.draw(sPersATK);
+                }
 
-                                        SBullet.setPosition(200, 300);
-                                          app.draw(SBullet);
 
-                                          if ((x + 8 >= 200) && (x <= 200 +8) && (y <=300 +10) && (y >= 300-11) && y >= 0)
-                                          {
-                                              cout << "EYEEEEE" << endl;
-                                          }*/
-                                            
- //sShield(t92), sRocket(t93), sShield1(t94);
 
-
-    
-int xx=100, yy=400;
-
-/*
-                                sPlatG.setPosition(100, 400);
-                                app.draw(sPlatG);
-
-
-                                 sRocket.setPosition(xx + 15, yy - 43);
-                                app.draw(sRocket);
-
-
-                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 100) && (y <= yy - 5) && dir == RIGHT)
-                                {
-                                    cout << "RRR" << endl;
-                                }
-
-                                if ((x + 40 >= xx) && (x <= xx + 20) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
-                                {
-                                    cout << "LL" << endl;
-                                }
-
-                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
-                                {
-                                    cout << "ATK" << endl;
-                                }
-
-
-
-
-
-                                //sShield.setPosition(xx+11, yy-42);
-                                //app.draw(sShield);
-
-                                
-                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 100) && (y <= yy - 5) && dir ==RIGHT)
-                                {
-                                    cout << "RRR" << endl;
-                                }
-
-                                if ((x + 46 >= xx) && (x <= xx + 25) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
-                                {
-                                    cout << "LL" << endl;
-                                }
-
-                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
-                                {
-                                    cout << "ATK" << endl;
-                                }*/
-
-
-
-
-                                            if (dir == LEFT)
-                                            {
-
-                                                //    SBullet.setPosition(x, y);
-                                                  //  app.draw(SBullet);
-                                                sRocket10.setTextureRect(sf::IntRect(0, 0, 21, 58));
-                                                sRocket10.setPosition(x   + 56, y-4 );
-                                                app.draw(sRocket10);
-                                               
-                                                cout << " LLL " << endl;
-                                                sPersLeftt.setPosition(x, y);
-                                                app.draw(sPersLeftt);
-
-                                            }
-                                            if (dir == RIGHT)
-                                            {
-
-                                                //  SBullet.setPosition(x, y);
-                                                //  app.draw(SBullet);
-                                                cout << " RRR " << endl;
-                                                sRocket10.setTextureRect(sf::IntRect(21, 0, -21,58));
-                                                sRocket10.setPosition(x -19, y-4 );
-                                                app.draw(sRocket10);
-
-
-                                                sPersRight.setPosition(x, y);
-                                                app.draw(sPersRight);
-                                            }
-                                           if (dir == ATK)
-                                           {
-                                           
-                                              // SBullet.setPosition(x, y);
-                                              // app.draw(SBullet);
-
-                                             
-
-                                             sPersATK.setPosition(xx, yy);
-                                              app.draw(sPersATK);
-                                           }
-
-                                          
-
-
-                                       
-                                           
-
-
+                sBgforDrakmap.setOrigin(214, 319);
+                app.draw(sBgforDrakmap);
+               // sBgforDrakmap.setOrigin(sf::Vector2f(-(x- sBgforDrakmap.getTexture()->getSize().x * 0.5),-(y- sBgforDrakmap.getTexture()->getSize().y * 0.5)));
+               // app.draw(sBgforDrakmap);
+                //sBgforDrakmap.setOrigin(sf::Vector2f(-(x -( 867 * 0.5)), -(y -( (920 * 0.5) +181))));
+              //  app.draw(sBgforDrakmap);
+               
                 break;
             }
         }
