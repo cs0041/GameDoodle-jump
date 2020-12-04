@@ -443,8 +443,6 @@ int main()
    
 
     sf::SoundBuffer sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16;
-   
- 
     sound1.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/jump.wav");
     sound2.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/sp.wav");
     sound3.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/propeller.wav");
@@ -461,13 +459,10 @@ int main()
     sound14.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/monsterDiebybullet.wav");
     sound15.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK1.wav");
     sound16.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/NinjaATK2.wav");
-
-
+   
 
     sf::Sound Sjump, SAtk1, SAtk2, Sbrownout1, Sexplod1, Sexplod2, Sfall, SmosterAlive, Spropeller, Sspring,
         Sjumpwhile, Sjumponmonster, SRocket, SmonsterDiebybullet, SNinjaATK1, SNinjaATK2;
-
-
 
     Sjump.setBuffer(sound1);
     Sspring.setBuffer(sound2);
@@ -486,10 +481,8 @@ int main()
     SNinjaATK1.setBuffer(sound15);
     SNinjaATK2.setBuffer(sound16);
 
-
-
-
-
+   
+   
 
 
 
@@ -497,6 +490,12 @@ int main()
     CHOSEMENU CHOSEMENU = MENU;
 
     bool Dark = false;
+MUSICCC:
+    sf::Music music;
+    music.openFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/Sound/song.wav");
+
+    music.play();
+    music.setLoop(true);
 STAR:
 
     srand(time(0));
@@ -870,7 +869,6 @@ STAR:
     int loopdelayMouse = 0;
     while (app.isOpen())
     {
-
         // srand(time(0));
         Event e;
         while (app.pollEvent(e))
@@ -883,7 +881,7 @@ STAR:
             srand(time(0));
             if (CHOSEMENU == PLAY)
             {
-
+                music.pause();
                 if (Keyboard::isKeyPressed(Keyboard::Right))
                 {
                     x += 4;
@@ -6251,7 +6249,7 @@ STAR:
                             system("CLS");
                             CHOSEMENU = MENU;
                             one_read_write = true;
-                            goto STAR;
+                            goto MUSICCC;
                         }
                     }
                     else
@@ -7184,18 +7182,19 @@ STAR:
                 if ((x + 31 >= platchosen[0].x) && (x <= platchosen[0].x + 47) && (y + 52 >= platchosen[0].y) && (y + 52 <= platchosen[0].y + 14) && (dy > 0) && (dir == RIGHT))
                 {
 
-
+                    Sjump.play();
                     dy = jump;
                 }
 
                 if ((x + 50 >= platchosen[0].x) && (x <= platchosen[0].x + 35) && (y + 52 >= platchosen[0].y) && (y + 52 <= platchosen[0].y + 14) && (dy > 0) && (dir == LEFT))
                 {
-
+                    Sjump.play();
                     dy = jump;
                 }
 
                 if ((x + 34 >= platchosen[0].x) && (x <= platchosen[0].x + 50) && (y + 77 >= platchosen[0].y) && (y + 77 <= platchosen[0].y + 14) && (dy > 0) && (dir == ATK))
                 {
+                    Sjump.play();
                     dy = jump;
                 }
 
@@ -7299,8 +7298,6 @@ STAR:
 
             if (CHOSEMENU == SCORE)
             {
-
-
                 //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
                 //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
                 app.draw(sMenu_scores);
@@ -7318,7 +7315,7 @@ STAR:
                         system("CLS");
                         CHOSEMENU = MENU;
                         one_read_write = true;
-                        goto STAR;
+                       goto STAR;
                     }
                 }
                 else
