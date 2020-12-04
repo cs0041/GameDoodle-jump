@@ -1047,13 +1047,13 @@ STAR:
                             for (int i = 0; i < 5; i++)
                             {
                                 readfile >> score_read_write[i];
-                                cout << "score[i]" << score_read_write[i] << endl;
+                             //   cout << "score[i]" << score_read_write[i] << endl;
                             }
-                            cout << "read suscess" << endl;
+                      //      cout << "read suscess" << endl;
                         }
                         else
                         {
-                            cout << "ERROE" << endl;
+                       //     cout << "ERROE" << endl;
                         }
                         readfile.close();
 
@@ -1088,13 +1088,13 @@ STAR:
                             for (int i = 0; i < 5; i++)
                             {
                                 writer << score_read_write[i] << endl;
-                                cout << "score[i]" << score_read_write[i] << endl;
+                           //     cout << "score[i]" << score_read_write[i] << endl;
                             }
-                            cout << "writer suscess" << endl;
+                         //   cout << "writer suscess" << endl;
                         }
                         else
                         {
-                            cout << "ERROE" << endl;
+                          //  cout << "ERROE" << endl;
                         }
 
                         writer.close();
@@ -1203,7 +1203,7 @@ STAR:
                 /*///////////////random block dumme*/
                 if (line.y >= 0)
                 {
-                    cout << "--------------------" << endl;
+                  //cout << "--------------------" << endl;
                     line.y = -650;
                     int maxnumberblock, minnumberblock, maxrowpass, minrowpass, row_2, low_2, row, low;
                     if (setblock == set1)
@@ -1271,34 +1271,30 @@ STAR:
 
                     //chose constan block////////
 
-
-
-
-                    /* PATTERN BLOCK SPECIAL*/
                     bool patternY = false, patternOr = false, patternDB = false;
-                    if (block_Y(3))
-                    {
-                        patternY = true;
-                    }
-                    else if (block_Orange(5))
-                    {
-                        patternOr = true;
-                    }
-                    else if (block_DB(5))
-                    {
-                        patternDB = true;
-                    }
-
-
                     for (int i = minrowpass; i < maxrowpass; i++)
                     {
                         int keeprandomrang;
                         keeprandomrang = randomrang(low, row);
 
                         consand[keeprandomrang] = true;
-                        switch (LEVEL)
+
+                        /* PATTERN BLOCK SPECIAL*/
+                        if (LEVEL == 1)
                         {
-                        case 1:
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(0))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(0))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(0))
+                            {
+                                patternDB = true;
+                            }
 
                             if (patternY)
                             {
@@ -1333,23 +1329,22 @@ STAR:
 
                                       }
                               }*/
-
-                            else if (block_B(10))
+                            else if (block_B(2))
                             {
 
                                 chosenbloackDumme[keeprandomrang] = B_dumme;
                                 rowpass[i] = true;
 
                             }
-                            else if (block_Gsp(5))
+                            else if (block_Gsp(2))
                             {
                                 chosenbloackDumme[keeprandomrang] = Gsp_dumme;
                             }
-                            else if (block_White(5))
+                            else if (block_White(0))
                             {
                                 chosenbloackDumme[keeprandomrang] = Wh_dumme;
                             }
-                            else  if (block_Gpp(20) && !have_propller && !have_Shield && !have_Rocket)
+                            else  if (block_Gpp(0) && !have_propller && !have_Shield && !have_Rocket)
                             {
                                 have_propller = true;
                                 chosenbloackDumme[keeprandomrang] = Gpp_dumme;
@@ -1359,7 +1354,7 @@ STAR:
                                 have_Shield = true;
                                 chosenbloackDumme[keeprandomrang] = GS_dumme;
                             }
-                            else  if (block_Rocket(20) && !have_propller && !have_Shield && !have_Rocket)
+                            else  if (block_Rocket(0) && !have_propller && !have_Shield && !have_Rocket)
                             {
                                 have_Rocket = true;
                                 chosenbloackDumme[keeprandomrang] = GRk_dumme;
@@ -1370,15 +1365,608 @@ STAR:
                                 chosenbloackDumme[keeprandomrang] = G_dumme;
                             }
 
+                        }
+                        if (LEVEL == 2)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(0))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(0))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(0))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
 
 
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
 
 
+                                      }
+                              }*/
+                            else if (block_B(4))
+                            {
 
-                            break;
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
 
-                        default:
-                            break;
+                            }
+                            else if (block_Gsp(4))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(1))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(1) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(0) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(0) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
+                        }
+                        if (LEVEL == 3)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(0))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(2))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(0))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
+
+
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                      }
+                              }*/
+                            else if (block_B(10))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(10))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(3))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(2) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(1) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(1) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
+                        }
+                        if (LEVEL == 4)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(2))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(4))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(2))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
+
+
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                      }
+                              }*/
+                            else if (block_B(15))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(10))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(7))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
+                        }
+                        if (LEVEL == 5)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(5))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(5))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(5))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
+
+
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                      }
+                              }*/
+                            else if (block_B(15))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(10))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(10))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
+                        }
+                        if (LEVEL == 6)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(8))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(6))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(7))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
+
+
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                      }
+                              }*/
+                            else if (block_B(17))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(8))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(12))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
+                        }
+                        if (LEVEL == 7)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(10))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(5))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(8))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
+
+
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                      }
+                              }*/
+                            else if (block_B(20))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(8))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(15))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(3) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
+                        }
+                        if (LEVEL == 8)
+                        {
+                            cout << "LEVEL : " << LEVEL << endl;
+                            if (block_Y(25))
+                            {
+                                patternY = true;
+                            }
+                            else if (block_Orange(5))
+                            {
+                                patternOr = true;
+                            }
+                            else if (block_DB(10))
+                            {
+                                patternDB = true;
+                            }
+
+                            if (patternY)
+                            {
+                                rowpass[i] = true;
+                                chosenbloackDumme[keeprandomrang] = Y_dumme;
+                            }
+                            else if (patternOr)
+                            {
+                                chosenbloackDumme[keeprandomrang] = Or_dumme;
+                            }
+                            else if (patternDB)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    chosenbloackDumme[keeprandomrang] = DB_dumme;
+                                }
+                                rowpass[i] = true;
+                            }
+
+                            /*
+                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
+                              {
+                                      if (Devil_havefrog(70))
+                                      {
+                                          cout << "frogggggggg" << endl;
+                                       //   rowpass[i] = true;
+
+
+                                          CHOSENDEVIL = Devil_frog;
+                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
+
+
+                                      }
+                              }*/
+                            else if (block_B(25))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = B_dumme;
+                                rowpass[i] = true;
+
+                            }
+                            else if (block_Gsp(10))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Gsp_dumme;
+                            }
+                            else if (block_White(20))
+                            {
+                                chosenbloackDumme[keeprandomrang] = Wh_dumme;
+                            }
+                            else  if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_propller = true;
+                                chosenbloackDumme[keeprandomrang] = Gpp_dumme;
+                            }
+                            else  if (block_Shield(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Shield = true;
+                                chosenbloackDumme[keeprandomrang] = GS_dumme;
+                            }
+                            else  if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                            {
+                                have_Rocket = true;
+                                chosenbloackDumme[keeprandomrang] = GRk_dumme;
+                            }
+                            else if (block_G(100))
+                            {
+
+                                chosenbloackDumme[keeprandomrang] = G_dumme;
+                            }
+
                         }
                         low += 4;
                         row += 4;
@@ -1396,10 +1984,9 @@ STAR:
                             {
                                 if (!consand[j])
                                 {
-                                    switch (LEVEL)
+                                    if (LEVEL == 1)
                                     {
-                                    case 1:
-                                        if (haveblock(40))
+                                        if (haveblock(70))
                                         {
                                             if (patternOr)
                                             {
@@ -1409,7 +1996,7 @@ STAR:
                                                 }
 
                                             }
-                                            else if (block_Br(20))
+                                            else if (block_Br(10))
                                             {
                                                 chosenbloackDumme[j] = Br_dumme;
 
@@ -1418,11 +2005,11 @@ STAR:
                                             {
                                                 chosenbloackDumme[j] = Gsp_dumme;
                                             }
-                                            else if (block_White(5))
+                                            else if (block_White(0))
                                             {
                                                 chosenbloackDumme[j] = Wh_dumme;
                                             }
-                                            else if (block_Gpp(3) && !have_propller && !have_Shield && !have_Rocket)
+                                            else if (block_Gpp(0) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_propller = true;
                                                 chosenbloackDumme[j] = Gpp_dumme;
@@ -1432,7 +2019,7 @@ STAR:
                                                 have_Shield = true;
                                                 chosenbloackDumme[j] = GS_dumme;
                                             }
-                                            else if (block_Rocket(100) && !have_propller && !have_Shield && !have_Rocket)
+                                            else if (block_Rocket(0) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_Rocket = true;
                                                 chosenbloackDumme[j] = GRk_dumme;
@@ -1446,11 +2033,358 @@ STAR:
                                         {
                                             chosenbloackDumme[j] = blank_dumme;
                                         }
-                                        break;
-
-                                    default:
-                                        break;
                                     }
+                                    if (LEVEL == 2)
+                                    {
+                                        if (haveblock(60))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(10))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(5))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(3))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(3) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(3) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(0) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    if (LEVEL == 3)
+                                    {
+                                        if (haveblock(50))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(12))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(7))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(5))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(3) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(3) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(3) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    if (LEVEL == 4)
+                                    {
+                                        if (haveblock(40))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(12))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(10))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(10))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    if (LEVEL == 5)
+                                    {
+                                        if (haveblock(30))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(12))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(10))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(10))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    if (LEVEL == 6)
+                                    {
+                                        if (haveblock(20))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(15))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(10))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(15))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    if (LEVEL == 7)
+                                    {
+                                        if (haveblock(10))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(15))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(10))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(15))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    if (LEVEL == 8)
+                                    {
+                                        if (haveblock(5))
+                                        {
+                                            if (patternOr)
+                                            {
+                                                if (haveblock(20))
+                                                {
+                                                    chosenbloackDumme[j] = Or_dumme;
+                                                }
+
+                                            }
+                                            else if (block_Br(15))
+                                            {
+                                                chosenbloackDumme[j] = Br_dumme;
+
+                                            }
+                                            else if (block_Gsp(10))
+                                            {
+                                                chosenbloackDumme[j] = Gsp_dumme;
+                                            }
+                                            else if (block_White(15))
+                                            {
+                                                chosenbloackDumme[j] = Wh_dumme;
+                                            }
+                                            else if (block_Gpp(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_propller = true;
+                                                chosenbloackDumme[j] = Gpp_dumme;
+                                            }
+                                            else if (block_Shield(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Shield = true;
+                                                chosenbloackDumme[j] = GS_dumme;
+                                            }
+                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            {
+                                                have_Rocket = true;
+                                                chosenbloackDumme[j] = GRk_dumme;
+                                            }
+                                            else if (block_G(100))
+                                            {
+                                                chosenbloackDumme[j] = G_dumme;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenbloackDumme[j] = blank_dumme;
+                                        }
+                                    }
+                                    
 
 
 
@@ -1464,12 +2398,130 @@ STAR:
                     }
 
 
-                    switch (LEVEL)
-                    {
-                    case 1:
+
+                    if(LEVEL ==1)
+                    { 
                         if (!Devilalive && CHOSENDEVIL == Empty)
                         {
-                            if (have_Devil(100) && !Rocket_on && !Rocket_out)
+                            if (have_Devil(0) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(10))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 2)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(0) && !Rocket_on && !Rocket_out)
                             {
                                 if (Devil_haveBat(10))
                                 {
@@ -1582,9 +2634,718 @@ STAR:
 
                             }
                         }
-                    default:
-                        break;
                     }
+                    if (LEVEL == 3)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(10) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(0))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(0))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 4)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(20) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(0))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 5)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(20) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(5))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(5))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 6)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(15))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 7)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(15))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(5))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(5))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(15))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 8)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(20))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(10))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(5))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(5))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(20))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+
+
+             
 
                     int prex = 0;
                     int prey = -650;
@@ -1618,7 +3379,7 @@ STAR:
                                 Devil_die_by_foot = false;
                                 heartDevil = 3;
                                 Devilalive = true;
-                                cout << "LOOP SET XY" << endl;
+                             // cout << "LOOP SET XY" << endl;
                                 platchosen[i].y = -20;
                                 platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 108));
                                 Devil.y = 0 - 50;
@@ -1676,7 +3437,7 @@ STAR:
                             chosenbloack[i] = DB;
                             break;
                         case G_Devil_dumme:
-                            cout << "dddd" << endl;
+                       //     cout << "dddd" << endl;
                             chosenbloack[i] = G_Devil;
                             break;
                         case  blank_dumme:
@@ -1700,11 +3461,11 @@ STAR:
                 }
 
 
-                // map up re 32
+                // map up
 
                 if (y < h)
                 {
-                    score += 1;
+                    score += 2;
                     line.y = line.y - dy;
                     if (Devilalive && dooler_alive)
                     {
@@ -2770,12 +4531,12 @@ STAR:
 
                 if (Dark)
                 {
-                    cout << "DDDD" << endl;
+                   // cout << "DDDD" << endl;
                     sBack_grid.setTexture(t107);
                 }
                 else if (!Dark)
                 {
-                    cout << "LLLLL" << endl;
+                  //  cout << "LLLLL" << endl;
                     sBack_grid.setTexture(t21);
                 }
               
@@ -4422,23 +6183,7 @@ STAR:
 
 
 
-                if (score >= 1500)//dis 1
-                {
-                    LEVEL = 1;
-                }
-                else if (score >= 1000)//dis2
-                {
-                    LEVEL = 1;
-                }
-                else if (score >= 500)//no sp
-                {
-                    LEVEL = 1;
-
-                }
-                else if (score >= 0)//new color
-                {
-                    LEVEL = 1;
-                }
+           
 
 
                 /*die dooler by fall*/
@@ -4461,7 +6206,7 @@ STAR:
                     doolderdiebystats = false;
                     dooler_alive = false;
 
-                    cout << "dawdawd" << endl;
+               //    cout << "dawdawd" << endl;
 
                 }
 
@@ -5253,7 +6998,7 @@ STAR:
                     {
                         if (Rocketdel.y > 1550)
                         {
-                            cout << "Rocket out" << endl;
+                       //     cout << "Rocket out" << endl;
                             Rocket_on = false;
                             Rocket_out = false;
                             have_Rocket = false;
@@ -5269,7 +7014,7 @@ STAR:
 
                 if (Dark)
                 {
-                    cout << "DDDD" << endl;
+               //     cout << "DDDD" << endl;
                    
                     if (y >= 600 && !dooler_alive)
                     {
@@ -5308,9 +7053,44 @@ STAR:
 
 
 
+                //score
+                if (score >= 25000)//dis 1
+                {
+                    LEVEL = 8;
+                  
+                }
+                else if (score >= 18000)//dis2
+                {
+                    LEVEL = 7;
+            
+                }
+                else if (score >= 14000)//dis2
+                {
+                    LEVEL = 6;
 
-               
-                
+                }
+                else if (score >= 10000)//dis2
+                {
+                    LEVEL = 5;
+
+                }
+                else if (score >= 7000)//dis2
+                {
+                    LEVEL = 4;
+                }
+                else if (score >= 4000)//dis2
+                {
+                    LEVEL = 3;
+                }
+                else if (score >= 1500)//no sp
+                {
+                    LEVEL = 2;
+                }
+                else if (score >= 0)//new color
+                {
+                    LEVEL = 1;
+                }
+ 
                
 
 
@@ -5555,13 +7335,13 @@ STAR:
                         for (int i = 0; i < 5; i++)
                         {
                             readfile >> score_read_write[i];
-                            cout << "score[i]" << score_read_write[i] << endl;
+                          //  cout << "score[i]" << score_read_write[i] << endl;
                         }
-                        cout << "read suscess" << endl;
+                   //     cout << "read suscess" << endl;
                     }
                     else
                     {
-                        cout << "ERROE" << endl;
+                   //     cout << "ERROE" << endl;
                     }
                     readfile.close();
                     one_read_write = false;
@@ -5702,8 +7482,8 @@ STAR:
             {
 
 
-                cout << " x : " << x;
-                cout << " y : " << y << endl;
+               // cout << " x : " << x;
+               // cout << " y : " << y << endl;
 
 
                 if (Keyboard::isKeyPressed(Keyboard::Right))
