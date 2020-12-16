@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <conio.h>
 #include <fstream>
-
 using namespace sf;
 using namespace std;
 
@@ -304,7 +303,7 @@ int main()
 {
     sf::Font font;
     font.loadFromFile("C:/Users/GP73/source/repos/Test_sfml/Test_sfml/Picture/New folder/al-seana.ttf");
-    sf::Text text;
+    sf::Text text,name;
 
 
     RenderWindow app(VideoMode(400, 650), "Doodle Game!");
@@ -500,10 +499,7 @@ STAR:
 
     srand(time(0));
 
-    // RenderWindow app(VideoMode(400, 533), "Doodle Game!");
-      // RenderWindow app(VideoMode(400, 650), "Doodle Game!");
-    // app.setFramerateLimit(60);
-
+   
 
     point bullet[1000], platchosen[96], platdelbrown[96], propllerdel, Rocketdel
         , Devil, Background, position_digit_forbackground, BulletDevil[1000];
@@ -702,7 +698,7 @@ STAR:
     case MENU:
 
         x = 30 + 10;
-        //    y = 520 - 60;
+
         y = 620;
         dy = -8;
         break;
@@ -733,7 +729,7 @@ STAR:
             if (yk)
             {
                 prey = -570 + (yrow * 80);
-                //   prey = 182 + (yrow * 168);
+
             }
             yrow++;
             yk = true;
@@ -745,14 +741,13 @@ STAR:
         }
         platchosen[i].x = randomrang(prex, 100 + ((xrow * 100) - 60));
         platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 20));
-        //platchosen[i].x = randomrang(prex, 140 + ((xrow * 126) - 55));
-         //platchosen[i].y = randomrang(prey, 182 + ((yrow * 168) - 16));
+      
         chosenbloack[i] = G;
 
-        // prex = 140 + (xrow * 126);
+     
         prex = 100 + (xrow * 100);
         xrow++;
-        //   cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
+       
     }
     platchosen[63].x = 160;
     platchosen[63].y = 650 - (20);
@@ -766,13 +761,8 @@ STAR:
     platchosen[60].x = 300;
     platchosen[60].y = 650 - 40;
     chosenbloack[60] = G;
-    /*
-     for (int i = 0; i < 40; i++)
-                {
-                    chosenbloack[i] = blank;
-                }
+ 
 
-     */
 
 
     int countblock = 32;
@@ -805,7 +795,7 @@ STAR:
 
 
 
-    //   bool STOPGAME = false;
+ 
     bool fallSoundOnetime = true;
     bool DevilSoundOnetime = true;
     bool PropellSoundOnetime = true;
@@ -820,38 +810,7 @@ STAR:
     int loopdelaystars = 0;
 
 
-    /*
-
-
-    cout << "////////" << endl;
-    system("pause");
-    sf::Clock clock;
-    while (true)
-    {
-     //   sf::Time elapsed1 = clock.getElapsedTime();
-        std::cout << clock.getElapsedTime().asSeconds() << std::endl;
-     //   std::cout << elapsed1.asSeconds() << std::endl;
-        if (clock.getElapsedTime().asSeconds() >= 7)
-        {DelayBlock
-            std::cout << clock.getElapsedTime().asSeconds() << std::endl;
-            cout << "-------" << endl;
-            clock.restart();
-            break;
-        }
-    }
-
-    cout << "2" << endl;
-    while (true)
-    {
-        sf::Time elapsed2 = clock.getElapsedTime();
-        std::cout << elapsed2.asSeconds() << std::endl;
-    }
-
-
-
-
-   */
-
+    
     point line;
     line.y = -650;
     line.x = 0;
@@ -869,7 +828,12 @@ STAR:
     int loopdelayMouse = 0;
     while (app.isOpen())
     {
-        // srand(time(0));
+        if (Keyboard::isKeyPressed(Keyboard::Q))
+        {
+            app.close();
+
+        }
+       
         Event e;
         while (app.pollEvent(e))
         {
@@ -946,7 +910,7 @@ STAR:
                         propllerdel.y = y - 9;
 
                     }
-                    // Spropeller.stop();
+                  
                     PropellSoundOnetime = true;
                 }
                 if (SoundRocket.getElapsedTime().asSeconds() >= 3 && Rocket_on)
@@ -967,7 +931,7 @@ STAR:
                         Rocketdel.y = y - 4;
                     }
                     RocketSoundOnetime = true;
-                    //    SRocket.stop();
+                  
 
                 }
                 if (clock.getElapsedTime().asSeconds() >= 10 && Shield_on)
@@ -994,7 +958,7 @@ STAR:
                         if (PropellSoundOnetime)
                         {
                             Spropeller.play();
-                            //   Spropeller.setLoop(true);
+                         
                             PropellSoundOnetime = false;
                         }
 
@@ -1008,7 +972,7 @@ STAR:
                         {
 
                             SRocket.play();
-                            //   SRocket.setLoop(true);
+                        
                             RocketSoundOnetime = false;
 
                         }
@@ -1018,9 +982,7 @@ STAR:
                     default:
                         break;
                     }
-                    // dy += 0.2;   //force g
-                   //  y += dy;     //jump
-                     //x  cross
+                   
                 }
                 else
                 {
@@ -1045,13 +1007,13 @@ STAR:
                             for (int i = 0; i < 5; i++)
                             {
                                 readfile >> score_read_write[i];
-                             //   cout << "score[i]" << score_read_write[i] << endl;
+                            
                             }
-                      //      cout << "read suscess" << endl;
+                     
                         }
                         else
                         {
-                       //     cout << "ERROE" << endl;
+                     
                         }
                         readfile.close();
 
@@ -1086,13 +1048,13 @@ STAR:
                             for (int i = 0; i < 5; i++)
                             {
                                 writer << score_read_write[i] << endl;
-                           //     cout << "score[i]" << score_read_write[i] << endl;
+                       
                             }
-                         //   cout << "writer suscess" << endl;
+                      
                         }
                         else
                         {
-                          //  cout << "ERROE" << endl;
+                       
                         }
 
                         writer.close();
@@ -1198,10 +1160,10 @@ STAR:
                     x = 380;
                 }
 
-                /*///////////////random block dumme*/
+               
                 if (line.y >= 0)
                 {
-                  //cout << "--------------------" << endl;
+                
                     line.y = -650;
                     int maxnumberblock, minnumberblock, maxrowpass, minrowpass, row_2, low_2, row, low;
                     if (setblock == set1)
@@ -1213,7 +1175,7 @@ STAR:
                         setblock = set2;
                         row_2 = 67;
                         low_2 = 64;
-                        //      cout << "set1" << endl;
+                     
                         row = 67;
                         low = 64;
 
@@ -1227,7 +1189,7 @@ STAR:
                         setblock = set3;
                         row_2 = 35;
                         low_2 = 32;
-                        //   cout << "set2" << endl;
+                       
                         row = 35;
                         low = 32;
                     }
@@ -1240,7 +1202,7 @@ STAR:
                         setblock = set1;
                         row_2 = 3;
                         low_2 = 0;
-                        //     cout << "set3" << endl;
+                      
                         row = 3;
                         low = 0;
                     }
@@ -1267,7 +1229,7 @@ STAR:
                     }
 
 
-                    //chose constan block////////
+                   
 
                     bool patternY = false, patternOr = false, patternDB = false;
                     for (int i = minrowpass; i < maxrowpass; i++)
@@ -1277,7 +1239,7 @@ STAR:
 
                         consand[keeprandomrang] = true;
 
-                        /* PATTERN BLOCK SPECIAL*/
+                      /*LEVEL FOR Plat con*/
                         if (LEVEL == 1)
                         {
                             cout << "LEVEL : " << LEVEL << endl;
@@ -1312,21 +1274,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                          
                             else if (block_B(2))
                             {
 
@@ -1398,21 +1346,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                           
                             else if (block_B(4))
                             {
 
@@ -1484,21 +1418,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                          
                             else if (block_B(10))
                             {
 
@@ -1570,21 +1490,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                           
                             else if (block_B(15))
                             {
 
@@ -1656,21 +1562,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                           
                             else if (block_B(15))
                             {
 
@@ -1742,21 +1634,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                          
                             else if (block_B(17))
                             {
 
@@ -1828,21 +1706,7 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
+                            
                             else if (block_B(20))
                             {
 
@@ -1914,21 +1778,6 @@ STAR:
                                 rowpass[i] = true;
                             }
 
-                            /*
-                             else if (have_Devil(70) && CHOSENDEVIL == Empty)
-                              {
-                                      if (Devil_havefrog(70))
-                                      {
-                                          cout << "frogggggggg" << endl;
-                                       //   rowpass[i] = true;
-
-
-                                          CHOSENDEVIL = Devil_frog;
-                                          chosenbloackDumme[keeprandomrang] = G_Devil_dumme;
-
-
-                                      }
-                              }*/
                             else if (block_B(25))
                             {
 
@@ -1970,7 +1819,6 @@ STAR:
                         row += 4;
                     }
 
-                    //chose normal block//
 
                     for (int i = minrowpass; i < maxrowpass; i++)
                     {
@@ -1982,6 +1830,7 @@ STAR:
                             {
                                 if (!consand[j])
                                 {
+                                    /*LEVEL FOR Plat normal*/
                                     if (LEVEL == 1)
                                     {
                                         if (haveblock(70))
@@ -2267,7 +2116,7 @@ STAR:
                                                 have_Shield = true;
                                                 chosenbloackDumme[j] = GS_dumme;
                                             }
-                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            else if (block_Rocket(15) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_Rocket = true;
                                                 chosenbloackDumme[j] = GRk_dumme;
@@ -2317,7 +2166,7 @@ STAR:
                                                 have_Shield = true;
                                                 chosenbloackDumme[j] = GS_dumme;
                                             }
-                                            else if (block_Rocket(5) && !have_propller && !have_Shield && !have_Rocket)
+                                            else if (block_Rocket(15) && !have_propller && !have_Shield && !have_Rocket)
                                             {
                                                 have_Rocket = true;
                                                 chosenbloackDumme[j] = GRk_dumme;
@@ -2395,485 +2244,13 @@ STAR:
 
                     }
 
-
+                    /*LEVEL FOR EN*/
 
                     if(LEVEL ==1)
                     { 
                         if (!Devilalive && CHOSENDEVIL == Empty)
                         {
-                            if (have_Devil(0) && !Rocket_on && !Rocket_out)
-                            {
-                                if (Devil_haveBat(0))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_Bat;
-
-                                    DeVil_Bat_fram = DeVil1_1;
-                                    framefristseeDevil = 0;
-                                    loopdelayfristseeDevil = 0;
-                                    Devil.x = 0;
-                                    Devil.y = 650 - 67;
-                                }
-                                else if (Devil_haveBlue(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    direction_BLue = true;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Blue;
-                                    DeVil_Bluet_fram = Blue_1;
-                                    Devil.x = randomrang(150, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveRed(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Red;
-                                    Redfram = R1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_havePing(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Ping;
-                                    Pingfram = P1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveGreen(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 4;
-                                    CHOSENDEVIL = Devil_Green;
-                                    GreenATKfram = AG1;
-                                    Greenfram = G1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_have3EYE(10))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-                                    loopdelay3EYE = 0;
-                                    EYE3ATK = false;
-
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_3EYE;
-
-                                    EYE3fram = E1;
-                                    loopdelay3EYE = 0;
-                                    Devil.x = randomrang(100, 300);;
-                                    Devil.y = -70;
-                                }
-
-
-
-                            }
-                        }
-                    }
-                    if (LEVEL == 2)
-                    {
-                        if (!Devilalive && CHOSENDEVIL == Empty)
-                        {
-                            if (have_Devil(0) && !Rocket_on && !Rocket_out)
-                            {
-                                if (Devil_haveBat(10))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_Bat;
-
-                                    DeVil_Bat_fram = DeVil1_1;
-                                    framefristseeDevil = 0;
-                                    loopdelayfristseeDevil = 0;
-                                    Devil.x = 0;
-                                    Devil.y = 650 - 67;
-                                }
-                                else if (Devil_haveBlue(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    direction_BLue = true;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Blue;
-                                    DeVil_Bluet_fram = Blue_1;
-                                    Devil.x = randomrang(150, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveRed(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Red;
-                                    Redfram = R1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_havePing(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Ping;
-                                    Pingfram = P1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveGreen(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 4;
-                                    CHOSENDEVIL = Devil_Green;
-                                    GreenATKfram = AG1;
-                                    Greenfram = G1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_have3EYE(10))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-                                    loopdelay3EYE = 0;
-                                    EYE3ATK = false;
-
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_3EYE;
-
-                                    EYE3fram = E1;
-                                    loopdelay3EYE = 0;
-                                    Devil.x = randomrang(100, 300);;
-                                    Devil.y = -70;
-                                }
-
-
-
-                            }
-                        }
-                    }
-                    if (LEVEL == 3)
-                    {
-                        if (!Devilalive && CHOSENDEVIL == Empty)
-                        {
                             if (have_Devil(10) && !Rocket_on && !Rocket_out)
-                            {
-                                if (Devil_haveBat(0))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_Bat;
-
-                                    DeVil_Bat_fram = DeVil1_1;
-                                    framefristseeDevil = 0;
-                                    loopdelayfristseeDevil = 0;
-                                    Devil.x = 0;
-                                    Devil.y = 650 - 67;
-                                }
-                                else if (Devil_haveBlue(0))
-                                {
-                                    Devil_die_by_foot = false;
-                                    direction_BLue = true;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Blue;
-                                    DeVil_Bluet_fram = Blue_1;
-                                    Devil.x = randomrang(150, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveRed(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Red;
-                                    Redfram = R1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_havePing(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Ping;
-                                    Pingfram = P1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveGreen(0))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 4;
-                                    CHOSENDEVIL = Devil_Green;
-                                    GreenATKfram = AG1;
-                                    Greenfram = G1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_have3EYE(0))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-                                    loopdelay3EYE = 0;
-                                    EYE3ATK = false;
-
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_3EYE;
-
-                                    EYE3fram = E1;
-                                    loopdelay3EYE = 0;
-                                    Devil.x = randomrang(100, 300);;
-                                    Devil.y = -70;
-                                }
-
-
-
-                            }
-                        }
-                    }
-                    if (LEVEL == 4)
-                    {
-                        if (!Devilalive && CHOSENDEVIL == Empty)
-                        {
-                            if (have_Devil(20) && !Rocket_on && !Rocket_out)
-                            {
-                                if (Devil_haveBat(0))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_Bat;
-
-                                    DeVil_Bat_fram = DeVil1_1;
-                                    framefristseeDevil = 0;
-                                    loopdelayfristseeDevil = 0;
-                                    Devil.x = 0;
-                                    Devil.y = 650 - 67;
-                                }
-                                else if (Devil_haveBlue(10))
-                                {
-                                    Devil_die_by_foot = false;
-                                    direction_BLue = true;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Blue;
-                                    DeVil_Bluet_fram = Blue_1;
-                                    Devil.x = randomrang(150, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveRed(15))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Red;
-                                    Redfram = R1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_havePing(15))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 1;
-                                    CHOSENDEVIL = Devil_Ping;
-                                    Pingfram = P1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_haveGreen(0))
-                                {
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 4;
-                                    CHOSENDEVIL = Devil_Green;
-                                    GreenATKfram = AG1;
-                                    Greenfram = G1;
-                                    Devil.x = randomrang(100, 300);
-                                    Devil.y = 0;
-                                }
-                                else if (Devil_have3EYE(0))
-                                {
-                                    switch (randomrang(0, 4))
-                                    {
-                                    case 1:
-                                        DeVilDirec = LU;
-                                        break;
-                                    case 2:
-                                        DeVilDirec = LD;
-                                        break;
-                                    case 3:
-                                        DeVilDirec = RU;
-                                        break;
-                                    case 4:
-                                        DeVilDirec = RD;
-                                        break;
-                                    default:
-                                        DeVilDirec = LU;
-                                        break;
-                                    }
-                                    loopdelay3EYE = 0;
-                                    EYE3ATK = false;
-
-                                    Devil_die_by_foot = false;
-                                    Devilalive = true;
-                                    heartDevil = 3;
-                                    CHOSENDEVIL = Devil_3EYE;
-
-                                    EYE3fram = E1;
-                                    loopdelay3EYE = 0;
-                                    Devil.x = randomrang(100, 300);;
-                                    Devil.y = -70;
-                                }
-
-
-
-                            }
-                        }
-                    }
-                    if (LEVEL == 5)
-                    {
-                        if (!Devilalive && CHOSENDEVIL == Empty)
-                        {
-                            if (have_Devil(20) && !Rocket_on && !Rocket_out)
                             {
                                 if (Devil_haveBat(0))
                                 {
@@ -2937,7 +2314,243 @@ STAR:
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_haveGreen(5))
+                                else if (Devil_haveGreen(0))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 2)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(0))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 3)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(0))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(10))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
@@ -2987,13 +2600,131 @@ STAR:
                             }
                         }
                     }
-                    if (LEVEL == 6)
+                    if (LEVEL == 4)
                     {
                         if (!Devilalive && CHOSENDEVIL == Empty)
                         {
                             if (have_Devil(25) && !Rocket_on && !Rocket_out)
                             {
-                                if (Devil_haveBat(0))
+                                if (Devil_haveBat(5))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(15))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 5)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(20))
                                 {
                                     switch (randomrang(0, 4))
                                     {
@@ -3035,7 +2766,7 @@ STAR:
                                     Devil.x = randomrang(150, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_haveRed(10))
+                                else if (Devil_haveRed(15))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
@@ -3045,7 +2776,125 @@ STAR:
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_havePing(10))
+                                else if (Devil_havePing(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Ping;
+                                    Pingfram = P1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveGreen(15))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 4;
+                                    CHOSENDEVIL = Devil_Green;
+                                    GreenATKfram = AG1;
+                                    Greenfram = G1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_have3EYE(15))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+                                    loopdelay3EYE = 0;
+                                    EYE3ATK = false;
+
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_3EYE;
+
+                                    EYE3fram = E1;
+                                    loopdelay3EYE = 0;
+                                    Devil.x = randomrang(100, 300);;
+                                    Devil.y = -70;
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    if (LEVEL == 6)
+                    {
+                        if (!Devilalive && CHOSENDEVIL == Empty)
+                        {
+                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            {
+                                if (Devil_haveBat(20))
+                                {
+                                    switch (randomrang(0, 4))
+                                    {
+                                    case 1:
+                                        DeVilDirec = LU;
+                                        break;
+                                    case 2:
+                                        DeVilDirec = LD;
+                                        break;
+                                    case 3:
+                                        DeVilDirec = RU;
+                                        break;
+                                    case 4:
+                                        DeVilDirec = RD;
+                                        break;
+                                    default:
+                                        DeVilDirec = LU;
+                                        break;
+                                    }
+
+                                    Devilalive = true;
+                                    heartDevil = 3;
+                                    CHOSENDEVIL = Devil_Bat;
+
+                                    DeVil_Bat_fram = DeVil1_1;
+                                    framefristseeDevil = 0;
+                                    loopdelayfristseeDevil = 0;
+                                    Devil.x = 0;
+                                    Devil.y = 650 - 67;
+                                }
+                                else if (Devil_haveBlue(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    direction_BLue = true;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Blue;
+                                    DeVil_Bluet_fram = Blue_1;
+                                    Devil.x = randomrang(150, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_haveRed(20))
+                                {
+                                    Devil_die_by_foot = false;
+                                    Devilalive = true;
+                                    heartDevil = 1;
+                                    CHOSENDEVIL = Devil_Red;
+                                    Redfram = R1;
+                                    Devil.x = randomrang(100, 300);
+                                    Devil.y = 0;
+                                }
+                                else if (Devil_havePing(20))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
@@ -3109,7 +2958,7 @@ STAR:
                     {
                         if (!Devilalive && CHOSENDEVIL == Empty)
                         {
-                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            if (have_Devil(30) && !Rocket_on && !Rocket_out)
                             {
                                 if (Devil_haveBat(15))
                                 {
@@ -3142,7 +2991,7 @@ STAR:
                                     Devil.x = 0;
                                     Devil.y = 650 - 67;
                                 }
-                                else if (Devil_haveBlue(10))
+                                else if (Devil_haveBlue(20))
                                 {
                                     Devil_die_by_foot = false;
                                     direction_BLue = true;
@@ -3153,7 +3002,7 @@ STAR:
                                     Devil.x = randomrang(150, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_haveRed(5))
+                                else if (Devil_haveRed(15))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
@@ -3163,7 +3012,7 @@ STAR:
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_havePing(5))
+                                else if (Devil_havePing(15))
                                 {
                                     Devil_die_by_foot = false;
                                     Devilalive = true;
@@ -3184,7 +3033,7 @@ STAR:
                                     Devil.x = randomrang(100, 300);
                                     Devil.y = 0;
                                 }
-                                else if (Devil_have3EYE(15))
+                                else if (Devil_have3EYE(25))
                                 {
                                     switch (randomrang(0, 4))
                                     {
@@ -3227,9 +3076,9 @@ STAR:
                     {
                         if (!Devilalive && CHOSENDEVIL == Empty)
                         {
-                            if (have_Devil(25) && !Rocket_on && !Rocket_out)
+                            if (have_Devil(30) && !Rocket_on && !Rocket_out)
                             {
-                                if (Devil_haveBat(20))
+                                if (Devil_haveBat(30))
                                 {
                                     switch (randomrang(0, 4))
                                     {
@@ -3377,7 +3226,7 @@ STAR:
                                 Devil_die_by_foot = false;
                                 heartDevil = 3;
                                 Devilalive = true;
-                             // cout << "LOOP SET XY" << endl;
+                            
                                 platchosen[i].y = -20;
                                 platchosen[i].x = randomrang(prexnew, 100 + ((xrownew * 100) - 108));
                                 Devil.y = 0 - 50;
@@ -3394,7 +3243,7 @@ STAR:
                             platchosen[i].y = randomrang(prey, -570 + ((yrow * 80) - 20));
                         }
 
-                        //    cout << "  platplatchosen[" << i << "].x : " << platchosen[i].x << "  platplatchosen[" << i << "].y : " << platchosen[i].y << endl;
+                       
                         switch (chosenbloackDumme[i])
                         {
                         case  G_dumme:
@@ -3435,7 +3284,7 @@ STAR:
                             chosenbloack[i] = DB;
                             break;
                         case G_Devil_dumme:
-                       //     cout << "dddd" << endl;
+                    
                             chosenbloack[i] = G_Devil;
                             break;
                         case  blank_dumme:
@@ -3459,11 +3308,11 @@ STAR:
                 }
 
 
-                // map up
+                /* map up*/
 
                 if (y < h)
                 {
-                    score += 2;
+                    score += 12;
                     line.y = line.y - dy;
                     if (Devilalive && dooler_alive)
                     {
@@ -3555,7 +3404,7 @@ STAR:
 
 
 
-                // jump plat doodler on plat
+                /* jump plat doodler on plat*/
                 int jump = -8;
                 int jumpsp = -16;
                 for (int i = 0; i < blockg; i++)
@@ -3922,7 +3771,7 @@ STAR:
                         {
 
                             speeddoodle = Propeller;
-                            // scoreold = score;
+                          
                             propller_on = true;
                             chosenbloack[i] = G;
                             platchosen[i].y += 15;
@@ -3938,7 +3787,7 @@ STAR:
 
 
                             speeddoodle = Propeller;
-                            // scoreold = score;
+                           
                             propller_on = true;
                             chosenbloack[i] = G;
                             platchosen[i].y += 15;
@@ -3954,7 +3803,7 @@ STAR:
 
                             dir = RIGHT;
                             speeddoodle = Propeller;
-                            //  scoreold = score;
+                           
                             propller_on = true;
                             chosenbloack[i] = G;
                             platchosen[i].y += 15;
@@ -4015,7 +3864,7 @@ STAR:
                         {
                             SoundRocket.restart();
                             speeddoodle = Rocket;
-                            //  scoreold = score;
+                           
                             Rocket_on = true;
                             chosenbloack[i] = G;
                             frameRocket = Rocket_1;
@@ -4031,7 +3880,7 @@ STAR:
 
                             SoundRocket.restart();
                             speeddoodle = Rocket;
-                            //scoreold = score;
+                           
                             Rocket_on = true;
                             chosenbloack[i] = G;
                             frameRocket = Rocket_1;
@@ -4047,7 +3896,7 @@ STAR:
                             SoundRocket.restart();
                             dir = RIGHT;
                             speeddoodle = Rocket;
-                            //  scoreold = score;
+                           
                             Rocket_on = true;
                             chosenbloack[i] = G;
                             frameRocket = Rocket_1;
@@ -4491,50 +4340,18 @@ STAR:
 
 
 
-                /* can not*/
-                /*
-
-                for (int i = 0; i < blockg; i++)
-                {
-                    switch (chosenbloack[i])
-                    {
-                    case Gy:
-                        if (!directionplatGy[i])
-                        {
-                            platchosen[i].y--;
-
-                        }
-                        else if (directionplatGy[i])
-                        {
-                            platchosen[i].y++;
-
-                        }
-                        if (platchosen[i].y == 0 )
-                        {
-                           directionplatGy[i] = true;
-                        }
-                         if(platchosen[i].y == 520 )
-                        {
-                            directionplatGy[i] = false;
-                        }
-                        break;
-                    default:
-                        break;
-                    }
-
-                }
-                */
+             
 
 
 
                 if (Dark)
                 {
-                   // cout << "DDDD" << endl;
+                  
                     sBack_grid.setTexture(t107);
                 }
                 else if (!Dark)
                 {
-                  //  cout << "LLLLL" << endl;
+                
                     sBack_grid.setTexture(t21);
                 }
               
@@ -4543,7 +4360,7 @@ STAR:
                 sBack_grid.setPosition(Background.x, Background.y);
                 app.draw(sBack_grid);
 
-                // app.draw(sBackground);
+               
 
 
 
@@ -4562,11 +4379,11 @@ STAR:
                         app.draw(sPlatG);
                         break;
                     case G_Devil:
-                        //     cout << "drraw G _  devil" << endl;
+                      
 
 
 
-                        sPlat_Devil.setPosition(platchosen[i].x, Devil.y + 30 /*platchosen[i].y*/);
+                        sPlat_Devil.setPosition(platchosen[i].x, Devil.y + 30);
                         app.draw(sPlat_Devil);
                         break;
                     case Gsp:
@@ -4663,7 +4480,7 @@ STAR:
                                 if (platdelbrown[i].y > 650)
                                 {
                                     brownout[i] = false;
-                                    //     platdelbrown[i].x = -100;
+                                 
                                 }
                                 sPlatBrown6.setPosition(platdelbrown[i].x, platdelbrown[i].y);
                                 app.draw(sPlatBrown6);
@@ -4988,11 +4805,7 @@ STAR:
                         }
                         else
                         {
-                            //        bool dirx[40];
-                             //       int  randx[10];
-
-
-                                //    Yellow_move[i] = true;
+                           
                             int move = 10;
 
 
@@ -5836,7 +5649,7 @@ STAR:
                             BulletDevil[amountbullet].y = Devil.y + 65;
                             amountbullet++;
                         }
-                        // sBulleyDevil(t83)
+                     
                     }
 
                 }
@@ -6175,10 +5988,7 @@ STAR:
 
 
 
-                //  cout << " LEVEL : " << LEVEL  << " score : " << score << " countblock : " << countblock << endl;
-                //  cout << " LEVEL : " << LEVEL << " score : " << score  << endl;
-                 //  cout << " x : " << x  << " y : " << y  << endl;
-
+               
 
 
            
@@ -6204,11 +6014,11 @@ STAR:
                     doolderdiebystats = false;
                     dooler_alive = false;
 
-               //    cout << "dawdawd" << endl;
+             
 
                 }
 
-                //      cout << "Devil.x : " << Devil.x << " Devil.y : "<< Devil.y << endl;
+              
 
 
 
@@ -6216,8 +6026,7 @@ STAR:
                       /*fall doe and finsh - background*/
                 if (Background.y < -630)
                 {
-                    //      cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
-                    //      cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
+                 
 
                     sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
 
@@ -6890,7 +6699,7 @@ STAR:
                         {
                             loopdelayRocket = 0;
                             if (SoundRocket.getElapsedTime().asSeconds() >= 2 && Rocket_on)
-                                //if (score - scoreold >= 350 && Rocket_on)
+                               
                             {
                                 frameRocket = Rocket_7;
                             }
@@ -6974,7 +6783,7 @@ STAR:
                         {
                             loopdelayRocket = 0;
                             if (SoundRocket.getElapsedTime().asSeconds() >= 2.5 && Rocket_on)
-                                //     if (score - scoreold >= 450 && Rocket_on)
+                               
                             {
                                 frameRocket = Rocket_8;
                             }
@@ -6996,7 +6805,7 @@ STAR:
                     {
                         if (Rocketdel.y > 1550)
                         {
-                       //     cout << "Rocket out" << endl;
+                     
                             Rocket_on = false;
                             Rocket_out = false;
                             have_Rocket = false;
@@ -7012,12 +6821,12 @@ STAR:
 
                 if (Dark)
                 {
-               //     cout << "DDDD" << endl;
+            
                    
                     if (y >= 600 && !dooler_alive)
                     {
                         SetBackBgforDrakmap = true;
-                        //  y = 650;
+                     
                     }
                     if (SetBackBgforDrakmap)
                     {
@@ -7051,40 +6860,40 @@ STAR:
 
 
 
-                //score
-                if (score >= 25000)//dis 1
+                /*score*/
+                if (score >= 25000)
                 {
                     LEVEL = 8;
                   
                 }
-                else if (score >= 18000)//dis2
+                else if (score >= 18000)
                 {
                     LEVEL = 7;
             
                 }
-                else if (score >= 14000)//dis2
+                else if (score >= 14000)
                 {
                     LEVEL = 6;
 
                 }
-                else if (score >= 10000)//dis2
+                else if (score >= 10000)
                 {
                     LEVEL = 5;
 
                 }
-                else if (score >= 7000)//dis2
+                else if (score >= 7000)
                 {
                     LEVEL = 4;
                 }
-                else if (score >= 4000)//dis2
+                else if (score >= 4000)
                 {
                     LEVEL = 3;
                 }
-                else if (score >= 1500)//no sp
+                else if (score >= 1500)
                 {
                     LEVEL = 2;
                 }
-                else if (score >= 0)//new color
+                else if (score >= 0)
                 {
                     LEVEL = 1;
                 }
@@ -7107,6 +6916,12 @@ STAR:
 
 
                 }
+
+                name.setFont(font);
+                name.setCharacterSize(30);
+                name.setPosition(70, 600);
+                name.setString("Purin Tabtimto - 63010770");
+                name.setFillColor(sf::Color::Yellow);
 
                 text.setFont(font);
                 text.setCharacterSize(50);
@@ -7238,7 +7053,7 @@ STAR:
 
 
                 app.draw(text);
-
+                app.draw(name);
 
 
                 sPersRight.setPosition(x, y);
@@ -7280,26 +7095,13 @@ STAR:
                     break;
                 }
 
-                /*
-                sDE_1_0.setPosition(200, 200);
-                app.draw(sDE_1_0);
-
-
-                sPlatG.setPosition(200, 230);
-                app.draw(sPlatG);
-                sPlatG.setPosition(250, 230);
-                app.draw(sPlatG);
-
-                sDE_2_1.setPosition(200, 400);
-                app.draw(sDE_2_1);*/
-                
+               
                 break;
             }
 
             if (CHOSEMENU == SCORE)
             {
-                //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
-                //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
+               
                 app.draw(sMenu_scores);
 
 
@@ -7332,13 +7134,13 @@ STAR:
                         for (int i = 0; i < 5; i++)
                         {
                             readfile >> score_read_write[i];
-                          //  cout << "score[i]" << score_read_write[i] << endl;
+                         
                         }
-                   //     cout << "read suscess" << endl;
+                  
                     }
                     else
                     {
-                   //     cout << "ERROE" << endl;
+                 
                     }
                     readfile.close();
                     one_read_write = false;
@@ -7475,369 +7277,7 @@ STAR:
             }
 
 
-            if (CHOSEMENU == TEST)
-            {
-
-
-               // cout << " x : " << x;
-               // cout << " y : " << y << endl;
-
-
-                if (Keyboard::isKeyPressed(Keyboard::Right))
-                {
-                    x += 1;
-                }
-                if (Keyboard::isKeyPressed(Keyboard::Left))
-                {
-                    x -= 1;
-                }
-                if (Keyboard::isKeyPressed(Keyboard::Up))
-                {
-                    y -= 1;
-                }
-                if (Keyboard::isKeyPressed(Keyboard::Down))
-                {
-                    y += 1;
-                }
-                if (Keyboard::isKeyPressed(Keyboard::M))
-                {
-                    system("CLS");
-                    CHOSEMENU = MENU;
-                    one_read_write = true;
-
-                }
-                if (Keyboard::isKeyPressed(Keyboard::L))
-                {
-                    dir = LEFT;
-
-                }
-                if (Keyboard::isKeyPressed(Keyboard::R))
-                {
-                    dir = RIGHT;
-
-                }
-                if (Keyboard::isKeyPressed(Keyboard::A))
-                {
-                    dir = ATK;
-
-                }
-                if (x > 380)
-                {
-                    x = -23;
-                }
-                else if (x < -23)
-                {
-                    x = 380;
-                }
-
-
-               
-                sBgDarkmap.setPosition(Background.x, Background.y);
-                app.draw(sBgDarkmap);
-
-               
-
-                stestxy.setPosition(x, y);
-                app.draw(stestxy);
-
-
-
-
-
-
-                // sDevil3E_1.setPosition(200, 160);
-              //   app.draw(sDevil3E_1);
- /*
-                 sDevilGreen_1.setPosition(100, 100);
-                 app.draw(sDevilGreen_1);
-
-                     sDevilRed.setPosition(200, 100);
-                 app.draw(sDevilRed);
-
-                 sDevilPing.setPosition(300, 100);
-                 app.draw(sDevilPing);*/
-
-                 /*
-                      //       Devil_Red:
-
-                                 if ((x+ 6 >= 200) && (x <= 200 + 55) && (y <= 100 + 40) && (y - 10 >= 100) &&y >= 0 )
-                                 {
-                                     cout << "redd" << endl;
-                                 }
-
-                           //  Devil_Ping:
-
-                                 if ((x + 5 >= 300) && (x <= 300 + 64) && (y<= 100 + 56) && (y - 10 >= 100) && y >= 0 )
-                                 {
-                                     cout << "Pingg" << endl;
-                                 }
-
-                            //  Devil_Green:
-
-                                 if ((x + 4 >= 100) && (x <=100 + 89) && (y <= 100 + 50) && (y - 10 >= 100) && y >= 0)
-                                 {
-                                     cout << "Greenn" << endl;
-                                 }
-
-
-                                 Devil_3EYE:
-                                    if ((x + 5 >= 300) && (x <= 300 + 60) && (y <= 300 + 88) && (y - 10 >= 300) && y >= 0)
-                                 {
-                                     cout << "EYEEEEE" << endl;
-                                 }
-                                 */
-
-
-
-
-                                 //    cout << " Mouse x : " << sf::Mouse::getPosition(app).x;
-                                 //    cout << " Mouse y : " << sf::Mouse::getPosition(app).y << endl;
-
-
-
-                                     /*
-                                                     platchosen[1].x = 100;
-                                                     platchosen[1].y = 100;
-
-                                                     if (sf::Mouse::getPosition(app).x >= platchosen[1].x && sf::Mouse::getPosition(app).x <= platchosen[1].x+57 && sf::Mouse::getPosition(app).y >= platchosen[1].y && sf::Mouse::getPosition(app).y <= platchosen[1].y + 13)
-                                                     {
-                                                         cout << " find in " << endl;
-                                                     }
-
-                                                     sPlatDB1.setPosition(platchosen[1].x, platchosen[1].y);
-                                                     app.draw(sPlatDB1);*/
-
-                                                     /*
-                                                     sf::Vector2f Mouse = app.mapPixelToCoords(sf::Mouse::getPosition(app));
-
-
-
-                                                         if (( sPlatDB1.getGlobalBounds().contains(Mouse) &&  sf::Mouse::isButtonPressed(sf::Mouse::Left) ) || (sf::Mouse::isButtonPressed(sf::Mouse::Left)  && !fristmouseDB[i]))
-                                                         {
-                                                               cout << "iffffffffffffff" << endl;
-                                                             if (fristmouseDB[i])
-                                                             {
-                                                                 conmouseDB[i].x = sf::Mouse::getPosition(app).x;
-                                                                 conmouseDB[i].y = sf::Mouse::getPosition(app).y;
-                                                                 conDB[i].x = platchosen[i].x;
-                                                                 conDB[i].y = platchosen[i].y ;
-                                                                 fristmouseDB[i] = false;
-                                                             }
-
-
-                                                             platchosen[i].x = conDB[i].x + (sf::Mouse::getPosition(app).x - conmouseDB[i].x);
-                                                             platchosen[i].y = conDB[i].y + (sf::Mouse::getPosition(app).y - conmouseDB[i].y);
-                                                             sPlatDB2.setPosition(platchosen[i].x -22, platchosen[i].y -27);
-                                                             app.draw(sPlatDB2);
-
-
-                                                         }
-
-
-
-                                                     else
-                                                     {
-                                                             if (sPlatDB1.getGlobalBounds().contains(Mouse) &&  !fristmouseDB[i])
-                                                             {
-                                                                 cout << "Released" << endl;
-                                                                     fristmouseDB[i] = true;
-                                                                  // Darx = 0;
-                                                                  //   Dary = 0;
-                                                             }
-
-                                                         switch (DrakBluefram[i])
-                                                         {
-                                                         case DB1:
-                                                             sPlatDB1.setPosition(platchosen[i].x, platchosen[i].y);
-                                                             app.draw(sPlatDB1);
-                                                             sArrowUp.setPosition(platchosen[i].x + 26, platchosen[i].y - 10);
-                                                             app.draw(sArrowUp);
-
-                                                             sArrowDown.setPosition(platchosen[i].x + 28, platchosen[i].y + 15);
-                                                             app.draw(sArrowDown);
-
-                                                             sArrowLeft.setPosition(platchosen[i].x - 14, platchosen[i].y + 4);
-                                                             app.draw(sArrowLeft);
-
-                                                             sArrowRight.setPosition(platchosen[i].x + 60, platchosen[i].y + 1);
-                                                             app.draw(sArrowRight);
-                                                             loopdelayDrakBlue[i] ++;
-                                                             if (loopdelayDrakBlue[i] >= 8)
-                                                             {
-                                                                 loopdelayDrakBlue[i] = 0;
-                                                                 DrakBluefram[i] = DB2;
-                                                             }
-                                                             break;
-                                                         case DB2:
-                                                             sPlatDB1.setPosition(platchosen[i].x, platchosen[i].y);
-                                                             app.draw(sPlatDB1);
-                                                             sArrowUp.setPosition(platchosen[i].x + 26, platchosen[i].y - 15);
-                                                             app.draw(sArrowUp);
-
-                                                             sArrowDown.setPosition( platchosen[i].x + 28, platchosen[i].y + 20);
-                                                             app.draw(sArrowDown);
-
-                                                             sArrowLeft.setPosition(platchosen[i].x - 19, platchosen[i].y + 4);
-                                                             app.draw(sArrowLeft);
-
-                                                             sArrowRight.setPosition(platchosen[i].x + 65, platchosen[i].y + 1);
-                                                             app.draw(sArrowRight);
-                                                             loopdelayDrakBlue[i] ++;
-                                                             if (loopdelayDrakBlue[i] >= 8)
-                                                             {
-                                                                 loopdelayDrakBlue[i] = 0;
-                                                                 DrakBluefram[i] = DB1;
-                                                             }
-                                                             break;
-                                                         default:
-                                                             break;
-                                                         }
-                                                     }
-                                                         */
-
-
-
-
-
-
-                                                         /*       sPlatDB1.setPosition(100, 160);
-                                                                app.draw(sPlatDB1);
-
-                                                                sPlatDB2.setPosition(x, y);
-                                                                app.draw(sPlatDB2);*/
-
-
-
-                                                                /*
-                                                                sPlatDB1.setPosition(100, 160);
-                                                                app.draw(sPlatDB1);
-
-
-                                                                sPlatDB3.setPosition(100, 240);
-                                                                app.draw(sPlatDB3);
-
-                                                                sPlatG.setPosition(x,y);
-                                                                app.draw(sPlatG);
-                                                                */
-                                                                /*
-                                                                 sBulleyDevil.setPosition(x, y);
-                                                                 app.draw(sBulleyDevil);
-
-                                                                 SBullet.setPosition(200, 300);
-                                                                   app.draw(SBullet);
-
-                                                                   if ((x + 8 >= 200) && (x <= 200 +8) && (y <=300 +10) && (y >= 300-11) && y >= 0)
-                                                                   {
-                                                                       cout << "EYEEEEE" << endl;
-                                                                   }*/
-
-                                                                   //sShield(t92), sRocket(t93), sShield1(t94);
-
-
-
-                int xx = 100, yy = 400;
-
-                /*
-                                                sPlatG.setPosition(100, 400);
-                                                app.draw(sPlatG);
-
-
-                                                 sRocket.setPosition(xx + 15, yy - 43);
-                                                app.draw(sRocket);
-
-
-                                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 100) && (y <= yy - 5) && dir == RIGHT)
-                                                {
-                                                    cout << "RRR" << endl;
-                                                }
-
-                                                if ((x + 40 >= xx) && (x <= xx + 20) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
-                                                {
-                                                    cout << "LL" << endl;
-                                                }
-
-                                                if ((x + 20 >= xx) && (x <= xx + 40) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
-                                                {
-                                                    cout << "ATK" << endl;
-                                                }
-
-
-
-
-
-                                                //sShield.setPosition(xx+11, yy-42);
-                                                //app.draw(sShield);
-
-
-                                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 100) && (y <= yy - 5) && dir ==RIGHT)
-                                                {
-                                                    cout << "RRR" << endl;
-                                                }
-
-                                                if ((x + 46 >= xx) && (x <= xx + 25) && (y >= yy - 100) && (y <= yy - 5) && dir == LEFT)
-                                                {
-                                                    cout << "LL" << endl;
-                                                }
-
-                                                if ((x + 25 >= xx) && (x <= xx + 46) && (y >= yy - 113) && (y <= yy - 5) && dir == ATK)
-                                                {
-                                                    cout << "ATK" << endl;
-                                                }*/
-
-
-
-
-                if (dir == LEFT)
-                {
-
-                    //    SBullet.setPosition(x, y);
-                      //  app.draw(SBullet);
-                    sRocket10.setTextureRect(sf::IntRect(0, 0, 21, 58));
-                    sRocket10.setPosition(x + 56, y - 4);
-                    app.draw(sRocket10);
-
-                  //  cout << " LLL " << endl;
-                    sPersLeftt.setPosition(x, y);
-                    app.draw(sPersLeftt);
-
-                }
-                if (dir == RIGHT)
-                {
-
-                    //  SBullet.setPosition(x, y);
-                    //  app.draw(SBullet);
-                  //  cout << " RRR " << endl;
-                    sRocket10.setTextureRect(sf::IntRect(21, 0, -21, 58));
-                    sRocket10.setPosition(x - 19, y - 4);
-                    app.draw(sRocket10);
-
-
-                    sPersRight.setPosition(x, y);
-                    app.draw(sPersRight);
-                }
-                if (dir == ATK)
-                {
-
-                    // SBullet.setPosition(x, y);
-                    // app.draw(SBullet);
-
-
-
-                    sPersATK.setPosition(xx, yy);
-                    app.draw(sPersATK);
-                }
-
-
-
-                sBgforDrakmap.setOrigin(214, 319);
-                app.draw(sBgforDrakmap);
-               // sBgforDrakmap.setOrigin(sf::Vector2f(-(x- sBgforDrakmap.getTexture()->getSize().x * 0.5),-(y- sBgforDrakmap.getTexture()->getSize().y * 0.5)));
-               // app.draw(sBgforDrakmap);
-                //sBgforDrakmap.setOrigin(sf::Vector2f(-(x -( 867 * 0.5)), -(y -( (920 * 0.5) +181))));
-              //  app.draw(sBgforDrakmap);
-               
-                break;
-            }
+           
         }
 
 
@@ -7852,5 +7292,4 @@ STAR:
 
     return 0;
 }
-
 
